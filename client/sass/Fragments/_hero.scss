@@ -1,0 +1,26 @@
+.hero {
+    display: table;
+    width: 100%;
+    height: 100%;
+    font-size: 1.5em;
+    text-align: center;
+
+    .wrapper {
+        display: table-cell;
+        vertical-align: middle;
+
+        .title {
+            font-size: 2.5em;
+            line-height: 1.5em;
+            font-weight: 500;
+            color: $dark-gray;
+        }
+        .caption {
+            color: $light-gray;
+            margin-bottom: 2.5em;
+        }
+        button {
+            font-weight: 500;
+        }
+    }
+}

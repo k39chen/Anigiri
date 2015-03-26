@@ -7,3 +7,13 @@ html, body {
     width: 100%;
     height: 100%;
 }
+button {
+    @include button;
+}
+// we are going to hide the default login buttons
+// provide by the Meteor accounts service and provide
+// our own visual solution.
+#login-buttons {
+    display: none !important;
+    background: pink;
+}

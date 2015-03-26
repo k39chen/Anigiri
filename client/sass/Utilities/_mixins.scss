@@ -1,0 +1,28 @@
+@mixin button($font-size:1.0em) {
+    @include transition(all 0.2s);
+    cursor: pointer;
+    padding: 0 1.0em;
+    height: 2.25em;
+    line-height: 2.25em;
+    background: $theme-color;
+    color: $white;
+    outline: none;
+    font-family: $sans-serif;
+    font-size: 1.0em;
+    border: none;
+    border-bottom: solid 2px darken($theme-color,20%);
+    @include box-sizing(border-box);
+    @include border-radius(3px);
+
+    &:hover {
+        @include opacity(0.7);
+    }
+    &:active {
+        @include opacity(1.0);
+    }
+    &[disabled] {
+        cursor: auto;
+        cursor: not-allowed;
+        @include opacity(0.5);
+    }
+}

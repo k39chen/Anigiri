@@ -1,0 +1,22 @@
+<!--
+/**
+ * This is a fragmented template for creating a hero banner.
+ * 
+ * @template hero
+ * @param classes {String} A list of additioanl hero banner modifiers.
+ * @param title {String} The title text for the hero banner.
+ * @param caption {String} The caption text for the hero banner.
+ * @param buttonId {String} The button id to apply to the hero button.
+ * @param buttonText {String} The button text for the hero banner.
+ * @param buttonClass {String} The button classes to apply.
+ */
+-->
+<template name="hero">
+<div class="hero {{classes}}">
+    <div class="wrapper">
+        <div class="title">{{title}}</div>
+        <div class="caption">{{caption}}</div>
+        <button id="{{buttonId}}" class="{{buttonClass}}">{{buttonText}}</button>
+    </div>
+</div>
+</template>
