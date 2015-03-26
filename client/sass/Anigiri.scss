@@ -1,17 +1,21 @@
 // import utilities
-@import "Utilities/_reset";
-@import "Utilities/_compass";
-@import "Utilities/_variables";
-@import "Utilities/_mixins";
-@import "Utilities/_fonts";
-@import "Utilities/_macros";
-@import "Utilities/_defaults";
+@import "utilities/_reset";
+@import "utilities/_compass";
+@import "utilities/_variables";
+@import "utilities/_mixins";
+@import "utilities/_fonts";
+@import "utilities/_macros";
+@import "utilities/_defaults";
 
 // import widgets
 // ...
 
 // import fragments
-@import "Fragments/_hero";
+@import "fragments/_hero";
+
+// import layouts
+@import "layouts/_app";
+@import "layouts/_controls";
 
 // import pages
-@import "Pages/_home";
+@import "pages/_home";

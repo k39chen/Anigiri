@@ -7,11 +7,13 @@ html, body {
     width: 100%;
     height: 100%;
 }
-
-
 // Define global styles for form elements
 button {
     @include button;
+
+    &.icon {
+        padding: 0 0.5em;
+    }
 }
 input[type="text"] {
     @include text-input;

@@ -10,6 +10,25 @@
     @include box-sizing(border-box);
     @include border-radius(3px);
 }
+@mixin icon-control($font-size: 1.0em) {
+    @include transition(all 0.5s);
+    width: 2.5em;
+    height: 2.5em;
+    line-height: 2.5em;
+    text-align: center;
+    margin: 0.25em;
+    padding: 0;
+    font-size: $font-size;
+    border: none;
+    background: $black;
+    @include box-sizing(border-box);
+    @include border-radius(50%);
+    @include opacity(0.3);
+
+    &:hover {
+        @include opacity(0.5);
+    }
+}
 @mixin button($font-size: 1.0em) {
     @include transition(all 0.2s);
     cursor: pointer;
