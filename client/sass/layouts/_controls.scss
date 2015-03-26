@@ -1,0 +1,12 @@
+#controls {
+    overflow: hidden;
+
+    #sidebar-toggle {
+        @include icon-control(1.5em);
+        float: left;
+    }
+    #fullscreen-toggle {
+        @include icon-control(1.5em);
+        float: right;
+    }
+}

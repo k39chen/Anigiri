@@ -3,6 +3,36 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    right: 0;
     height: 100%;
+    
+    // Basic layout styles for the page container
+    #page-container, .page {
+        @include transition(left 0.5s);
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+    #page-container {
+        #fullscreen-toggle:before {
+            // fa-expand
+            content: "\f065";
+        }
+    }
+    // we are going to hide the default login buttons
+    // provide by the Meteor accounts service and provide
+    // our own visual solution.
+    #login-buttons {
+        display: none !important;
+    }
+    &.fullscreen-mode {
+        #controls #fullscreen-toggle:before {
+            // fa-expand
+            content: "\f066";
+        }
+    }
 }
+

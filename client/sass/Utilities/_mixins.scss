@@ -12,9 +12,9 @@
 }
 @mixin icon-control($font-size: 1.0em) {
     @include transition(all 0.5s);
-    width: 2.5em;
-    height: 2.5em;
-    line-height: 2.5em;
+    width: 2.0em;
+    height: 2.0em;
+    line-height: 2.0em;
     text-align: center;
     margin: 0.25em;
     padding: 0;

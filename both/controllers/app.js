@@ -10,7 +10,10 @@ AppController = RouteController.extend({
  *========================================================================*/
 if (Meteor.isClient) {
 Template.app.rendered = function() {
-    AppController.element = $("body");
+    AppController.element = $("#Anigiri");
+
+    // we will have the sidebar open when the application is initially rendered
+    AppController.element.addClass("sidebar-mode");
 };
 }
 /*========================================================================*
