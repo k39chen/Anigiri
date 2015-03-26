@@ -1,17 +1,8 @@
 <template name="app">
     <!--[if lt IE 9]>
-        <p class="browser-warning"><strong><i class="icon-exclamation-sign"></i> Warning</strong> - You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/" target="_blank">upgrade your browser</a> to properly view this website.</p>
+    <p class="browser-warning"><strong><i class="icon-exclamation-sign"></i> Warning</strong> - You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/" target="_blank">upgrade your browser</a> to properly view this website.</p>
     <![endif]-->
-
     <div id="page-container">
         {{> yield}}
     </div>
-
-    {{> hero 
-        title="Anigiri."
-        caption="Never lose track of your anime again"
-        buttonId="sign-in"
-        buttonText="Login with Facebook"
-    }}
-    {{> loginButtons}}
 </template>

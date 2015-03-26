@@ -1,19 +1,25 @@
-@mixin button($font-size:1.0em) {
-    @include transition(all 0.2s);
-    cursor: pointer;
-    padding: 0 1.0em;
+@mixin input-element($font-size: 1.0em) {    
+    display: inline-block;
+    margin: 0;
+    padding: 0 0.5em;
     height: 2.25em;
     line-height: 2.25em;
-    background: $theme-color;
-    color: $white;
-    outline: none;
     font-family: $sans-serif;
-    font-size: 1.0em;
-    border: none;
-    border-bottom: solid 2px darken($theme-color,20%);
+    font-size: $font-size;
+    outline: none;
     @include box-sizing(border-box);
     @include border-radius(3px);
-
+}
+@mixin button($font-size: 1.0em) {
+    @include transition(all 0.2s);
+    cursor: pointer;
+    @include input-element($font-size);
+    padding: 0 1.0em;
+    background: $theme-color;
+    color: $white;
+    border: none;
+    border-bottom: solid 2px darken($theme-color,20%);
+    
     &:hover {
         @include opacity(0.7);
     }
@@ -24,5 +30,23 @@
         cursor: auto;
         cursor: not-allowed;
         @include opacity(0.5);
+    }
+}
+@mixin text-input($font-size: 1.0em) {
+    @include transition(all 0.2s);
+    @include input-element;
+    border: solid 1px $lighter-gray;
+
+    &:hover {
+        background: lighten($theme-color,39%);
+        border-color: lighten($theme-color,20%);
+    }
+    &:active, &:focus {
+        border-color: $theme-color;
+    }
+    &[disabled] {
+        cursor: not-allowed;
+        background: $lightest-gray;
+        border-color: $lighter-gray;
     }
 }

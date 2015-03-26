@@ -1,3 +1,3 @@
 Router.configure({
-    controller: "AppController"
+    controller: AppController
 });

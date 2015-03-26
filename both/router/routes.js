@@ -1,4 +1,4 @@
 Router.route("/", {
     name: "home",
-    template: "homePage"
+    controller: HomeController
 });

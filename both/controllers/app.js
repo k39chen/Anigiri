@@ -1,5 +1,6 @@
 AppController = RouteController.extend({
-    layoutTemplate: "app"
+    layoutTemplate: "app",
+    element: null
 });
 AppController.events({
     "click #sign-in": function(ev, template) {
