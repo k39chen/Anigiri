@@ -3,7 +3,11 @@
  *========================================================================*/
 AppController = RouteController.extend({
     layoutTemplate: "app",
-    element: null
+    element: null,
+    waitOn: function() {
+        // always load the current user data
+        this.subscribe("userData");
+    }
 });
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
@@ -20,10 +24,13 @@ Template.app.rendered = function() {
  * EVENT HANDLERS
  *========================================================================*/
 AppController.events({
-    "click #sign-in": function(ev, template) {
+    "click .sign-in": function(ev, template) {
         var $el = $(ev.target);
         var $loginButton = $("#login-buttons .login-button");
 
         $loginButton.trigger("click");
+    },
+    "click .sign-out": function(){
+        Meteor.logout();
     }
 });

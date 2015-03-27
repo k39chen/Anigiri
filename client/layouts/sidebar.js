@@ -8,7 +8,7 @@ Template.sidebar.rendered = function() {
  * EVENT HANDLERS
  *========================================================================*/
 Template.sidebar.events({
-    // ...
+    
 });
 /*========================================================================*
  * TEMPLATE HELPERS

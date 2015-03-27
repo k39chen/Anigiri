@@ -1,4 +1,21 @@
 <template name="sidebar">
 <div id="sidebar">
+    <div id="header">
+        <a id="logo" href="/"><img src="assets/onigiri_white.png" /></a>
+        <span class="title">anigiri</span>
+    </div>
+    <div id="footer">
+        {{#if isLoggedIn}}
+        <div class="user-info">
+            <img class="portrait" src="{{userPortrait}}" />
+            <div class="group">
+                <div class="name">{{userName}}</div>
+                <a class="sign-out"><i class="fa fa-sign-out"></i><span>Sign Out</span></a>
+            </div>
+        </div>
+        {{else}}
+        <button class="sign-in">Login with Facebook</button>
+        {{/if}}
+    </div>
 </div>
 </template>

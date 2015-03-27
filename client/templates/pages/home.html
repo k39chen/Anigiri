@@ -1,11 +1,13 @@
 <template name="homePage">
 <div id="home-page" class="page">
-    {{> hero
-        title="Anigiri."
-        caption="Never lose track of your anime again"
-        buttonId="sign-in"
-        buttonText="Login with Facebook"
-    }}
-    {{> loginButtons}}
+    <div class="hero">
+        <div class="wrapper">
+            <div class="title">Anigiri.</div>
+            <div class="caption">Never lose track of your anime again.</div>
+            {{#unless isLoggedIn}}
+            <button class="sign-in">Get Started</button>
+            {{/unless}}
+        </div>
+    </div>
 </div>
 </template>
