@@ -4,13 +4,24 @@
         <a id="logo" href="/"><img src="assets/onigiri_white.png" /></a>
         <span class="title">anigiri</span>
     </div>
+    <div id="navigation" class="navigation">
+        <button class="search-button">
+            <i class="fa fa-fw fa-search"></i>
+            <span class="label">Search Anigiri</span>
+            <a class="close-button fa fa-fw fa-times-circle"></a>
+        </button>
+        <div class="title">Navigation</div>
+    {{#each navigation}}
+        <a class="nav-item"><i class="fa fa-fw {{icon}}"></i>{{label}}</a>
+    {{/each}}
+    </div>
     <div id="footer">
         {{#if isLoggedIn}}
         <div class="user-info">
             <img class="portrait" src="{{userPortrait}}" />
             <div class="group">
                 <div class="name">{{userName}}</div>
-                <a class="sign-out"><i class="fa fa-sign-out"></i><span>Sign Out</span></a>
+                <a class="sign-out"><i class="fa fa-sign-out"></i><span class="label">Sign Out</span></a>
             </div>
         </div>
         {{else}}

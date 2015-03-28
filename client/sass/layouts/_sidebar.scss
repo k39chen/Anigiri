@@ -1,4 +1,6 @@
 $sidebarWidth: 250px;
+$headerHeight: 56px;
+$footerHeight: 72px;
 
 #sidebar {
     @include transition(left 0.5s);
@@ -15,6 +17,7 @@ $sidebarWidth: 250px;
         position: absolute;
         top: 0;
         width: 100%;
+        height: $headerHeight;
         padding: 1.0em 2.0em;
         background: $theme-color;
         @include box-sizing(border-box);
@@ -42,11 +45,101 @@ $sidebarWidth: 250px;
             margin-left: 0.25em;
         }
     }
+    #navigation {
+        position: absolute;
+        top: $headerHeight;
+        bottom: $footerHeight;
+        width: 100%;
+        padding: 2.0em 0;
+        @include box-sizing(border-box);
+
+        .search-button {
+            @include transition(background-color 0.2s, border-color 0.2s);
+            overflow: hidden;
+            width: $sidebarWidth - 24px;
+            margin: 0 1.0em;
+            margin-bottom: 1.0em;
+            padding: 0 0.5em;
+            height: 2.75em;
+            line-height: 2.75em;
+            border: solid 1px $darkest-blue;
+            background: transparent;
+            color: $alt-text-color;
+            text-align: left;
+
+            .fa-search {
+                @include transition(color 0.2s);
+                float: left;
+                line-height: 2.75em;
+            }
+            .label {
+                @include transition(color 0.2s);
+                float: left;
+                line-height: 2.75em;
+            }
+            .close-button {
+                @include transition(all 0.2s);
+                float: right;
+                line-height: 2.0em;
+                font-size: 1.3em;
+                @include opacity(0);
+            }
+            &:hover, &.active {
+                background: $darkest-gray;
+                border-color: $darkest-gray;
+
+                .fa-search {
+                    color: $white;
+                }
+                .label {
+                    color: $white;
+                }
+            }
+            &.active {
+                .fa-search {
+                    color: $theme-color;
+                }
+                .close-button {
+                    @include opacity(0.3);
+
+                    &:hover {
+                        @include opacity(0.5);
+                    }
+                }
+            }
+        }
+        .title {
+            padding: 0 2.0em;
+            text-transform: uppercase;
+            font-weight: 700;
+            font-size: 0.85em;
+            color: $darkest-blue;
+        }
+        .nav-item {
+            @include transition(background-color 0.2s, color 0.2s);
+            cursor: pointer;
+            display: block;
+            padding: 0.5em 2.0em;
+
+            .fa {
+                font-size: 1.2em;
+                margin-right: 0.5em;
+            }
+            &:hover {
+                background: lighten($darker-gray,5%);
+                color: $white;
+            }
+            &.active {
+                background: darken($darker-gray,5%);
+                color: $theme-color;
+            }
+        }
+    }
     #footer {
         position: absolute;
         bottom: 0;
         width: 100%;
-        height: 72px;
+        height: $footerHeight;
         padding: 1.0em 2.0em;
         background: $darkest-gray;
         @include box-sizing(border-box);
