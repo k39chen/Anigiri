@@ -7,6 +7,17 @@ Anigiri = {
      */
     Users: {
         /**
+         * Determines if the currently logged in user is an admin user.
+         *
+         * @global
+         * @method isAdmin
+         * @return {Boolean} The result of the evaluation.
+         */
+        isAdmin: function() {
+            // TODO: kchen - Figure out the proper case here.
+            return Anigiri.Users.isLoggedIn() && true;
+        },
+        /**
          * Determines whether or not a user is currently logged into
          * this application.
          *

@@ -1,2 +1,30 @@
 #home-page {
+    .banner {
+        $src: "http://www.wallpaperawesome.com/wallpapers-awesome/wallpapers-anime-manga-japan-cartoons-awesome/wallpaper-umbrella-little-panda-cute-girl-anime.jpg";
+        $src: "assets/splash.jpg";
+
+        height: 75%;
+        min-height: 315px;
+        background: rgba(0,0,0,0.8);
+        @include blurred-background($src);
+        text-align: center;
+
+        .hero {
+            .logo {
+                width: 64px;
+                height: 64px;
+            }
+            .title {
+                color: $white;
+            }
+            .caption {
+                strong {
+                    color: $theme-color;
+                }
+            }
+        }
+        &:before {
+            background-position: center top;
+        }
+    }
 }

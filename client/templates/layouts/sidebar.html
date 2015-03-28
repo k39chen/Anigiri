@@ -1,7 +1,7 @@
 <template name="sidebar">
 <div id="sidebar">
     <div id="header">
-        <a id="logo" href="/"><img src="assets/onigiri_white.png" /></a>
+        <a id="logo" href="/"><img src="assets/onigiri_white_sm.png" /></a>
         <span class="title">anigiri</span>
     </div>
     <div id="navigation" class="navigation">
@@ -10,9 +10,15 @@
             <span class="label">Search Anigiri</span>
             <a class="close-button fa fa-fw fa-times-circle"></a>
         </button>
-        <div class="title">Navigation</div>
-    {{#each navigation}}
-        <a class="nav-item" data-key="{{key}}" href="{{href}}"><i class="fa fa-fw {{icon}}"></i>{{label}}</a>
+    {{#each navigationGroup}}
+        <div class="group">
+            <div class="title">{{title}}</div>
+            <div class="list">
+                {{#each list}}
+                <a class="nav-item" data-key="{{key}}" href="{{href}}"><i class="fa fa-fw {{icon}}"></i>{{label}}</a>
+                {{/each}}
+            </div>
+        </div>
     {{/each}}
     </div>
     <div id="footer">

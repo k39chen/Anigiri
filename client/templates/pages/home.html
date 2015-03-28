@@ -1,12 +1,15 @@
 <template name="homePage">
 <div id="home-page" class="page">
-    <div class="hero">
-        <div class="wrapper">
-            <div class="title">Anigiri.</div>
-            <div class="caption">Never lose track of your anime again.</div>
-            {{#unless isLoggedIn}}
-            <button class="sign-in">Get Started</button>
-            {{/unless}}
+    <div class="banner">
+        <div class="hero">
+            <div class="wrapper">
+                <img class="logo" src="assets/onigiri_white_med.png" />
+                <div class="title">Anigiri.</div>
+                <div class="caption">Never lose track of your <strong>anime</strong> again.</div>
+                {{#unless isLoggedIn}}
+                <button class="sign-in">Get Started</button>
+                {{/unless}}
+            </div>
         </div>
     </div>
 </div>

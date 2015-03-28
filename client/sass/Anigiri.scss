@@ -20,4 +20,19 @@
 
 // import pages
 @import "pages/_home";
-@import "pages/_admin";
+
+// main pages
+@import "pages/_profile";
+@import "pages/_gallery";
+@import "pages/_friends";
+@import "pages/_suggestions";
+
+// discover pages
+@import "pages/_featured";
+@import "pages/_trending";
+@import "pages/_community";
+@import "pages/_music";
+
+// admin pages
+@import "pages/_controlPanel";
+@import "pages/_settings";
