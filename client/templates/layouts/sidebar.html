@@ -12,7 +12,7 @@
         </button>
         <div class="title">Navigation</div>
     {{#each navigation}}
-        <a class="nav-item"><i class="fa fa-fw {{icon}}"></i>{{label}}</a>
+        <a class="nav-item" data-key="{{key}}" href="{{href}}"><i class="fa fa-fw {{icon}}"></i>{{label}}</a>
     {{/each}}
     </div>
     <div id="footer">

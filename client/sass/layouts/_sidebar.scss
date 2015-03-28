@@ -1,7 +1,3 @@
-$sidebarWidth: 250px;
-$headerHeight: 56px;
-$footerHeight: 72px;
-
 #sidebar {
     @include transition(left 0.5s);
     position: absolute;

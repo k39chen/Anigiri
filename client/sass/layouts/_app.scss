@@ -15,6 +15,14 @@
         left: 0;
         right: 0;
         bottom: 0;
+
+        h1 {
+            text-align: center;
+            height: $headerHeight;
+            line-height: $headerHeight;
+            font-size: 2.0em;
+            font-weight: 500;
+        }
     }
     #page-container {
         #fullscreen-toggle:before {

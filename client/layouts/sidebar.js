@@ -16,11 +16,11 @@ Template.sidebar.events({
 Template.sidebar.helpers({
     navigation: function() {
         var items = [
-            {icon: "fa-user", label: "Dashboard"},
-            {icon: "fa-th-large", label: "Gallery"},
-            {icon: "fa-star", label: "Featured"},
-            {icon: "fa-users", label: "People"},
-            {icon: "fa-wrench", label: "Admin"}
+            {key: "home", icon: "fa-home", label: "Home", href: "/"},
+            {key: "gallery", icon: "fa-th-large", label: "Gallery", href: "/gallery"},
+            {key: "featured", icon: "fa-star", label: "Featured", href: "/featured"},
+            {key: "people", icon: "fa-users", label: "People", href: "/people"},
+            {key: "admin", icon: "fa-wrench", label: "Admin", href: "/admin"}
         ];
         return items;
     }

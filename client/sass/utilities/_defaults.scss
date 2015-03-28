@@ -8,6 +8,10 @@ html, body {
     height: 100%;
 }
 // Define global styles for form elements
+a {
+    color: inherit;
+    text-decoration: none;
+}
 button {
     @include button;
 
