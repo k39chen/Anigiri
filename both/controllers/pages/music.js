@@ -6,10 +6,10 @@ MusicPageController = AppController.extend({
     data: {},
     element: null
 });
+if (Meteor.isClient) {
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
  *========================================================================*/
-if (Meteor.isClient) {
 Template.musicPage.rendered = function() {
     MusicPageController.element = $("#music-page");
 

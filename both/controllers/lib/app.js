@@ -12,10 +12,10 @@ AppController = RouteController.extend({
         $("#navigation .nav-item").removeClass("active");
     }
 });
+if (Meteor.isClient) {
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
  *========================================================================*/
-if (Meteor.isClient) {
 Template.app.rendered = function() {
     AppController.element = $("#Anigiri");
 

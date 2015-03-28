@@ -6,10 +6,10 @@ FeaturedPageController = AppController.extend({
     data: {},
     element: null
 });
+if (Meteor.isClient) {
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
  *========================================================================*/
-if (Meteor.isClient) {
 Template.featuredPage.rendered = function() {
     FeaturedPageController.element = $("#featured-page");
 

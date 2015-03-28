@@ -40,7 +40,7 @@
     border: none;
     border-bottom: solid 2px darken($theme-color,20%);
     
-    &:hover {
+    &:hover, &:focus {
         background: lighten($theme-color, 10%);
         border-bottom: solid 2ps darken($theme-color,10%);
     }
@@ -55,7 +55,7 @@
     }
 }
 @mixin text-input($font-size: 1.0em) {
-    @include transition(all 0.2s);
+    @include transition(background-color 0.2s, border-color 0.2s);
     @include input-element;
     border: solid 1px $lighter-gray;
 

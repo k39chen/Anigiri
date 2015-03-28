@@ -6,10 +6,10 @@ GalleryPageController = AppController.extend({
     data: {},
     element: null
 });
+if (Meteor.isClient) {
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
  *========================================================================*/
-if (Meteor.isClient) {
 Template.galleryPage.rendered = function() {
     GalleryPageController.element = $("#gallery-page");
 

@@ -6,10 +6,10 @@ CommunityPageController = AppController.extend({
     data: {},
     element: null
 });
+if (Meteor.isClient) {
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
  *========================================================================*/
-if (Meteor.isClient) {
 Template.communityPage.rendered = function() {
     CommunityPageController.element = $("#community-page");
 

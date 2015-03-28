@@ -6,10 +6,10 @@ SuggestionsPageController = AppController.extend({
     data: {},
     element: null
 });
+if (Meteor.isClient) {
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
  *========================================================================*/
-if (Meteor.isClient) {
 Template.suggestionsPage.rendered = function() {
     SuggestionsPageController.element = $("#suggestions-page");
 

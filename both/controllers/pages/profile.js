@@ -6,10 +6,10 @@ ProfilePageController = AppController.extend({
     data: {},
     element: null
 });
+if (Meteor.isClient) {
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
  *========================================================================*/
-if (Meteor.isClient) {
 Template.profilePage.rendered = function() {
     ProfilePageController.element = $("#profile-page");
 

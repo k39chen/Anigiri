@@ -1,5 +1,28 @@
 <template name="controlPanelPage">
 <div id="control-panel-page" class="page">
     <h1>Control Panel</h1>
+
+    <div class="request">
+        Models.
+        <select class="request-model-value">
+            <option value="">-</option>
+        {{#each models}}
+            <option value="{{name}}">{{name}}</option>
+        {{/each}}
+        </select>
+        .
+        <select class="request-method-value">
+            {{{methods}}}
+        </select>
+        (
+        {{#each parameters}}
+            {{{parameter this}}}
+            <span class="parameter-comma">,</span>
+        {{/each}}
+        )
+        <button class="submit-request-button"><i class="fa fa-fw fa-arrow-right"></i></button>
+        <button class="view-results-button"><i class="fa fa-fw fa-clipboard"></i></button>
+        <button class="view-results-button"><i class="fa fa-fw fa-trash"></i></button>
+    </div>
 </div>
 </template>

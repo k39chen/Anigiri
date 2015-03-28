@@ -6,10 +6,10 @@ SettingsPageController = AppController.extend({
     data: {},
     element: null
 });
+if (Meteor.isClient) {
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
  *========================================================================*/
-if (Meteor.isClient) {
 Template.settingsPage.rendered = function() {
     SettingsPageController.element = $("#settings-page");
 

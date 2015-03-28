@@ -6,10 +6,10 @@ FriendsPageController = AppController.extend({
     data: {},
     element: null
 });
+if (Meteor.isClient) {
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
  *========================================================================*/
-if (Meteor.isClient) {
 Template.friendsPage.rendered = function() {
     FriendsPageController.element = $("#friends-page");
 

@@ -25,6 +25,9 @@ input[type="text"] {
 span.label {
     @include input-element;
 }
+select {
+    min-width: 200px;
+}
 .chosen-container {
     font-size: $font-size;
 
@@ -46,6 +49,7 @@ span.label {
                 -webkit-font-smoothing: antialiased;
                 -moz-osx-font-smoothing: grayscale;
                 transform: translate(0, 0);
+                background: none;
                 color: $text-color;
 
                 &:before {
