@@ -3,7 +3,8 @@
  *========================================================================*/
 HomePageController = AppController.extend({
     template: "homePage",
-    data: {}
+    data: {},
+    element: null
 });
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
@@ -14,5 +15,8 @@ Template.homePage.rendered = function() {
 
     // update the navigation bar to highlight the appropriate item
     $("#navigation .nav-item[data-key='home']").addClass("active");
+
+    // fade in the page
+    HomePageController.element.css({opacity:0}).stop().animate({opacity:1}, 1000);
 };
 }

@@ -3,7 +3,6 @@
  *========================================================================*/
 AppController = RouteController.extend({
     layoutTemplate: "app",
-    element: null,
     waitOn: function() {
         // always load the current user data
         this.subscribe("userData");
@@ -33,6 +32,13 @@ AppController.events({
         var $loginButton = $("#login-buttons .login-button");
 
         $loginButton.trigger("click");
+
+        var interval = setInterval(function() {
+            if (Anigiri.Users.isLoggedIn()) {
+                Router.go("/profile");
+                clearInterval(interval);
+            }
+        }, 500);
     },
     "click .sign-out": function(){
         Meteor.logout();

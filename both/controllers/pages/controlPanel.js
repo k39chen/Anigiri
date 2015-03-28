@@ -3,7 +3,8 @@
  *========================================================================*/
 ControlPanelPageController = AppController.extend({
     template: "controlPanelPage",
-    data: {}
+    data: {},
+    element: null
 });
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
@@ -14,5 +15,8 @@ Template.controlPanelPage.rendered = function() {
 
     // update the navigation bar to highlight the appropriate item
     $("#navigation .nav-item[data-key='control-panel']").addClass("active");
+
+    // fade in the page
+    ControlPanelPageController.element.css({opacity:0}).stop().animate({opacity:1}, 1000);
 };
 }

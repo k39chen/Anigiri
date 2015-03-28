@@ -3,7 +3,8 @@
  *========================================================================*/
 SuggestionsPageController = AppController.extend({
     template: "suggestionsPage",
-    data: {}
+    data: {},
+    element: null
 });
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
@@ -14,5 +15,8 @@ Template.suggestionsPage.rendered = function() {
 
     // update the navigation bar to highlight the appropriate item
     $("#navigation .nav-item[data-key='suggestions']").addClass("active");
+
+    // fade in the page
+    SuggestionsPageController.element.css({opacity:0}).stop().animate({opacity:1}, 1000);
 };
 }

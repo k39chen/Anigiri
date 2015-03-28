@@ -3,7 +3,8 @@
  *========================================================================*/
 ProfilePageController = AppController.extend({
     template: "profilePage",
-    data: {}
+    data: {},
+    element: null
 });
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
@@ -14,5 +15,8 @@ Template.profilePage.rendered = function() {
 
     // update the navigation bar to highlight the appropriate item
     $("#navigation .nav-item[data-key='profile']").addClass("active");
+
+    // fade in the page
+    ProfilePageController.element.css({opacity:0}).stop().animate({opacity:1}, 1000);
 };
 }

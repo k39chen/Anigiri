@@ -3,7 +3,8 @@
  *========================================================================*/
 CommunityPageController = AppController.extend({
     template: "communityPage",
-    data: {}
+    data: {},
+    element: null
 });
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
@@ -14,5 +15,8 @@ Template.communityPage.rendered = function() {
 
     // update the navigation bar to highlight the appropriate item
     $("#navigation .nav-item[data-key='community']").addClass("active");
+
+    // fade in the page
+    CommunityPageController.element.css({opacity:0}).stop().animate({opacity:1}, 1000);
 };
 }

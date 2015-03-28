@@ -3,7 +3,8 @@
  *========================================================================*/
 MusicPageController = AppController.extend({
     template: "musicPage",
-    data: {}
+    data: {},
+    element: null
 });
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
@@ -14,5 +15,8 @@ Template.musicPage.rendered = function() {
 
     // update the navigation bar to highlight the appropriate item
     $("#navigation .nav-item[data-key='music']").addClass("active");
+
+    // fade in the page
+    MusicPageController.element.css({opacity:0}).stop().animate({opacity:1}, 1000);
 };
 }

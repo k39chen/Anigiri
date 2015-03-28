@@ -3,7 +3,8 @@
  *========================================================================*/
 FriendsPageController = AppController.extend({
     template: "friendsPage",
-    data: {}
+    data: {},
+    element: null
 });
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
@@ -14,5 +15,8 @@ Template.friendsPage.rendered = function() {
 
     // update the navigation bar to highlight the appropriate item
     $("#navigation .nav-item[data-key='friends']").addClass("active");
+
+    // fade in the page
+    FriendsPageController.element.css({opacity:0}).stop().animate({opacity:1}, 1000);
 };
 }

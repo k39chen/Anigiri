@@ -3,7 +3,8 @@
  *========================================================================*/
 GalleryPageController = AppController.extend({
     template: "galleryPage",
-    data: {}
+    data: {},
+    element: null
 });
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
@@ -14,5 +15,8 @@ Template.galleryPage.rendered = function() {
 
     // update the navigation bar to highlight the appropriate item
     $("#navigation .nav-item[data-key='gallery']").addClass("active");
+
+    // fade in the page
+    GalleryPageController.element.css({opacity:0}).stop().animate({opacity:1}, 1000);
 };
 }

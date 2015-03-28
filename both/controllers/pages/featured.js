@@ -3,7 +3,8 @@
  *========================================================================*/
 FeaturedPageController = AppController.extend({
     template: "featuredPage",
-    data: {}
+    data: {},
+    element: null
 });
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
@@ -14,5 +15,8 @@ Template.featuredPage.rendered = function() {
 
     // update the navigation bar to highlight the appropriate item
     $("#navigation .nav-item[data-key='featured']").addClass("active");
+
+    // fade in the page
+    FeaturedPageController.element.css({opacity:0}).stop().animate({opacity:1}, 1000);
 };
 }
