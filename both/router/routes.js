@@ -17,9 +17,9 @@ Router.route("/friends", {
     name: "friends",
     controller: FriendsPageController
 });
-Router.route("/suggestions", {
-    name: "suggestions",
-    controller: SuggestionsPageController
+Router.route("/recommendations", {
+    name: "recommendations",
+    controller: RecommendationsPageController
 });
 /*========================================================================*
  * DISCOVER PAGES

@@ -2,27 +2,54 @@
 <div id="control-panel-page" class="page">
     <h1>Control Panel</h1>
 
-    <div class="request">
+    <div class="tab-group">
+        <button class="tab" tab-name="schemas">Schemas</button>
+        <button class="tab" tab-name="collections">Collections</button>
+        <button class="tab" tab-name="api">API</button>
+    </div>
+
+    <!-- schemas tab content -->
+    <div id="tab-schemas" class="tab-content">
+        db.
+        <select class="schemas-list">
+        {{#each schemas}}
+            <option value="{{value}}">{{name}}</option>
+        {{/each}}
+        </select>
+    </div>
+
+    <!-- collections tab content -->
+    <div id="tab-collections" class="tab-content">
+        db.
+        <select class="collections-list">
+        {{#each collections}}
+            <option value="{{value}}">{{name}}</option>
+        {{/each}}
+        </select>
+    </div>
+
+    <!-- api tab content -->
+    <div id="tab-api" class="tab-content">
         Models.
-        <select class="request-model-value">
+        <select class="api-model-value">
             <option value="">-</option>
         {{#each models}}
             <option value="{{name}}">{{name}}</option>
         {{/each}}
         </select>
         .
-        <select class="request-method-value">
+        <select class="api-method-value">
             {{{methods}}}
         </select>
         (
         {{#each parameters}}
             {{{parameter this}}}
-            <span class="parameter-comma">,</span>
+            <span class="api-parameter-comma">,</span>
         {{/each}}
         )
-        <button class="submit-request-button"><i class="fa fa-fw fa-arrow-right"></i></button>
-        <button class="view-results-button"><i class="fa fa-fw fa-clipboard"></i></button>
-        <button class="view-results-button"><i class="fa fa-fw fa-trash"></i></button>
+        <button class="api-submit-button"><i class="fa fa-fw fa-arrow-right"></i></button>
+        <button class="api-copy-button"><i class="fa fa-fw fa-clipboard"></i></button>
+        <button class="api-clear-button"><i class="fa fa-fw fa-trash"></i></button>
     </div>
 </div>
 </template>

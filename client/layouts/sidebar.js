@@ -27,7 +27,7 @@ Template.sidebar.helpers({
                     {key: "profile", icon: "fa-user", label: "Profile", href: "/profile"},
                     {key: "gallery", icon: "fa-th-large", label: "Gallery", href: "/gallery"},
                     {key: "friends", icon: "fa-users", label: "Friends", href: "/friends"},
-                    {key: "suggestions", icon: "fa-pie-chart", label: "Suggestions", href: "/suggestions"}
+                    {key: "recommendations", icon: "fa-pie-chart", label: "Recommendations", href: "/recommendations"}
                 ]
             });
         }

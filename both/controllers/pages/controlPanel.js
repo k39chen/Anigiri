@@ -19,14 +19,20 @@ Template.controlPanelPage.rendered = function() {
     // fade in the page
     ControlPanelPageController.element.css({opacity:0}).stop().animate({opacity:1}, 1000);
 
-    var $model = ControlPanelPageController.element.find(".request-model-value");
-    var $method = ControlPanelPageController.element.find(".request-method-value");
+    var $schemas = ControlPanelPageController.element.find(".schemas-list");
+    var $collections = ControlPanelPageController.element.find(".collections-list");
+    var $model = ControlPanelPageController.element.find(".api-model-value");
+    var $method = ControlPanelPageController.element.find(".api-method-value");
 
-    // set a default request
+    // set default values for the dropdowns
+    $schemas.val("user");
+    $collections.val("user");
     $model.val("Anime");
     $method.val("search");
 
     // initialize all the chosen plugins
+    $schemas.chosen({search_contains:true});
+    $collections.chosen({search_contains:true});
     $model.chosen({search_contains:true}).trigger("change");
     $method.chosen({search_contains:true}).trigger("change");
 };
@@ -34,15 +40,15 @@ Template.controlPanelPage.rendered = function() {
  * EVENT HANDLERS
  *========================================================================*/
 Template.controlPanelPage.events({
-    "change .request-model-value": function(ev, template) {
+    "change .api-model-value": function(ev, template) {
         var $el = $(ev.target);
-        var $method = $el.siblings(".request-method-value");
+        var $method = $el.siblings(".api-method-value");
         var val = $el.val();
 
         Session.set("controlPanelModel", val || null);
         Session.set("controlPanelMethod", null);
     },
-    "change .request-method-value": function(ev, template) {
+    "change .api-method-value": function(ev, template) {
         var $el = $(ev.target);
         var val = $el.val();
         Session.set("controlPanelMethod", val || null);
@@ -52,12 +58,32 @@ Template.controlPanelPage.events({
  * TEMPLATE HELPERS
  *========================================================================*/
 Template.controlPanelPage.helpers({
+    schemas: function() {
+        return [
+            {value: "user", name: "Users"},
+            {value: "anime", name: "Animes"},
+            {value: "subscriptions", name: "Subscriptions"},
+            {value: "episode", name: "Episodes"},
+            {value: "song", name: "Songs"},
+            {value: "recommendation", name: "Recommendations"}
+        ]
+    },
+    collections: function() {
+        return [
+            {value: "user", name: "Users"},
+            {value: "anime", name: "Animes"},
+            {value: "subscriptions", name: "Subscriptions"},
+            {value: "episode", name: "Episodes"},
+            {value: "song", name: "Songs"},
+            {value: "recommendation", name: "Recommendations"}
+        ]
+    },
     models: function() {
         return API_MODELS;
     },
     methods: function() {
         var selectedModel = Session.get("controlPanelModel");
-        var $select = $("#control-panel-page .request-method-value");
+        var $select = $("#control-panel-page .api-method-value");
         var markup = "<option value=''>-</option>";
         var methods = [];
 
@@ -104,7 +130,7 @@ Template.controlPanelPage.helpers({
         return parameters;
     },
     parameter: function(data) {
-        var inputMarkup = "<input class='request-parameter-value' name='"+data.name+"' type='text' placeholder='"+data.name+"' />";
+        var inputMarkup = "<input class='api-parameter-value' name='"+data.name+"' type='text' placeholder='"+data.name+"' />";
         switch (data.type) {
         case "String":
             inputMarkup = "\""+inputMarkup+"\"";

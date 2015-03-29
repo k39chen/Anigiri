@@ -51,6 +51,8 @@
     &[disabled] {
         cursor: auto;
         cursor: not-allowed;
+        background: $theme-color;
+        border-bottom: solid 2px darken($theme-color,20%);
         @include opacity(0.5);
     }
 }
