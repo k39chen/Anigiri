@@ -1,9 +1,9 @@
-window.Page.Community = new window.PageClass("community", {
+window.Page.Community = new window.PageClass("community",
     /* @Options */
-    options: {},
+    {},
     /* @Methods */
-    methods: {}
-});
+    {}
+);
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
  *========================================================================*/

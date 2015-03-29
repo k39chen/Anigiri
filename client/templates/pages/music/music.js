@@ -1,9 +1,9 @@
-window.Page.Music = new window.PageClass("music", {
+window.Page.Music = new window.PageClass("music",
     /* @Options */
-    options: {},
+    {},
     /* @Methods */
-    methods: {}
-});
+    {}
+);
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
  *========================================================================*/

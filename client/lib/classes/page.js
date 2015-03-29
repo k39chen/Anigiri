@@ -28,25 +28,22 @@ window.PageClass = function(id, options, methods) {
     self.methods = $.extend({
         // ...
     }, methods);
-
-    // initialize the element
-    self.element = $("#"+self.id+"-page");
-
-    // initialize the page
-    self.init();
 };
 /**
- * Page helper for initializing a page.
+ * Page helper for initializing a page. Should be called after
+ * the template has been rendered.
  *
  * @method init
  */
 PageClass.prototype.init = function() {
     var self = this;
-    var $el = $(self.element);
+
+    // initialize the element
+    self.element = $("#"+self.id+"-page");
 
     // update the navigation bar to highlight the appropriate item
     $("#navigation .nav-item[data-key='"+self.id+"']").addClass("active");
 
     // fade in the page
-    $el.css({opacity:0}).stop().animate({opacity:1}, 1000);
+    self.element.css({opacity:0}).stop().animate({opacity:1}, 1000);
 };

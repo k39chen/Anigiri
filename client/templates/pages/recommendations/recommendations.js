@@ -1,9 +1,9 @@
-window.Page.Recommendations = new window.PageClass("recommendations", {
+window.Page.Recommendations = new window.PageClass("recommendations",
     /* @Options */
-    options: {},
+    {},
     /* @Methods */
-    methods: {}
-});
+    {}
+);
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
  *========================================================================*/

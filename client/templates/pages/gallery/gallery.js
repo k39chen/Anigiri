@@ -1,9 +1,9 @@
-window.Page.Gallery = new window.PageClass("gallery", {
+window.Page.Gallery = new window.PageClass("gallery",
     /* @Options */
-    options: {},
+    {},
     /* @Methods */
-    methods: {}
-});
+    {}
+);
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
  *========================================================================*/

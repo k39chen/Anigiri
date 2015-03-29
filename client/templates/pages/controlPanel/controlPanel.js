@@ -1,15 +1,37 @@
-window.Page.ControlPanel = new window.PageClass("control-panel", {
+window.Page.ControlPanel = new window.PageClass("control-panel", 
     /* @Options */
-    options: {},
+    {},
     /* @Methods */
-    methods: {}
-});
+    {
+        /**
+         * Sets the active tab on the control panel view.
+         *
+         * @method setActiveTab
+         * @param tabId {String} The tab to activate.
+         */
+        setActiveTab: function(tabId) {
+            var self = this;
+            var $el = $(Page.ControlPanel.element);
+
+            // invalidate all previously active tabs
+            $el.find(".tab").removeClass("active");
+
+            // activate the request tab
+            $el.find(".tab[tab-name='"+tabId+"']").addClass("active");
+
+            // update the session variable to track the active tab
+            Session.set("controlPanelActiveTab", tabId);
+        }
+    }
+);
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
  *========================================================================*/
 Template.controlPanelPage.rendered = function() {
+    Page.ControlPanel.init();
+
     // set a default tab
-    Session.set("controlPanelActiveTab", "operations");
+    Page.ControlPanel.methods.setActiveTab("operations");
 };
 /*========================================================================*
  * EVENT HANDLERS
@@ -19,7 +41,7 @@ Template.controlPanelPage.events({
         var $el = $(ev.target);
 
         // update the active tab
-        Session.set("controlPanelActiveTab", $el.attr("tab-name"));
+        Page.ControlPanel.methods.setActiveTab($el.attr("tab-name"));
     }
 });
 /*========================================================================*

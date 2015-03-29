@@ -1,9 +1,9 @@
-window.Page.Trending = new window.PageClass("trending", {
+window.Page.Trending = new window.PageClass("trending",
     /* @Options */
-    options: {},
+    {},
     /* @Methods */
-    methods: {}
-});
+    {}
+);
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
  *========================================================================*/

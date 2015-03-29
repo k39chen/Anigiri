@@ -1,9 +1,9 @@
-window.Page.Settings = new window.PageClass("settings", {
+window.Page.Settings = new window.PageClass("settings",
     /* @Options */
-    options: {},
+    {},
     /* @Methods */
-    methods: {}
-});
+    {}
+);
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
  *========================================================================*/

@@ -1,9 +1,9 @@
-window.Page.Friends = new window.PageClass("friends", {
+window.Page.Friends = new window.PageClass("friends",
     /* @Options */
-    options: {},
+    {},
     /* @Methods */
-    methods: {}
-});
+    {}
+);
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
  *========================================================================*/

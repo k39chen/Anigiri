@@ -1,10 +1,10 @@
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
  *========================================================================*/
-Template.controlPanelPage.rendered = function() {
+Template.controlPanelAPITab.rendered = function() {
     var $page = Page.ControlPanel.element;
-    var $model = $page.element.find(".api-model-value");
-    var $method = $page.element.find(".api-method-value");
+    var $model = $page.find(".api-model-value");
+    var $method = $page.find(".api-method-value");
 
     // set default values for the dropdowns
     $model.val("Anime");
@@ -17,7 +17,7 @@ Template.controlPanelPage.rendered = function() {
 /*========================================================================*
  * EVENT HANDLERS
  *========================================================================*/
-Template.controlPanelPage.events({
+Template.controlPanelAPITab.events({
     "change .api-model-value": function(ev, template) {
         var $el = $(ev.target);
         var $method = $el.siblings(".api-method-value");
@@ -35,7 +35,7 @@ Template.controlPanelPage.events({
 /*========================================================================*
  * TEMPLATE HELPERS
  *========================================================================*/
-Template.controlPanelPage.helpers({
+Template.controlPanelAPITab.helpers({
     models: function() {
         return API_MODELS;
     },

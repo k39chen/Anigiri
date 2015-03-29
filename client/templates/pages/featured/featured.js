@@ -1,9 +1,9 @@
-window.Page.Featured = new window.PageClass("featured", {
+window.Page.Featured = new window.PageClass("featured",
     /* @Options */
-    options: {},
+    {},
     /* @Methods */
-    methods: {}
-});
+    {}
+);
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
  *========================================================================*/

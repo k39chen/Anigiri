@@ -1,9 +1,9 @@
-window.Page.Profile = new window.PageClass("profile", {
+window.Page.Profile = new window.PageClass("profile",
     /* @Options */
-    options: {},
+    {},
     /* @Methods */
-    methods: {}
-});
+    {}
+);
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
  *========================================================================*/
