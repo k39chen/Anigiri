@@ -2,13 +2,7 @@
  * POST-RENDER BEHAVIOUR
  *========================================================================*/
 Template.homePage.rendered = function() {
-    var $page = $("#home-page");
-
-    // update the navigation bar to highlight the appropriate item
-    $("#navigation .nav-item[data-key='home']").addClass("active");
-
-    // fade in the page
-    $page.css({opacity:0}).stop().animate({opacity:1}, 1000);
+    Page.Home = new PageClass("home");
 };
 /*========================================================================*
  * EVENT HANDLERS

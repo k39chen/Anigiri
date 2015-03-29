@@ -2,18 +2,12 @@
  * POST-RENDER BEHAVIOUR
  *========================================================================*/
 Template.controlPanelPage.rendered = function() {
-    var $page = $("#control-panel-page");
+    Page.ControlPanel = new PageClass("control-panel");
 
-    // update the navigation bar to highlight the appropriate item
-    $("#navigation .nav-item[data-key='control-panel']").addClass("active");
-
-    // fade in the page
-    $page.css({opacity:0}).stop().animate({opacity:1}, 1000);
-
-    var $schemas = $page.find(".schemas-list");
-    var $collections = $page.find(".collections-list");
-    var $model = $page.find(".api-model-value");
-    var $method = $page.find(".api-method-value");
+    var $schemas = Page.ControlPanel.element.find(".schemas-list");
+    var $collections = Page.ControlPanel.element.find(".collections-list");
+    var $model = Page.ControlPanel.element.find(".api-model-value");
+    var $method = Page.ControlPanel.element.find(".api-method-value");
 
     // set default values for the dropdowns
     $schemas.val("user");
@@ -86,9 +80,8 @@ Template.controlPanelPage.helpers({
         return API_MODELS;
     },
     methods: function() {
-        var $page = $("#control-panel-page");
         var selectedModel = Session.get("controlPanelModel");
-        var $select = $page.find(".api-method-value");
+        var $select = Page.ControlPanel.element.find(".api-method-value");
         var markup = "<option value=''>-</option>";
         var methods = [];
 
