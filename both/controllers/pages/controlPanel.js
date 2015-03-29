@@ -3,26 +3,25 @@
  *========================================================================*/
 ControlPanelPageController = AppController.extend({
     template: "controlPanelPage",
-    data: {},
-    element: null
+    data: {}
 });
 if (Meteor.isClient) {
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
  *========================================================================*/
 Template.controlPanelPage.rendered = function() {
-    ControlPanelPageController.element = $("#control-panel-page");
+    var $page = $("#control-panel-page");
 
     // update the navigation bar to highlight the appropriate item
     $("#navigation .nav-item[data-key='control-panel']").addClass("active");
 
     // fade in the page
-    ControlPanelPageController.element.css({opacity:0}).stop().animate({opacity:1}, 1000);
+    $page.css({opacity:0}).stop().animate({opacity:1}, 1000);
 
-    var $schemas = ControlPanelPageController.element.find(".schemas-list");
-    var $collections = ControlPanelPageController.element.find(".collections-list");
-    var $model = ControlPanelPageController.element.find(".api-model-value");
-    var $method = ControlPanelPageController.element.find(".api-method-value");
+    var $schemas = $page.find(".schemas-list");
+    var $collections = $page.find(".collections-list");
+    var $model = $page.find(".api-model-value");
+    var $method = $page.find(".api-method-value");
 
     // set default values for the dropdowns
     $schemas.val("user");
@@ -82,8 +81,9 @@ Template.controlPanelPage.helpers({
         return API_MODELS;
     },
     methods: function() {
+        var $page = $("#control-panel-page");
         var selectedModel = Session.get("controlPanelModel");
-        var $select = $("#control-panel-page .api-method-value");
+        var $select = $page.find(".api-method-value");
         var markup = "<option value=''>-</option>";
         var methods = [];
 

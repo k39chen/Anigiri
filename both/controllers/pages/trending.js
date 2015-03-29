@@ -3,20 +3,19 @@
  *========================================================================*/
 TrendingPageController = AppController.extend({
     template: "trendingPage",
-    data: {},
-    element: null
+    data: {}
 });
 if (Meteor.isClient) {
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
  *========================================================================*/
 Template.trendingPage.rendered = function() {
-    TrendingPageController.element = $("#trending-page");
+    var $page = $("#trending-page");
 
     // update the navigation bar to highlight the appropriate item
     $("#navigation .nav-item[data-key='trending']").addClass("active");
 
     // fade in the page
-    TrendingPageController.element.css({opacity:0}).stop().animate({opacity:1}, 1000);
+    $page.css({opacity:0}).stop().animate({opacity:1}, 1000);
 };
 }

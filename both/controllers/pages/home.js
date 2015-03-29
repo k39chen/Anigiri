@@ -3,20 +3,19 @@
  *========================================================================*/
 HomePageController = AppController.extend({
     template: "homePage",
-    data: {},
-    element: null
+    data: {}
 });
 if (Meteor.isClient) {
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
  *========================================================================*/
 Template.homePage.rendered = function() {
-    HomePageController.element = $("#home-page");
+    var $page = $("#home-page");
 
     // update the navigation bar to highlight the appropriate item
     $("#navigation .nav-item[data-key='home']").addClass("active");
 
     // fade in the page
-    HomePageController.element.css({opacity:0}).stop().animate({opacity:1}, 1000);
+    $page.css({opacity:0}).stop().animate({opacity:1}, 1000);
 };
 }

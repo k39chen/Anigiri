@@ -3,20 +3,19 @@
  *========================================================================*/
 ProfilePageController = AppController.extend({
     template: "profilePage",
-    data: {},
-    element: null
+    data: {}
 });
 if (Meteor.isClient) {
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
  *========================================================================*/
 Template.profilePage.rendered = function() {
-    ProfilePageController.element = $("#profile-page");
+    var $page = $("#profile-page");
 
     // update the navigation bar to highlight the appropriate item
     $("#navigation .nav-item[data-key='profile']").addClass("active");
 
     // fade in the page
-    ProfilePageController.element.css({opacity:0}).stop().animate({opacity:1}, 1000);
+    $page.css({opacity:0}).stop().animate({opacity:1}, 1000);
 };
 }
