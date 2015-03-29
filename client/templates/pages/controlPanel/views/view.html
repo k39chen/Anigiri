@@ -3,64 +3,16 @@
     <h1>Control Panel</h1>
 
     <div class="tab-group">
-        <button class="tab" tab-name="schemas">Schemas</button>
-        <button class="tab" tab-name="collections">Collections</button>
+        <button class="tab" tab-name="operations">Operations</button>
         <button class="tab" tab-name="api">API</button>
+        <button class="tab" tab-name="collections">Collections</button>
+        <button class="tab" tab-name="schemas">Schemas</button>
     </div>
     <div class="tab-content">
-        {{#if isSchemaTab}}{{> controlPanelSchemasTab}}{{/if}}
-        {{#if isCollectionsTab}}{{> controlPanelCollectionsTab}}{{/if}}
+        {{#if isOperationsTab}}{{> controlPanelOperationsTab}}{{/if}}
         {{#if isAPITab}}{{> controlPanelAPITab}}{{/if}}
+        {{#if isCollectionsTab}}{{> controlPanelCollectionsTab}}{{/if}}
+        {{#if isSchemaTab}}{{> controlPanelSchemasTab}}{{/if}}
     </div>
-</div>
-</template>
-
-<!-- CONTROL PANEL: SCHEMAS TAB -->
-<template name="controlPanelSchemasTab">
-<div id="tab-schemas">
-    db.
-    <select class="schemas-list">
-    {{#each schemas}}
-        <option value="{{value}}">{{name}}</option>
-    {{/each}}
-    </select>
-</div>
-</template>
-
-<!-- CONTROL PANEL: COLLECTIONS TAB -->
-<template name="controlPanelCollectionsTab">
-<div id="tab-collections">
-    db.
-    <select class="collections-list">
-    {{#each collections}}
-        <option value="{{value}}">{{name}}</option>
-    {{/each}}
-    </select>
-</div>
-</template>
-
-<!-- CONTROL PANEL: API TAB -->
-<template name="controlPanelAPITab">
-<div id="tab-api">
-    Models.
-    <select class="api-model-value">
-        <option value="">-</option>
-    {{#each models}}
-        <option value="{{name}}">{{name}}</option>
-    {{/each}}
-    </select>
-    .
-    <select class="api-method-value">
-        {{{methods}}}
-    </select>
-    (
-    {{#each parameters}}
-        {{{parameter this}}}
-        <span class="api-parameter-comma">,</span>
-    {{/each}}
-    )
-    <button class="api-submit-button"><i class="fa fa-fw fa-arrow-right"></i></button>
-    <button class="api-copy-button"><i class="fa fa-fw fa-clipboard"></i></button>
-    <button class="api-clear-button"><i class="fa fa-fw fa-trash"></i></button>
 </div>
 </template>

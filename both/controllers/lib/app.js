@@ -1,6 +1,3 @@
-/*========================================================================*
- * BOOTSTRAP / STATE MAINTENANCE OPERATIONS
- *========================================================================*/
 AppController = RouteController.extend({
     layoutTemplate: "app",
     waitOn: function() {

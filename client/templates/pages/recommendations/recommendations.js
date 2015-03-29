@@ -4,3 +4,15 @@
 Template.recommendationsPage.rendered = function() {
     Page.Recommendations = new PageClass("recommendations");
 };
+/*========================================================================*
+ * EVENT HANDLERS
+ *========================================================================*/
+ Template.recommendationsPage.events({
+    // ...
+ });
+/*========================================================================*
+ * TEMPLATE HELPERS
+ *========================================================================*/
+Template.recommendationsPage.helpers({
+    // ...
+});

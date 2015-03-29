@@ -1,0 +1,24 @@
+<template name="controlPanelAPITab">
+<div id="tab-api">
+    Models.
+    <select class="api-model-value">
+        <option value="">-</option>
+    {{#each models}}
+        <option value="{{name}}">{{name}}</option>
+    {{/each}}
+    </select>
+    .
+    <select class="api-method-value">
+        {{{methods}}}
+    </select>
+    (
+    {{#each parameters}}
+        {{{parameter this}}}
+        <span class="api-parameter-comma">,</span>
+    {{/each}}
+    )
+    <button class="api-submit-button"><i class="fa fa-fw fa-arrow-right"></i></button>
+    <button class="api-copy-button"><i class="fa fa-fw fa-clipboard"></i></button>
+    <button class="api-clear-button"><i class="fa fa-fw fa-trash"></i></button>
+</div>
+</template>

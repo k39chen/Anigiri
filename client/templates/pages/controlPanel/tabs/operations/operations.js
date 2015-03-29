@@ -1,18 +1,18 @@
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
  *========================================================================*/
-Template.featuredPage.rendered = function() {
-    Page.Featured = new PageClass("featured");
+Template.controlPanelOperationsTab.rendered = function() {
+    var $page = Page.ControlPanel.element;
 };
 /*========================================================================*
  * EVENT HANDLERS
  *========================================================================*/
- Template.featuredPage.events({
+Template.controlPanelPage.events({
     // ...
- });
+});
 /*========================================================================*
  * TEMPLATE HELPERS
  *========================================================================*/
-Template.featuredPage.helpers({
+Template.controlPanelPage.helpers({
     // ...
 });

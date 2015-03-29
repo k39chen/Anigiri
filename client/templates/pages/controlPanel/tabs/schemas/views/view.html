@@ -1,0 +1,10 @@
+<template name="controlPanelSchemasTab">
+<div id="tab-schemas">
+    db.
+    <select class="schemas-list">
+    {{#each schemas}}
+        <option value="{{value}}">{{name}}</option>
+    {{/each}}
+    </select>
+</div>
+</template>
