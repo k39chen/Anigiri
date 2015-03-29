@@ -8,7 +8,23 @@ Template.sidebar.rendered = function() {
  * EVENT HANDLERS
  *========================================================================*/
 Template.sidebar.events({
-    
+    "click .sign-in": function(ev, template) {
+        var $el = $(ev.target);
+        var $loginButton = $("#login-buttons .login-button");
+
+        $loginButton.trigger("click");
+
+        var interval = setInterval(function() {
+            if (Anigiri.Users.isLoggedIn()) {
+                Router.go("/profile");
+                clearInterval(interval);
+            }
+        }, 500);
+    },
+    "click .sign-out": function(){
+        Meteor.logout();
+        Router.go("/");
+    }
 });
 /*========================================================================*
  * TEMPLATE HELPERS

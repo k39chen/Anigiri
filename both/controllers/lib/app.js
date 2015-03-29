@@ -12,36 +12,3 @@ AppController = RouteController.extend({
         $("#navigation .nav-item").removeClass("active");
     }
 });
-if (Meteor.isClient) {
-/*========================================================================*
- * POST-RENDER BEHAVIOUR
- *========================================================================*/
-Template.app.rendered = function() {
-    AppController.element = $("#Anigiri");
-
-    // we will have the sidebar open when the application is initially rendered
-    AppController.element.addClass("sidebar-mode");
-};
-}
-/*========================================================================*
- * EVENT HANDLERS
- *========================================================================*/
-AppController.events({
-    "click .sign-in": function(ev, template) {
-        var $el = $(ev.target);
-        var $loginButton = $("#login-buttons .login-button");
-
-        $loginButton.trigger("click");
-
-        var interval = setInterval(function() {
-            if (Anigiri.Users.isLoggedIn()) {
-                Router.go("/profile");
-                clearInterval(interval);
-            }
-        }, 500);
-    },
-    "click .sign-out": function(){
-        Meteor.logout();
-        Router.go("/");
-    }
-});
