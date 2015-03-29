@@ -39,6 +39,10 @@ Template.controlPanelPage.rendered = function() {
  * EVENT HANDLERS
  *========================================================================*/
 Template.controlPanelPage.events({
+    "click .tab": function(ev, template) {
+        var $el = $(ev.target);
+        Session.set("controlPanelActiveTab", $el.attr("tab-name"));
+    },
     "change .api-model-value": function(ev, template) {
         var $el = $(ev.target);
         var $method = $el.siblings(".api-method-value");
@@ -57,6 +61,15 @@ Template.controlPanelPage.events({
  * TEMPLATE HELPERS
  *========================================================================*/
 Template.controlPanelPage.helpers({
+    isSchemaTab: function() {
+        return Session.get("controlPanelActiveTab") === "schemas";
+    },
+    isCollectionsTab: function() {
+        return Session.get("controlPanelActiveTab") === "collections";
+    },
+    isAPITab: function() {
+        return Session.get("controlPanelActiveTab") === "api";
+    },
     schemas: function() {
         return [
             {value: "user", name: "Users"},
