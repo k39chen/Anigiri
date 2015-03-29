@@ -1,8 +1,14 @@
+window.Page.Settings = new window.PageClass("settings", {
+    /* @Options */
+    options: {},
+    /* @Methods */
+    methods: {}
+});
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
  *========================================================================*/
 Template.settingsPage.rendered = function() {
-    Page.Settings = new PageClass("settings");
+    // ...
 };
 /*========================================================================*
  * EVENT HANDLERS

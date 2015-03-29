@@ -1,8 +1,14 @@
+window.Page.Friends = new window.PageClass("friends", {
+    /* @Options */
+    options: {},
+    /* @Methods */
+    methods: {}
+});
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
  *========================================================================*/
 Template.friendsPage.rendered = function() {
-    Page.Friends = new PageClass("friends");
+    // ...
 };
 /*========================================================================*
  * EVENT HANDLERS

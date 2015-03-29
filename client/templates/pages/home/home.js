@@ -1,8 +1,14 @@
+window.Page.Home = new window.PageClass("home", {
+    /* @Options */
+    options: {},
+    /* @Methods */
+    methods: {}
+});
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
  *========================================================================*/
 Template.homePage.rendered = function() {
-    Page.Home = new PageClass("home");
+    // ...
 };
 /*========================================================================*
  * EVENT HANDLERS

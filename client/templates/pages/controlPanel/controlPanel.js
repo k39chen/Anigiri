@@ -1,9 +1,13 @@
+window.Page.ControlPanel = new window.PageClass("control-panel", {
+    /* @Options */
+    options: {},
+    /* @Methods */
+    methods: {}
+});
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
  *========================================================================*/
 Template.controlPanelPage.rendered = function() {
-    Page.ControlPanel = new PageClass("control-panel");
-
     // set a default tab
     Session.set("controlPanelActiveTab", "operations");
 };
@@ -13,6 +17,8 @@ Template.controlPanelPage.rendered = function() {
 Template.controlPanelPage.events({
     "click .tab": function(ev, template) {
         var $el = $(ev.target);
+
+        // update the active tab
         Session.set("controlPanelActiveTab", $el.attr("tab-name"));
     }
 });

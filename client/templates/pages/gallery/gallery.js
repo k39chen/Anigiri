@@ -1,8 +1,14 @@
+window.Page.Gallery = new window.PageClass("gallery", {
+    /* @Options */
+    options: {},
+    /* @Methods */
+    methods: {}
+});
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
  *========================================================================*/
 Template.galleryPage.rendered = function() {
-    Page.Gallery = new PageClass("gallery");
+    // ...
 };
 /*========================================================================*
  * EVENT HANDLERS

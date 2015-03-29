@@ -11,34 +11,41 @@ window.Page = {};
  *
  * @class PageClass
  * @param id {String} The unique identifier for the page.
- * @param options {Object} Hash map of options to assign this page.
+ * @param options {Object} Hash map of options to assign this object.
  */
-window.PageClass = function(id, options) {
+window.PageClass = function(id, options, methods) {
     var self = this;
+
+    // assign the id at the highest level
+    self.id = id;
 
     // initialize the page options
     self.options = $.extend({
-        id: id
+        // ...
     }, options);
 
+    // initialize the page methods
+    self.methods = $.extend({
+        // ...
+    }, methods);
+
     // initialize the element
-    self.element = $("#"+self.options.id+"-page");
+    self.element = $("#"+self.id+"-page");
 
     // initialize the page
-    self._init();
+    self.init();
 };
 /**
  * Page helper for initializing a page.
  *
- * @private
  * @method init
  */
-PageClass.prototype._init = function() {
+PageClass.prototype.init = function() {
     var self = this;
     var $el = $(self.element);
 
     // update the navigation bar to highlight the appropriate item
-    $("#navigation .nav-item[data-key='"+self.options.id+"']").addClass("active");
+    $("#navigation .nav-item[data-key='"+self.id+"']").addClass("active");
 
     // fade in the page
     $el.css({opacity:0}).stop().animate({opacity:1}, 1000);

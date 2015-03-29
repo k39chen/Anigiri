@@ -1,8 +1,14 @@
+window.Page.Profile = new window.PageClass("profile", {
+    /* @Options */
+    options: {},
+    /* @Methods */
+    methods: {}
+});
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
  *========================================================================*/
 Template.profilePage.rendered = function() {
-    Page.Profile = new PageClass("profile");
+    // ...
 };
 /*========================================================================*
  * EVENT HANDLERS

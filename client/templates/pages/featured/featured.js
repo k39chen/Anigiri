@@ -1,8 +1,14 @@
+window.Page.Featured = new window.PageClass("featured", {
+    /* @Options */
+    options: {},
+    /* @Methods */
+    methods: {}
+});
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
  *========================================================================*/
 Template.featuredPage.rendered = function() {
-    Page.Featured = new PageClass("featured");
+    // ...
 };
 /*========================================================================*
  * EVENT HANDLERS

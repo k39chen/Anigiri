@@ -1,8 +1,14 @@
+window.Page.Trending = new window.PageClass("trending", {
+    /* @Options */
+    options: {},
+    /* @Methods */
+    methods: {}
+});
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
  *========================================================================*/
 Template.trendingPage.rendered = function() {
-    Page.Trending = new PageClass("trending");
+    // ...
 };
 /*========================================================================*
  * EVENT HANDLERS

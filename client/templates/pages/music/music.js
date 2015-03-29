@@ -1,8 +1,14 @@
+window.Page.Music = new window.PageClass("music", {
+    /* @Options */
+    options: {},
+    /* @Methods */
+    methods: {}
+});
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
  *========================================================================*/
 Template.musicPage.rendered = function() {
-    Page.Music = new PageClass("music");
+    // ...
 };
 /*========================================================================*
  * EVENT HANDLERS
