@@ -21,11 +21,16 @@ APIModel = function(name, description, methods) {
  * @param name {String} The name of the API method.
  * @param description {String} An appropriate description for the API method.
  * @param parameters {Array} A list of parameters required by the API method.
+ * @param payload {Object} An optional payload to indicate return value from the request.
  */
-APIMethodClass = function(name, description, parameters) {
+APIMethodClass = function(name, description, parameters, payload) {
     this.name = _.defaults(name, null);
     this.description = _.defaults(description, null);
     this.parameters = _.defaults(parameters, []);
+
+    if (!_.isUndefined(payload)) {
+        this.payload = payload;
+    }
 };
 APIMethod = function(name, description, parameters) {
     return new APIMethodClass(name, description, parameters);
@@ -47,6 +52,21 @@ APIParameterClass = function(name, type, description, optional) {
 };
 APIParameter = function(name, type, description, optional) {
     return new APIParameterClass(name, type, description, optional);
+}
+/**
+ * Constructs an API payload.
+ *
+ * @method APIPayloadClass
+ * @param type {String} A string qualifying what type this payload value will be.
+ * @param description {String} An appropriate description for the API payload.
+ * @param optional {Array} A flag indicating whether or not this payload is optional (defaults to false).
+ */
+APIPayloadClass = function(name, type, description, optional) {
+    this.type = _.defaults(type, null);
+    this.description = _.defaults(description, null);
+};
+APIPayload = function(name, type, description, optional) {
+    return new APIPayloadClass(type, description);
 }
 // This is the list of API Models that we will be
 // building over the subsequent files.

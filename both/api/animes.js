@@ -13,7 +13,8 @@ APIModel("Anime",
             "Performs a search for an anime given an arbitrary title string.",
             [
                 APIParameter("title_str", "String", "The title of the anime that we want to search.")
-            ]
+            ],
+            APIPayload("Array", "The list of search results.")
         ),
         /**
          * Fetches from the set of third-party sources to update the

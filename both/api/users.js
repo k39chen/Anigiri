@@ -18,7 +18,8 @@ APIModel("User",
                 APIParameter("first_name", "String", "The first name of the user."),
                 APIParameter("middle_name", "String", "The middle name of the user."),
                 APIParameter("last_name", "String", "The last name of the user.")
-            ]
+            ],
+            APIPayload("Object", "The user that was just created with the provided information.")
         ),
         /**
          * Sends a friend request provided the originating user id and the
