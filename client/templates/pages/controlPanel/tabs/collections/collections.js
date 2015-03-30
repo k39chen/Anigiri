@@ -14,13 +14,13 @@ Template.controlPanelCollectionsTab.rendered = function() {
 /*========================================================================*
  * EVENT HANDLERS
  *========================================================================*/
-Template.controlPanelPage.events({
+Template.controlPanelCollectionsTab.events({
     // ...
 });
 /*========================================================================*
  * TEMPLATE HELPERS
  *========================================================================*/
-Template.controlPanelPage.helpers({
+Template.controlPanelCollectionsTab.helpers({
     collections: function() {
         return [
             {value: "user", name: "Users"},

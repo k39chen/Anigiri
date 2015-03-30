@@ -1,0 +1,89 @@
+select[aw="single-select"] {
+    min-width: 200px;
+}
+select[aw="single-select"] + .chosen-container-single {
+    font-size: $font-size;
+
+    .chosen-single {
+        @include transition(all 0.2s);
+        @include input-element(1.0em);
+        display: block;
+        padding-right: 0;
+        background: $white;
+        border: solid 1px $lighter-gray;
+        @include box-shadow(none);
+
+        b {
+            display: inline-block;
+            font: normal normal normal 14px/1 FontAwesome;
+            font-size: inherit;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            transform: translate(0, 0);
+            background: none;
+            color: $text-color;
+
+            &:before {
+                content: "\f0d7";
+            }
+        }
+        &:hover {
+            background: lighten($theme-color,39%);
+            border-color: lighten($theme-color,20%);
+        }
+    }
+    &.chosen-container-active:not(.chosen-with-drop) {
+        .chosen-single {
+            border: solid 1px $theme-color;
+
+            b {
+                color: $theme-color;
+            }
+        }
+    }
+    &.chosen-with-drop {
+        .chosen-single {
+            @include border-radius(3px 3px 0 0);
+            background: $white;
+            border-color: $lighter-gray;
+
+            b:before {
+                content: "\f0d8";
+            }
+        }
+        .chosen-drop {
+            border: solid 1px $lighter-gray;
+            border-top: none;
+            @include border-radius(0 0 3px 3px);
+            @include box-shadow(none);
+
+            .chosen-search input {
+                @include text-input;
+            }
+            .chosen-results {
+                margin: 0;
+                padding: 0;
+
+                .no-results {
+                    background: $white;
+                    color: $lighter-gray;
+                }
+
+                .active-result {
+                    @include transition(all 0.2s);
+                    padding-left: 8px;
+
+                    &.highlighted {
+                        background: lighten($theme-color,30%);
+                        color: $text-color;
+                    }
+                    &.result-selected {
+                        background: transparent;
+                        color: $lighter-gray;
+                    }
+                }
+            }
+        }
+    }
+}

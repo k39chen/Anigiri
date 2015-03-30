@@ -100,16 +100,30 @@ Template.controlPanelAPITab.helpers({
         return parameters;
     },
     parameter: function(data) {
-        var inputMarkup = "<input class='api-parameter-value' name='"+data.name+"' type='text' placeholder='"+data.name+"' />";
+        var $container = $("<div/>");
+        var $el;
         switch (data.type) {
-        case "String":
-            inputMarkup = "\""+inputMarkup+"\"";
-            break;
+        case "Array":
+            // TODO: kchen - Apply a tagit widget
+            return "";
         case "Number":
-            /* falls through */
+            $el = $("<input />").appendTo($container)
+                .addClass("api-parameter-value")
+                .attr("aw", "text-field")
+                .attr("type", "number")
+                .attr("name", data.name)
+                .attr("placeholder", data.name);
+            return $container.html();
+        case "String":
+            $el = $("<input />").appendTo($container)
+                .addClass("api-parameter-value")
+                .attr("aw", "text-field")
+                .attr("type", "text")
+                .attr("name", data.name)
+                .attr("placeholder", data.name);
+            return "\"" + $container.html() + "\"";
         default:
             break;
         }
-        return inputMarkup;
     }
 });

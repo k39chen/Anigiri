@@ -1,0 +1,7 @@
+[aw="button"] {
+    @include button;
+
+    &.icon {
+        padding: 0 0.5em;
+    }
+}
