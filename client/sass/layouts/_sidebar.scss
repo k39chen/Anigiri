@@ -42,6 +42,7 @@
         }
     }
     #navigation {
+        overflow-y: auto;
         position: absolute;
         top: $headerHeight;
         bottom: $footerHeight;
