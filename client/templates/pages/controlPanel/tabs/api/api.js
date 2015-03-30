@@ -3,16 +3,26 @@
  *========================================================================*/
 Template.controlPanelAPITab.rendered = function() {
     var $page = Page.ControlPanel.element;
-    var $model = $page.find(".api-model-value");
-    var $method = $page.find(".api-method-value");
+    var $model = $page.find("select.api-model-value");
+    var $method = $page.find("select.api-method-value");
 
     // set default values for the dropdowns
     $model.val("Anime");
     $method.val("search");
 
     // initialize all the chosen plugins
-    $model.chosen({search_contains:true}).trigger("change");
-    $method.chosen({search_contains:true}).trigger("change");
+    $model.chosen({
+        inherit_select_classes: true,
+        search_contains: true
+    }).trigger("change");
+
+    $method.chosen({
+        inherit_select_classes: true,
+        search_contains: true
+    }).trigger("change");
+
+
+    $(".api-submit-button").qtip({content:{text:"Model"}});
 };
 /*========================================================================*
  * EVENT HANDLERS
@@ -20,7 +30,7 @@ Template.controlPanelAPITab.rendered = function() {
 Template.controlPanelAPITab.events({
     "change .api-model-value": function(ev, template) {
         var $el = $(ev.target);
-        var $method = $el.siblings(".api-method-value");
+        var $method = $el.siblings("select.api-method-value");
         var val = $el.val();
 
         Session.set("controlPanelModel", val || null);
@@ -41,7 +51,7 @@ Template.controlPanelAPITab.helpers({
     },
     methods: function() {
         var selectedModel = Session.get("controlPanelModel");
-        var $select = Page.ControlPanel.element.find(".api-method-value");
+        var $select = Page.ControlPanel.element.find("select.api-method-value");
         var markup = "<option value=''>-</option>";
         var methods = [];
 
@@ -65,8 +75,10 @@ Template.controlPanelAPITab.helpers({
             $select.chosen("destroy");
         }
         // bind the chosen dropdown
-        $select.chosen({search_contains:true});
-
+        $select.chosen({
+            inherit_select_classes: true,
+            search_contains: true
+        });
         return markup;
     },
     parameters: function() {
