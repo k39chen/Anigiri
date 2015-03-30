@@ -7,12 +7,12 @@ Template.controlPanelOperationsTab.rendered = function() {
 /*========================================================================*
  * EVENT HANDLERS
  *========================================================================*/
-Template.controlPanelPage.events({
+Template.controlPanelOperationsTab.events({
     // ...
 });
 /*========================================================================*
  * TEMPLATE HELPERS
  *========================================================================*/
-Template.controlPanelPage.helpers({
+Template.controlPanelOperationsTab.helpers({
     // ...
 });

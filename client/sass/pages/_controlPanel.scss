@@ -1,7 +1,6 @@
 #control-panel-page {
     text-align: center;
 
-    
     .tab-group {
         overflow: hidden;
         width: 60.0em;
@@ -30,15 +29,20 @@
     input, .chosen-container {
         text-align: left;
     }
-    .api {
-        padding: 0 0 2.0em 0;
-        border-bottom: solid 1px $lightest-gray;
+    .tab-content {
+        display: none;
 
-        .api-parameter-comma:last-of-type {
-            display: none;
-        }
-        .api-submit-button {
-            margin-left: 1.0em;
+        // Specific styles for the API tab
+        &#tab-api {
+            padding: 0 0 2.0em 0;
+            border-bottom: solid 1px $lightest-gray;
+
+            .api-parameter-comma:last-of-type {
+                display: none;
+            }
+            .api-submit-button {
+                margin-left: 1.0em;
+            }
         }
     }
 }

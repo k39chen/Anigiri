@@ -12,11 +12,13 @@ Template.controlPanelAPITab.rendered = function() {
 
     // initialize all the chosen plugins
     $model.chosen({
+        width: "200px",
         inherit_select_classes: true,
         search_contains: true
     }).trigger("change");
 
     $method.chosen({
+        width: "200px",
         inherit_select_classes: true,
         search_contains: true
     }).trigger("change");
@@ -76,6 +78,7 @@ Template.controlPanelAPITab.helpers({
         }
         // bind the chosen dropdown
         $select.chosen({
+            width: "200px",
             inherit_select_classes: true,
             search_contains: true
         });

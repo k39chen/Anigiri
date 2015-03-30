@@ -19,6 +19,12 @@ window.Page.ControlPanel = new window.PageClass("control-panel",
             // activate the request tab
             $el.find(".tab[tab-name='"+tabId+"']").addClass("active");
 
+            // hide all the tab content sections
+            $el.find(".tab-content").hide();
+
+            // fade in the activated tab
+            $el.find("#tab-"+tabId).show().css({opacity:0}).stop().animate({opacity:1},1000);
+
             // update the session variable to track the active tab
             Session.set("controlPanelActiveTab", tabId);
         }
@@ -29,6 +35,15 @@ window.Page.ControlPanel = new window.PageClass("control-panel",
  *========================================================================*/
 Template.controlPanelPage.rendered = function() {
     Page.ControlPanel.init();
+
+    // get the parent node to append tab content to.
+    var $el = Page.ControlPanel.element.get(0);
+
+    // we will now add all of the tab contents
+    Blaze.render(Template.controlPanelOperationsTab, $el);
+    Blaze.render(Template.controlPanelAPITab, $el);
+    Blaze.render(Template.controlPanelCollectionsTab, $el);
+    Blaze.render(Template.controlPanelSchemasTab, $el);
 
     // set a default tab
     Page.ControlPanel.methods.setActiveTab("operations");

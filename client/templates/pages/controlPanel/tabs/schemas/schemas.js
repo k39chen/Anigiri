@@ -9,7 +9,11 @@ Template.controlPanelSchemasTab.rendered = function() {
     $schemas.val("user");
 
     // initialize all the chosen plugins
-    $schemas.chosen({search_contains:true});
+    $schemas.chosen({
+        width: "200px",
+        inherit_select_classes: true,
+        search_contains: true
+    });
 };
 /*========================================================================*
  * EVENT HANDLERS

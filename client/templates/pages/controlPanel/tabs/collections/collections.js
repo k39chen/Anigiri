@@ -9,7 +9,11 @@ Template.controlPanelCollectionsTab.rendered = function() {
     $collections.val("user");
 
     // initialize all the chosen plugins
-    $collections.chosen({search_contains:true});
+    $collections.chosen({
+        width: "200px",
+        inherit_select_classes: true,
+        search_contains: true
+    });
 };
 /*========================================================================*
  * EVENT HANDLERS
