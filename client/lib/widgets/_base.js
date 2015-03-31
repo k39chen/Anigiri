@@ -48,5 +48,20 @@ window.Widgets = {
                 break;
             }
         });
+        // go through each element and initialize all anigiri tooltips
+        $scope.find("[aw-tooltip]").each(function() {
+            var $el = $(this);
+            var options = {};
+            var content = $el.attr("aw-tooltip");
+
+            // construct all options provided on this element
+            options.content = content;
+            _.each($el.getAttributes(), function(value, name) {
+                if (name.indexOf("aw-tooltip-") > -1) {
+                    options[name.replace(/aw-tooltip-/g,"")] = value;
+                }
+            });
+            $el.awTooltip(options);
+        });
     }
 };

@@ -4,19 +4,20 @@
  * @widget awSingleSelect
  */
 (function($) {
-    $.fn.awSingleSelect = function(param) {
+    $.fn.awSingleSelect = function(param, name, value) {
         var $el = $(this);
-        var settings = $.extend({
-            width: "200px",
-            inherit_select_classes: true,
-            search_contains: true,
-            value: null
-        }, param || {});
 
         // if the parameter provided is an object, then the
         // invoker intends to bind the widget to the element
         // with an extension of the default options.
         if (_.isObject(param) && !_.isArray(param)) {
+            var settings = $.extend({
+                width: "200px",
+                inherit_select_classes: true,
+                search_contains: true,
+                value: null
+            }, param || {});
+
             function initSettings() {
                 // if the user specified that they want to have an initial
                 // selected value, then make it so.

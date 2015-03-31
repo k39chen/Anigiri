@@ -4,20 +4,21 @@
  * @widget awMultiSelect
  */
 (function($) {
-    $.fn.awMultiSelect = function(param) {
+    $.fn.awMultiSelect = function(param, name, value) {
         var $el = $(this);
-        var settings = $.extend({
-            width: "300px",
-            inherit_select_classes: true,
-            search_contains: true,
-            placeholder_text_multiple: "Select values",
-            values: ""
-        }, param || {});
 
         // if the parameter provided is an object, then the
         // invoker intends to bind the widget to the element
         // with an extension of the default options.
         if (_.isObject(param) && !_.isArray(param)) {
+            var settings = $.extend({
+                width: "300px",
+                inherit_select_classes: true,
+                search_contains: true,
+                placeholder_text_multiple: "Select values",
+                values: ""
+            }, param || {});
+
             function initSettings() {
                 // apply the multiple attribute if it isn't already on the element
                 if (_.isUndefined($el.attr("multiple"))) {
