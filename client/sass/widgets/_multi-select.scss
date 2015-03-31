@@ -1,3 +1,101 @@
 select[aw="multi-select"] {
     min-width: 200px;
 }
+select[aw="multi-select"] + .chosen-container-multi {
+    font-size: $font-size;
+
+    .chosen-choices {
+        @include transition(all 0.2s);
+        @include input-element(1.0em);
+        display: block;
+        padding: 0 0.05em;
+        background: $white;
+        border: solid 1px $lighter-gray;
+        height: 2.25em !important;
+        @include box-sizing(border-box);
+        @include box-shadow(none);
+
+        .search-choice {
+            cursor: pointer;
+            @include transition(background-color 0.2s, border-color 0.2s);
+            @include box-shadow(none);
+            background: $lightest-gray;
+            line-height: 1.15em;
+            margin: 0.15em;
+            margin-right: 0;
+
+            .search-choice-close {
+                @include transition(color 0.2s);
+                top: 0.25em;
+                display: inline-block;
+                font: normal normal normal 14px/1 FontAwesome;
+                font-size: inherit;
+                text-rendering: auto;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                transform: translate(0, 0);
+                background: none;
+                color: $light-gray;
+
+                &:before {
+                    content: "\f00d";
+                }
+                &:hover {
+                    color: $text-color;
+                }
+            }
+            &:hover {
+                background: lighten($theme-color,39%);
+                border-color: lighten($theme-color,20%);
+            }
+        }
+        .search-field {
+            height: auto;
+
+            input {
+                font-family: $sans-serif;
+            }
+        }
+    }
+    &.chosen-container-active:not(.chosen-with-drop) {
+        .chosen-choices {
+            border: solid 1px $theme-color;
+
+            b {
+                color: $theme-color;
+            }
+        }
+    }
+    &.chosen-with-drop {
+        .chosen-drop {
+            border: solid 1px $lighter-gray;
+            border-top: none;
+            @include border-radius(0 0 3px 3px);
+            @include box-shadow(none);
+
+            .chosen-results {
+                margin: 0;
+                padding: 0;
+
+                .no-results {
+                    background: $white;
+                    color: $lighter-gray;
+                }
+
+                .active-result {
+                    @include transition(all 0.2s);
+                    padding-left: 8px;
+
+                    &.highlighted {
+                        background: lighten($theme-color,30%);
+                        color: $text-color;
+                    }
+                    &.result-selected {
+                        background: transparent;
+                        color: $lighter-gray;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -3,3 +3,45 @@
  *
  * @widget awMultiSelect
  */
+(function($) {
+    $.fn.awMultiSelect = function(param) {
+        var $el = $(this);
+        var settings = $.extend({
+            width: "200px",
+            inherit_select_classes: true,
+            search_contains: true,
+            values: ""
+        }, param || {});
+
+        // if the parameter provided is an object, then the
+        // invoker intends to bind the widget to the element
+        // with an extension of the default options.
+        if (_.isObject(param) && !_.isArray(param)) {
+            function initSettings() {
+                // apply the multiple attribute if it isn't already on the element
+                if (_.isUndefined($el.attr("multiple"))) {
+                    $el.attr("multiple",true);
+                }
+                // if the user specified that they want to have an initial
+                // selected value, then make it so.
+                settings.values = settings.values.split(",");
+                if (settings.values.length > 0) {
+                    $el.find("option").prop("selected",false).removeAttr("selected");
+                    _.each(settings.values, function(val) {
+                        $el.find("option[value='"+val+"']").prop("selected",true);
+                    });
+                }    
+            }
+            initSettings();
+            $el.chosen(settings);
+        }
+        // if the parameter provided to this widget is
+        // of type string, then the invoker is intending
+        // to access method.
+        if (_.isString(param)) {
+            // ...
+        }
+        // maintain chainability
+        return $el;
+    };
+})(jQuery);

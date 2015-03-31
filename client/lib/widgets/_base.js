@@ -12,6 +12,13 @@ window.Widgets = {
             var $el = $(this);
             var widgetType = $el.attr("aw");
 
+            // construct all options provided on this element
+            var options = {};
+            _.each($el.getAttributes(), function(value, name) {
+                if (name.indexOf("aw-opt-") > -1) {
+                    options[name.replace(/aw-opt-/g,"")] = value;
+                }
+            });
             // depending on the type of the widget, we will need to
             // initialize the widget with a different widget definition.
             switch (widgetType) {
@@ -25,14 +32,10 @@ window.Widgets = {
                 // TODO: kchen - Do this.
                 break;
             case "single-select":
-                $el.chosen({
-                    width: "200px",
-                    inherit_select_classes: true,
-                    search_contains: true
-                })
+                $el.awSingleSelect(options);
                 break;
             case "multi-select":
-                // TODO: kchen - Do this.
+                $el.awMultiSelect(options);
                 break;
             case "tag-select":
                 // TODO: kchen - Do this.
