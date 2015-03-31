@@ -3,45 +3,36 @@
  *========================================================================*/
 Template.controlPanelAPITab.rendered = function() {
     var $page = Page.ControlPanel.element;
-    var $model = $page.find("select.api-model-value");
-    var $method = $page.find("select.api-method-value");
+    var $tab = $page.find("#tab-api");
+    var $model = $tab.find("select.api-model-value");
+    var $method = $tab.find("select.api-method-value");
+
+    // attach the widgets on this tab
+    Widgets.attach($tab);
 
     // set default values for the dropdowns
-    $model.val("Anime");
-    $method.val("search");
-
-    // initialize all the chosen plugins
-    $model.chosen({
-        width: "200px",
-        inherit_select_classes: true,
-        search_contains: true
-    }).trigger("change");
-
-    $method.chosen({
-        width: "200px",
-        inherit_select_classes: true,
-        search_contains: true
-    }).trigger("change");
-
-
-    $(".api-submit-button").qtip({content:{text:"Model"}});
+    $model.val("Anime").trigger("change");
+    $method.val("search").trigger("change");
 };
 /*========================================================================*
  * EVENT HANDLERS
  *========================================================================*/
 Template.controlPanelAPITab.events({
-    "change .api-model-value": function(ev, template) {
+    "change select.api-model-value": function(ev, template) {
         var $el = $(ev.target);
         var $method = $el.siblings("select.api-method-value");
         var val = $el.val();
 
-        Session.set("controlPanelModel", val || null);
-        Session.set("controlPanelMethod", null);
+        $el.trigger("chosen:updated");
+        Session.set("controlPanelAPIModel", val || null);
+        Session.set("controlPanelAPIMethod", null);
     },
-    "change .api-method-value": function(ev, template) {
+    "change select.api-method-value": function(ev, template) {
         var $el = $(ev.target);
         var val = $el.val();
-        Session.set("controlPanelMethod", val || null);
+
+        $el.trigger("chosen:updated");
+        Session.set("controlPanelAPIMethod", val || null);
     }
 });
 /*========================================================================*
@@ -52,7 +43,7 @@ Template.controlPanelAPITab.helpers({
         return API_MODELS;
     },
     methods: function() {
-        var selectedModel = Session.get("controlPanelModel");
+        var selectedModel = Session.get("controlPanelAPIModel");
         var $select = Page.ControlPanel.element.find("select.api-method-value");
         var markup = "<option value=''>-</option>";
         var methods = [];
@@ -71,22 +62,13 @@ Template.controlPanelAPITab.helpers({
         // add the markup to the dropdown element
         if ($select.length > 0) {
             $select.html(markup);
+            $select.trigger("change");
         }
-        // destroy the previous chosen dropdown (if it existed)
-        if ($select.data("chosen")) {
-            $select.chosen("destroy");
-        }
-        // bind the chosen dropdown
-        $select.chosen({
-            width: "200px",
-            inherit_select_classes: true,
-            search_contains: true
-        });
         return markup;
     },
     parameters: function() {
-        var selectedModel = Session.get("controlPanelModel");
-        var selectedMethod = Session.get("controlPanelMethod");
+        var selectedModel = Session.get("controlPanelAPIModel");
+        var selectedMethod = Session.get("controlPanelAPIMethod");
         var parameters = [];
 
         if (!_.isEmpty(selectedModel) && !_.isEmpty(selectedMethod)) {

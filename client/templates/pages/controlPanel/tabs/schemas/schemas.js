@@ -3,23 +3,26 @@
  *========================================================================*/
 Template.controlPanelSchemasTab.rendered = function() {
     var $page = Page.ControlPanel.element;
-    var $schemas = $page.find(".schemas-list");
+    var $tab = $page.find("#tab-schemas");
+    var $schemas = $tab.find("select.schemas-list");
+
+    // attach the widgets on this tab
+    Widgets.attach($tab);
 
     // set default values for the dropdowns
-    $schemas.val("user");
-
-    // initialize all the chosen plugins
-    $schemas.chosen({
-        width: "200px",
-        inherit_select_classes: true,
-        search_contains: true
-    });
+    $schemas.val("user").trigger("change");
 };
 /*========================================================================*
  * EVENT HANDLERS
  *========================================================================*/
 Template.controlPanelSchemasTab.events({
-    // ...
+    "change select.schemas-list": function(ev, template) {
+        var $el = $(ev.target);
+        var val = $el.val();
+
+        $el.trigger("chosen:updated");
+        Session.set("controlPanelSchemasValue", val || null);
+    }
 });
 /*========================================================================*
  * TEMPLATE HELPERS

@@ -3,23 +3,26 @@
  *========================================================================*/
 Template.controlPanelCollectionsTab.rendered = function() {
     var $page = Page.ControlPanel.element;
-    var $collections = $page.find(".collections-list");
+    var $tab = $page.find("#tab-collections");
+    var $collections = $tab.find("select.collections-list");
+
+    // attach the widgets on this tab
+    Widgets.attach($tab);
 
     // set default values for the dropdowns
-    $collections.val("user");
-
-    // initialize all the chosen plugins
-    $collections.chosen({
-        width: "200px",
-        inherit_select_classes: true,
-        search_contains: true
-    });
+    $collections.val("user").trigger("change");
 };
 /*========================================================================*
  * EVENT HANDLERS
  *========================================================================*/
 Template.controlPanelCollectionsTab.events({
-    // ...
+    "change select.collections-list": function(ev, template) {
+        var $el = $(ev.target);
+        var val = $el.val();
+
+        $el.trigger("chosen:updated");
+        Session.set("controlPanelCollectionsValue", val || null);
+    }
 });
 /*========================================================================*
  * TEMPLATE HELPERS
