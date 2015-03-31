@@ -57,6 +57,9 @@ ul[aw="tag-select"] {
     }
     input {
         margin-left: 0.25em !important;
+        width: auto;
+        height: auto;
+        line-height: 1.0em;
         background: $white;
         font-family: $sans-serif;
         font-size: 1.0em;

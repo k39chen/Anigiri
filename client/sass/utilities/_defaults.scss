@@ -15,3 +15,13 @@ a {
 span.label {
     @include input-element;
 }
+button {
+    @include button;
+
+    &.icon {
+        padding: 0 0.5em;
+    }
+}
+input[type="text"], input[type="number"] {
+    @include text-input;
+}

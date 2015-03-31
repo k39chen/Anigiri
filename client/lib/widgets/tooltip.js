@@ -13,8 +13,8 @@
         if (_.isObject(param) && !_.isArray(param)) {
             var settings = $.extend({
                 content: null,
-                show: "mouseover",
-                hide: "mouseout",
+                show: "mouseenter",
+                hide: "mouseleave",
                 position: {
                     my: "top center",
                     at: "bottom center"

@@ -8,14 +8,12 @@
 @import "utilities/_defaults";
 
 // import widgets
-@import "widgets/_button.scss";
-@import "widgets/_dialog.scss";
-@import "widgets/_multi-select.scss";
-@import "widgets/_popup.scss";
-@import "widgets/_single-select.scss";
-@import "widgets/_tag-select.scss";
-@import "widgets/_text-field.scss";
 @import "widgets/_tooltip.scss";
+@import "widgets/_single-select.scss";
+@import "widgets/_multi-select.scss";
+@import "widgets/_tag-select.scss";
+@import "widgets/_popup.scss";
+@import "widgets/_dialog.scss";
 
 // import fragments
 @import "fragments/_hero";

@@ -94,7 +94,6 @@ Template.controlPanelAPITab.helpers({
         case "Number":
             $el = $("<input />").appendTo($container)
                 .addClass("api-parameter-value")
-                .attr("aw", "text-field")
                 .attr("type", "number")
                 .attr("name", data.name)
                 .attr("placeholder", data.name);
@@ -102,7 +101,6 @@ Template.controlPanelAPITab.helpers({
         case "String":
             $el = $("<input />").appendTo($container)
                 .addClass("api-parameter-value")
-                .attr("aw", "text-field")
                 .attr("type", "text")
                 .attr("name", data.name)
                 .attr("placeholder", data.name);

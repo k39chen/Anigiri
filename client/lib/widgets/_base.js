@@ -22,15 +22,6 @@ window.Widgets = {
             // depending on the type of the widget, we will need to
             // initialize the widget with a different widget definition.
             switch (widgetType) {
-            case "tooltip":
-                // TODO: kchen - Do this.
-                break;
-            case "button":
-                // TODO: kchen - Do this.
-                break;
-            case "text-field":
-                // TODO: kchen - Do this.
-                break;
             case "single-select":
                 $el.awSingleSelect(options);
                 break;
