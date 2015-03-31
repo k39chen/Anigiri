@@ -1,3 +1,85 @@
-.aw-tag-select {
-    // ...
+ul[aw="tag-select"] {
+    display: inline-block;
+    vertical-align: middle;
+    min-width: 300px;
+    padding: 0 0.025em;
+    background: $white;
+    font-size: $font-size;
+    font-family: $sans-serif;
+    border: solid 1px $lighter-gray;
+    min-height: 27px;
+    line-height: 1.0em;
+    @include border-radius(3px);
+    @include box-sizing(border-box);
+
+    .tagit-choice {
+        cursor: pointer;
+        @include transition(background-color 0.2s, border-color 0.2s);
+        @include box-shadow(none);
+        background: $lightest-gray;
+        font-weight: normal;
+        color: $text-color;
+        border: solid 1px $lighter-gray;
+        line-height: 1.15em;
+        margin: 0.15em;
+        margin-right: 0;
+        padding: 3px 20px 4px 5px !important;
+        @include border-radius(3px);
+
+        .tagit-close {
+            @include transition(color 0.2s);
+            top: 0.25em;
+            right: 0.35em !important;
+            display: inline-block;
+            font: normal normal normal 14px/1 FontAwesome;
+            font-size: inherit;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            transform: translate(0, 0);
+            background: none;
+            color: $light-gray;
+
+            .text-icon, .ui-icon {
+                display: none;
+            }
+            &:before {
+                content: "\f00d";
+            }
+            &:hover {
+                color: $text-color;
+            }
+        }
+        &:hover {
+            background: lighten($theme-color,39%);
+            border-color: lighten($theme-color,20%);
+        }
+    }
+    input {
+        margin-left: 0.25em !important;
+        background: $white;
+        font-family: $sans-serif;
+        font-size: 1.0em;
+    }
+}
+.tagit-autocomplete {
+    background: $white;
+    font-family: $sans-serif;
+    font-size: $font-size;
+    border: solid 1px $lighter-gray;
+    @include border-radius(3px);
+    @include box-shadow(none);
+    overflow-x: hidden;
+
+    .ui-menu-item {
+        @include transition(background 0.2s, color 0.2s);
+        background: $white;
+        border: none;
+        color: $text-color;
+
+        &.ui-state-focus {
+            background: lighten($theme-color,30%);
+            font-weight: normal;
+        }
+    }
 }

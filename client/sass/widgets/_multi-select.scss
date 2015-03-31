@@ -1,5 +1,5 @@
 select[aw="multi-select"] {
-    min-width: 200px;
+    min-width: 300px;
 }
 select[aw="multi-select"] + .chosen-container-multi {
     font-size: $font-size;
@@ -20,9 +20,11 @@ select[aw="multi-select"] + .chosen-container-multi {
             @include transition(background-color 0.2s, border-color 0.2s);
             @include box-shadow(none);
             background: $lightest-gray;
+            border: solid 1px $lighter-gray;
             line-height: 1.15em;
             margin: 0.15em;
             margin-right: 0;
+            @include border-radius(3px);
 
             .search-choice-close {
                 @include transition(color 0.2s);
@@ -51,6 +53,7 @@ select[aw="multi-select"] + .chosen-container-multi {
         }
         .search-field {
             height: auto;
+            margin-left: 0.25em;
 
             input {
                 font-family: $sans-serif;

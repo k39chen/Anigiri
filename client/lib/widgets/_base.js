@@ -38,7 +38,7 @@ window.Widgets = {
                 $el.awMultiSelect(options);
                 break;
             case "tag-select":
-                // TODO: kchen - Do this.
+                $el.awTagSelect(options);
                 break;
             case "popup":
                 // TODO: kchen - Do this.

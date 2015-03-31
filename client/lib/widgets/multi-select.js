@@ -7,9 +7,10 @@
     $.fn.awMultiSelect = function(param) {
         var $el = $(this);
         var settings = $.extend({
-            width: "200px",
+            width: "300px",
             inherit_select_classes: true,
             search_contains: true,
+            placeholder_text_multiple: "Select values",
             values: ""
         }, param || {});
 
