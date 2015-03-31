@@ -12,7 +12,7 @@
         // with an extension of the default options.
         if (_.isObject(param) && !_.isArray(param)) {
             var settings = $.extend({
-                content: null,
+                content: "",
                 show: "mouseenter",
                 hide: "mouseleave",
                 position: {
@@ -22,7 +22,7 @@
                 style: {
                     classes: "aw-tooltip"
                 }
-            }, param || {});
+            }, param || {}, true);
 
             function initSettings() {
                 if (!_.isUndefined(settings.pos) && _.isString(settings.pos)) {

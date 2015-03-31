@@ -31,12 +31,6 @@ window.Widgets = {
             case "tag-select":
                 $el.awTagSelect(options);
                 break;
-            case "popup":
-                // TODO: kchen - Do this.
-                break;
-            case "dialog":
-                // TODO: kchen - Do this.
-                break;
             }
         });
         // go through each element and initialize all anigiri tooltips
