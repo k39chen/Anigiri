@@ -47,16 +47,11 @@
                     settings.content.title.text = settings.title;
                 }
                 if (!_.isNull(settings.template)) {
-                    settings.content.text = function(event, api) {
-                        var content = $("<div />").appendTo("body").get(0);
-                        UI.renderWithData(Template[settings.template], settings.templateData, content);
-                        
-                        // get the markup and remove the fake content container
-                        var html = $(content).html();
-                        $(content).remove();
-
-                        // return the mark up
-                        return html;
+                    settings.content.text = "<div class='template-container'></div>";
+                    if (!settings.events) settings.events = {};
+                    settings.events.render = function(event,api) {
+                        var $templateContainer = $(api.tooltip).find(".template-container");
+                        UI.renderWithData(Template[settings.template], settings.templateData, $templateContainer.get(0));
                     };
                 } else if (!_.isNull(settings.text)) {
                     settings.content.text = settings.text;
