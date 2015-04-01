@@ -1,24 +1,38 @@
 <template name="controlPanelAPITab">
 <div id="tab-api" class="tab-content">
-    Models.
-    <select aw="single-select" class="api-model-value">
-        <option value="">-</option>
-    {{#each models}}
-        <option value="{{name}}">{{name}}</option>
-    {{/each}}
-    </select>
-    .
-    <select aw="single-select" class="api-method-value">
-        {{{methods}}}
-    </select>
-    (
-    {{#each parameters}}
-        {{{parameter this}}}
-        <span class="api-parameter-comma">,</span>
-    {{/each}}
-    )
-    <button class="icon api-submit-button"><i class="fa fa-fw fa-arrow-right"></i></button>
-    <button class="icon api-copy-button"><i class="fa fa-fw fa-clipboard"></i></button>
-    <button class="icon api-clear-button"><i class="fa fa-fw fa-trash"></i></button>
+    <div class="request">
+        <!-- model -->
+        <div class="field">
+            <span class="label">Model</span>
+            <select aw="single-select" aw-opt-width="20.0em" class="value api-model-value">
+                <option value="">-</option>
+            {{#each models}}
+                <option value="{{id}}">{{name}}</option>
+            {{/each}}
+            </select>
+            <a class="help fa fa-fw fa-question-circle" tip="{{modelDescription}}"></a>
+        </div>
+        <!-- method -->
+        <div class="field">
+            <span class="label">Method</span>
+            <select aw="single-select" aw-opt-width="20.0em" class="value api-method-value">
+                <option value="">-</option>
+            {{#each methods}}
+                <option value="{{name}}">{{name}}</option>
+            {{/each}}
+            </select>
+            <a class="help fa fa-fw fa-question-circle" tip="{{methodDescription}}"></a>
+        </div>
+        <div class="parameters">
+        {{#each parameters}}
+            <div class="field">
+                <span class="label">{{name}}</span>
+                {{{parameter this}}}
+                <a class="help fa fa-fw fa-question-circle" tip="{{parameterDescription this}}"></a>
+            </div>
+        {{/each}}
+        </div>
+        <button class="api-submit-button"><i class="fa fa-fw fa-send"></i> Submit</button>
+    </div>
 </div>
 </template>

@@ -1,7 +1,8 @@
-API_MODELS.push(
-APIModel("Subscriptions",
-    "The subscriptions model contains methods that exposes server-side functionality in a format that is simple for the client to interface and use. This model is also a connecting piece for logically connecting users objects and animes objects.",
-    [
+APIModel({
+    id: "subscriptions",
+    name: "Subscriptions",
+    description: "The subscriptions model contains methods that exposes server-side functionality in a format that is simple for the client to interface and use. This model is also a connecting piece for logically connecting users objects and animes objects.",
+    methods: [
         /**
          * Adds an anime subscription to the provided user's list of
          * existing subscriptions.
@@ -175,5 +176,4 @@ APIModel("Subscriptions",
             ]
         )
     ]
-)
-);
+});

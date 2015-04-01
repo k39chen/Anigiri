@@ -9,5 +9,18 @@
 
     .qtip-content {
         padding: 1.0em;
+        line-height: 1.5em;
+
+        b {
+            font-weight: 500;
+        }
+        .separator {
+            border-bottom: solid 1px $theme-color;
+            margin: 0.5em 0;
+        }
+        .soft-separator {
+            border-bottom: solid 1px $lightest-gray;
+            margin: 0.5em 0;
+        }
     }
 }

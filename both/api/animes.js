@@ -1,7 +1,8 @@
-API_MODELS.push(
-APIModel("Anime",
-    "The animes model contains methods that exposes server-side functionality in a format that is simple for the client to interface and use.",
-    [
+APIModel({
+    id: "animes",
+    name: "Animes",
+    description: "The animes model contains methods that exposes server-side functionality in a format that is simple for the client to interface and use.",
+    methods: [
         /**
          * Performs a search for an anime given an arbitrary title string.
          *
@@ -43,5 +44,4 @@ APIModel("Anime",
             ]
         )
     ]
-)
-);
+});

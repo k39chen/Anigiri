@@ -27,6 +27,16 @@ window.Page.ControlPanel = new window.PageClass("control-panel",
 
             // update the session variable to track the active tab
             Session.set("controlPanelActiveTab", tabId);
+        },
+        /**
+         * Sets the default configuration for each tab.
+         *
+         * @method setDefaultConfiguration.
+         */
+        setDefaultConfiguration: function() {
+            // set the API tab default configuration
+            Session.set("controlPanelAPIModel", "animes");
+            Session.set("controlPanelAPIMethod", "search");
         }
     }
 );
@@ -39,6 +49,9 @@ Template.controlPanelPage.rendered = function() {
     // get the parent node to append tab content to.
     var $el = Page.ControlPanel.element.get(0);
 
+    // set the default configuration for each tab before we render them.
+    Page.ControlPanel.methods.setDefaultConfiguration();
+
     // we will now add all of the tab contents
     Blaze.render(Template.controlPanelOperationsTab, $el);
     Blaze.render(Template.controlPanelAPITab, $el);
@@ -46,7 +59,7 @@ Template.controlPanelPage.rendered = function() {
     Blaze.render(Template.controlPanelSchemasTab, $el);
 
     // set a default tab
-    Page.ControlPanel.methods.setActiveTab("operations");
+    Page.ControlPanel.methods.setActiveTab("api");
 };
 /*========================================================================*
  * EVENT HANDLERS

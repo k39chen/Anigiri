@@ -1,15 +1,14 @@
 #control-panel-page {
-    text-align: center;
-
     .tab-group {
         overflow: hidden;
-        width: 60.0em;
-        margin: 2.0em auto;
-        @include border-radius(3px);
+        width: 100%;
+        margin: 0 auto;
+        @include border-radius(0);
         
         .tab {
             float: left;
-            width: 15.0em;
+            width: calc(100% / 4);
+            height: $headerHeight;
             background: $lightest-gray;
             border: none;
             border-right: solid 1px darken($lightest-gray,5%);
@@ -22,7 +21,7 @@
             }
             &.active {
                 color: $white;
-                background: $theme-color;
+                background: $lighter-gray;
             }
         }
     }
@@ -31,17 +30,52 @@
     }
     .tab-content {
         display: none;
+        padding: 2.0em 3.0em;
 
         // Specific styles for the API tab
         &#tab-api {
-            padding: 0 0 2.0em 0;
-            border-bottom: solid 1px $lightest-gray;
+            .request {
+                margin-bottom: 1.0em;
 
-            .api-parameter-comma:last-of-type {
-                display: none;
-            }
-            .api-submit-button {
-                margin-left: 1.0em;
+                .field {
+                    margin-bottom: 1.0em;
+
+                    .label {
+                        @include ellipsis;
+                        vertical-align: bottom;
+                        width: 10.0em;
+                        text-align: right;
+                        font-weight: 500;
+                    }
+                    .tagit {
+                        min-width: 20.0em;
+                        width: 20.0em;
+                    }
+                    select, .value {
+                        width: 20.0em;
+                    }
+                    .help {
+                        @include transition(color 0.2s);
+                        cursor: pointer;
+                        font-size: 1.25em;
+                        color: $lighter-gray;
+
+                        &:hover {
+                            color: $light-gray;
+                        }
+                    }
+                }
+                .api-submit-button {
+                    position: relative;
+                    width: 20.0em;
+                    margin-left: 10.35em;
+
+                    i {
+                        position: absolute;
+                        line-height: 2.25em;
+                        left: 4.5em;
+                    }
+                }
             }
         }
     }

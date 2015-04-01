@@ -7,12 +7,18 @@ Template.controlPanelAPITab.rendered = function() {
     var $model = $tab.find("select.api-model-value");
     var $method = $tab.find("select.api-method-value");
 
+    // select the initial model setting provided by the default configuration
+    var activeModel = Session.get("controlPanelAPIModel");
+    if (!_.isUndefined(activeModel)) {
+        $model.attr("aw-opt-value", activeModel);
+    }
+    // select the initial method setting provided by the default configuration
+    var activeMethod = Session.get("controlPanelAPIMethod");
+    if (!_.isUndefined(activeMethod)) {
+        $method.attr("aw-opt-value", activeMethod);
+    }
     // attach the widgets on this tab
     Widgets.attach($tab);
-
-    // set default values for the dropdowns
-    $model.val("Anime").trigger("change");
-    $method.val("search").trigger("change");
 };
 /*========================================================================*
  * EVENT HANDLERS
@@ -20,19 +26,54 @@ Template.controlPanelAPITab.rendered = function() {
 Template.controlPanelAPITab.events({
     "change select.api-model-value": function(ev, template) {
         var $el = $(ev.target);
-        var $method = $el.siblings("select.api-method-value");
+        var $methods = Page.ControlPanel.element.find("#tab-api select.api-method-value");
         var val = $el.val();
 
+        // go through each methods option and unselect any previously selected values
+        $methods.find("option").prop("selected",false);
+
+        // update the chosen widget
         $el.trigger("chosen:updated");
-        Session.set("controlPanelAPIModel", val || null);
+
+        // update our reactive variables indicating the selected
+        // model/method pair.
+        Session.set("controlPanelAPIModel", val);
         Session.set("controlPanelAPIMethod", null);
     },
     "change select.api-method-value": function(ev, template) {
         var $el = $(ev.target);
         var val = $el.val();
 
+        // update the chosen widget
         $el.trigger("chosen:updated");
-        Session.set("controlPanelAPIMethod", val || null);
+
+        // update our reactive variables indicating the selected
+        // model/method pair.
+        Session.set("controlPanelAPIMethod", val);
+    },
+    "focus .parameters .value": function(ev, template) {
+        var $el = $(ev.target);
+        var $help = $el.siblings(".help").first();
+
+        $help.awTooltip("show");
+    },
+    "blur .parameters .value": function(ev, template) {
+        var $el = $(ev.target);
+        var $help = $el.siblings(".help").first();
+
+        $help.awTooltip("hide");
+    },
+    "focus .parameters [aw='tag-select'] input": function(ev, template) {
+        var $el = $(ev.target);
+        var $help = $el.closest(".value").siblings(".help").first();
+
+        $help.awTooltip("show");
+    },
+    "blur .parameters [aw='tag-select'] input": function(ev, template) {
+        var $el = $(ev.target);
+        var $help = $el.closest(".value").siblings(".help").first();
+
+        $help.awTooltip("hide");
     }
 });
 /*========================================================================*
@@ -40,48 +81,58 @@ Template.controlPanelAPITab.events({
  *========================================================================*/
 Template.controlPanelAPITab.helpers({
     models: function() {
-        return API_MODELS;
+        return _.toArray(API_MODELS);
+    },
+    modelDescription: function() {
+        var activeModel = Session.get("controlPanelAPIModel");
+        var model = API_MODELS[activeModel] || {};
+        
+        Meteor.defer(function() {
+            var $models = Page.ControlPanel.element.find("#tab-api select.api-model-value");
+            var $help = $models.siblings(".help").first();
+            $help.awTooltip({
+                content: $help.attr("tip") || "No model selected.",
+                position: {my: "left center", at: "right center"}
+            });
+        });
+        return model.description;
     },
     methods: function() {
-        var selectedModel = Session.get("controlPanelAPIModel");
-        var $select = Page.ControlPanel.element.find("select.api-method-value");
-        var markup = "<option value=''>-</option>";
-        var methods = [];
+        var activeModel = Session.get("controlPanelAPIModel");
+        var model = API_MODELS[activeModel];
+        var methods = model && model.methods;
 
-        if (!_.isEmpty(selectedModel)) {
-            var model = _.findWhere(API_MODELS, {name: selectedModel});
+        // methods have been re-rendered, update the chosen widget accordingly.
+        Meteor.defer(function() {
+            var $methods = Page.ControlPanel.element.find("#tab-api select.api-method-value");
 
-            if (!_.isUndefined(model)) {
-                methods = model.methods;
-            }
-        }
-        // construct the dropdown markup
-        _.each(methods, function(method, index) {
-            markup += ("<option value='"+method.name+"' "+(index === 0 ? "default" : "")+">"+method.name+"</option>");
+            // notify the widget that it needs to update, plus extra book-keeping
+            $methods.trigger("change");
         });
-        // add the markup to the dropdown element
-        if ($select.length > 0) {
-            $select.html(markup);
-            $select.trigger("change");
-        }
-        return markup;
+        return _.toArray(methods);
+    },
+    methodDescription: function() {
+        var activeModel = Session.get("controlPanelAPIModel");
+        var activeMethod = Session.get("controlPanelAPIMethod");
+        var model = API_MODELS[activeModel];
+        var method = (model && model.methods && model.methods[activeMethod]) || {};
+        
+        Meteor.defer(function() {
+            var $models = Page.ControlPanel.element.find("#tab-api select.api-method-value");
+            var $help = $models.siblings(".help").first();
+            $help.awTooltip({
+                content: $help.attr("tip") || "No method selected.",
+                position: {my: "left center", at: "right center"}
+            });
+        });
+        return method.description;
     },
     parameters: function() {
-        var selectedModel = Session.get("controlPanelAPIModel");
-        var selectedMethod = Session.get("controlPanelAPIMethod");
-        var parameters = [];
-
-        if (!_.isEmpty(selectedModel) && !_.isEmpty(selectedMethod)) {
-            var model = _.findWhere(API_MODELS, {name: selectedModel});
-
-            if (!_.isUndefined(model)) {
-                var methods = _.findWhere(model.methods, {name: selectedMethod});
-
-                if (!_.isUndefined(methods)) {
-                    parameters = methods.parameters;
-                }
-            }
-        }
+        var activeModel = Session.get("controlPanelAPIModel");
+        var activeMethod = Session.get("controlPanelAPIMethod");
+        var model = API_MODELS[activeModel];
+        var method = model && model.methods && model.methods[activeMethod];
+        var parameters = (method && method.parameters) || [];
         return parameters;
     },
     parameter: function(data) {
@@ -89,24 +140,49 @@ Template.controlPanelAPITab.helpers({
         var $el;
         switch (data.type) {
         case "Array":
-            // TODO: kchen - Apply a tagit widget
-            return "";
-        case "Number":
-            $el = $("<input />").appendTo($container)
-                .addClass("api-parameter-value")
-                .attr("type", "number")
-                .attr("name", data.name)
-                .attr("placeholder", data.name);
-            return $container.html();
+            $el = $("<ul />").appendTo($container)
+                .addClass("value")
+                .attr("aw","tag-select")
+                .attr("aw-opt-width", "20.0em")
+                .attr("name", data.name);
+            break;
         case "String":
             $el = $("<input />").appendTo($container)
-                .addClass("api-parameter-value")
+                .addClass("value api-parameter-value")
                 .attr("type", "text")
                 .attr("name", data.name)
                 .attr("placeholder", data.name);
-            return "\"" + $container.html() + "\"";
+            break;
+        case "Number":
+            $el = $("<input />").appendTo($container)
+                .addClass("value api-parameter-value")
+                .attr("type", "number")
+                .attr("name", data.name)
+                .attr("placeholder", data.name);
+            break;
         default:
             break;
         }
+        // initialize any widgets in the parameters.
+        Meteor.defer(function() {
+            var $scope = Page.ControlPanel.element.find("#tab-api .parameters");
+            Widgets.detach($scope);
+            Widgets.attach($scope);
+        });
+        return $container.html();
+    },
+    parameterDescription: function(data) {
+        Meteor.defer(function() {
+            var $models = Page.ControlPanel.element.find("#tab-api .value[name='"+data.name+"']");
+            var $help = $models.siblings(".help").first();
+            $help.awTooltip({
+                content: $help.attr("tip") || "Invalid parameter??",
+                position: {my: "left center", at: "right center"}
+            });
+        });
+        return "<b>Type:</b> "+data.type+
+            "<div class='separator'></div>"+
+            data.description+
+            (data.optional ? ("<div class='soft-separator'></div><b>Optional</b>") : "");
     }
 });

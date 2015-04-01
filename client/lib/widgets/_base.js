@@ -48,5 +48,46 @@ window.Widgets = {
             });
             $el.awTooltip(options);
         });
+    },
+    /**
+     * Detaches all marked Anigiri widgets.
+     *
+     * @method detach
+     * @param $scope {Object} The element scope from which we will look for widgets.
+     */
+    detach: function($scope) {
+        // go through all elements that have the `aw` prefix which indicates
+        // elements intended to be denounced as an Anigiri widget.
+        $scope.find("[aw]").each(function() {
+            var $el = $(this);
+            var widgetType = $el.attr("aw");
+
+            // depending on the type of the widget, we will need to
+            // destroy the widget in a different way.
+            switch (widgetType) {
+            case "single-select":
+                if ($el.data("chosen")) {
+                    $el.awSingleSelect("destroy");
+                }
+                break;
+            case "multi-select":
+                if ($el.data("chosen")) {
+                    $el.awMultiSelect("destroy");
+                }
+                break;
+            case "tag-select":
+                if ($el.hasClass("tagit")) {
+                    $el.empty();
+                    $el.awTagSelect("destroy");
+                }
+                break;
+            }
+        });
+        // go through each element and initialize all anigiri tooltips
+        $scope.find("[aw-tooltip]").each(function() {
+            var $el = $(this);
+            $el.awTooltip("destroy");
+        });
+
     }
 };

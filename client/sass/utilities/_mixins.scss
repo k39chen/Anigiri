@@ -63,10 +63,10 @@
 
     &:hover {
         background: lighten($theme-color,39%);
-        border-color: lighten($theme-color,20%);
     }
     &:active, &:focus {
         border-color: $theme-color;
+        background: lighten($theme-color,39%);
     }
     &[disabled] {
         cursor: not-allowed;

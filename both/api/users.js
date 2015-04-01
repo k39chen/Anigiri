@@ -1,7 +1,8 @@
-API_MODELS.push(
-APIModel("User",
-    "The users model contains methods that exposes server-side functionality in a format that is simple for the client to interface and use.",
-    [
+APIModel({
+    id: "users",
+    name: "Users",
+    description: "The users model contains methods that exposes server-side functionality in a format that is simple for the client to interface and use.",
+    methods: [
         /**
          * Creates a sample user with the most minimal amount of user information.
          * Used for scalability and community testing.
@@ -141,5 +142,4 @@ APIModel("User",
             ]
         )
     ]
-)
-);
+});

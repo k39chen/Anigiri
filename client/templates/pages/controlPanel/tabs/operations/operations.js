@@ -12,24 +12,7 @@ Template.controlPanelOperationsTab.rendered = function() {
  * EVENT HANDLERS
  *========================================================================*/
 Template.controlPanelOperationsTab.events({
-    "click .trigger-popup-btn": function(ev, template) {
-        var $el = $(ev.target);
-
-        // attach popup on the trigger
-        $el.awPopup({
-            title: "Popup Title",
-            template: "controlPanelCollectionsTab"
-        });
-    },
-    "click .trigger-dialog-btn": function(ev, template) {
-        var $el = $(ev.target);
-
-        // attach dialog on the trigger
-        $el.awDialog({
-            title: "Dialog Title",
-            template: "controlPanelCollectionsTab"
-        });
-    }
+    // ...
 });
 /*========================================================================*
  * TEMPLATE HELPERS

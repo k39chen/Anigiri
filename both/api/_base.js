@@ -2,17 +2,23 @@
  * Constructs an API model.
  *
  * @method APIModelClass
+ * @param id {String} The unique identifier of the API model.
  * @param name {String} The name of the API model.
  * @param description {String} An appropriate description for the API model.
  * @param methods {Array} A list of methods usable by the API model.
  */
-APIModelClass = function(name, description, methods) {
+APIModelClass = function(id, name, description, methods) {
+    this.id = _.defaults(id, null);
     this.name = _.defaults(name, null);
     this.description = _.defaults(description, null);
-    this.methods = _.defaults(methods, []);
+    this.methods = _.defaults(_.indexBy(methods, "name"), {});
+
+    // add this model to our global representation of the capabilities
+    // for the model.
+    API_MODELS[id] = this;
 };
-APIModel = function(name, description, methods) {
-    return new APIModelClass(name, description, methods);
+APIModel = function(obj) {
+    return new APIModelClass(obj.id, obj.name, obj.description, obj.methods);
 }
 /**
  * Constructs an API method.
@@ -70,4 +76,4 @@ APIPayload = function(name, type, description, optional) {
 }
 // This is the list of API Models that we will be
 // building over the subsequent files.
-API_MODELS = [];
+API_MODELS = {};

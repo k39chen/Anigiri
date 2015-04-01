@@ -51,7 +51,7 @@
                     if (!settings.events) settings.events = {};
                     settings.events.render = function(event,api) {
                         var $templateContainer = $(api.tooltip).find(".template-container");
-                        UI.renderWithData(Template[settings.template], settings.templateData, $templateContainer.get(0));
+                        Blaze.renderWithData(Template[settings.template], settings.templateData, $templateContainer.get(0));
                     };
                 } else if (!_.isNull(settings.text)) {
                     settings.content.text = settings.text;
