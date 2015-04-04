@@ -1,3 +1,5 @@
+$requestPanelWidth: 40.0em;
+
 #control-panel-page {
     .tab-group {
         overflow: hidden;
@@ -30,50 +32,92 @@
     }
     .tab-content {
         display: none;
-        padding: 2.0em 3.0em;
+        position: absolute;
+        top: $headerHeight;
+        left: 0;
+        right: 0;
+        bottom: 0;
 
         // Specific styles for the API tab
         &#tab-api {
-            .request {
-                margin-bottom: 1.0em;
+            .panel {
+                position: absolute;
+                height: 100%;
 
-                .field {
-                    margin-bottom: 1.0em;
+                .title {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    font-size: 1.25em;
+                    padding-top: 1.0em;
+                    padding-left: 2.25em;
+                    text-transform: uppercase;
+                    background: $white;
+                    border-bottom: solid 1px $theme-color;
+                    @include box-sizing(border-box);
+                }
+                .content {
+                    position: absolute;
+                    top: 5.0em;
+                    bottom: 0;
+                    overflow-y: auto;
+                    @include box-sizing(border-box);
+                }
+                // The request panel
+                &.request {
+                    overflow-y: auto;
+                    left: 0;
+                    width: $requestPanelWidth;
+                    border-right: solid 1px $lightest-gray;
 
-                    .label {
-                        @include ellipsis;
-                        vertical-align: bottom;
-                        width: 10.0em;
-                        text-align: right;
-                        font-weight: 500;
+                    .field {
+                        margin-bottom: 1.0em;
+
+                        .label {
+                            @include ellipsis;
+                            vertical-align: bottom;
+                            width: 10.0em;
+                            text-align: right;
+                            font-weight: 500;
+                        }
+                        .tagit {
+                            min-width: 20.0em;
+                            width: 20.0em;
+                        }
+                        select, .value {
+                            width: 20.0em;
+                        }
+                        .help {
+                            @include transition(color 0.2s);
+                            cursor: pointer;
+                            font-size: 1.25em;
+                            color: $lighter-gray;
+
+                            &:hover {
+                                color: $light-gray;
+                            }
+                        }
                     }
-                    .tagit {
-                        min-width: 20.0em;
+                    .api-submit-button {
+                        position: relative;
                         width: 20.0em;
-                    }
-                    select, .value {
-                        width: 20.0em;
-                    }
-                    .help {
-                        @include transition(color 0.2s);
-                        cursor: pointer;
-                        font-size: 1.25em;
-                        color: $lighter-gray;
+                        margin-left: 10.35em;
 
-                        &:hover {
-                            color: $light-gray;
+                        i {
+                            position: absolute;
+                            line-height: 2.25em;
+                            left: 4.5em;
                         }
                     }
                 }
-                .api-submit-button {
-                    position: relative;
-                    width: 20.0em;
-                    margin-left: 10.35em;
+                // The response panel
+                &.response {
+                    left: $requestPanelWidth;
+                    right: 0;
 
-                    i {
-                        position: absolute;
-                        line-height: 2.25em;
-                        left: 4.5em;
+                    .content {
+                        padding: 0 3.0em;
                     }
                 }
             }
