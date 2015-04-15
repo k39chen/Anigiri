@@ -7,6 +7,9 @@ Template.controlPanelAPITab.rendered = function() {
     var $model = $tab.find("select.api-model-value");
     var $method = $tab.find("select.api-method-value");
 
+
+    console.log( Schemas );
+
     // select the initial model setting provided by the default configuration
     var activeModel = Session.get("controlPanelAPIModel");
     if (!_.isUndefined(activeModel)) {
