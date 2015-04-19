@@ -8,7 +8,7 @@ window.Page.Home = new window.PageClass("home",
  * POST-RENDER BEHAVIOUR
  *========================================================================*/
 Template.homePage.rendered = function() {
-    // ...
+    Page.Home.init();
 };
 /*========================================================================*
  * EVENT HANDLERS

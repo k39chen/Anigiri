@@ -8,7 +8,7 @@ window.Page.Trending = new window.PageClass("trending",
  * POST-RENDER BEHAVIOUR
  *========================================================================*/
 Template.trendingPage.rendered = function() {
-    // ...
+    Page.Trending.init();
 };
 /*========================================================================*
  * EVENT HANDLERS

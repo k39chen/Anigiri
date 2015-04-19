@@ -8,7 +8,7 @@ window.Page.Gallery = new window.PageClass("gallery",
  * POST-RENDER BEHAVIOUR
  *========================================================================*/
 Template.galleryPage.rendered = function() {
-    // ...
+    Page.Gallery.init();
 };
 /*========================================================================*
  * EVENT HANDLERS

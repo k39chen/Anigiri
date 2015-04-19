@@ -8,7 +8,7 @@ window.Page.Featured = new window.PageClass("featured",
  * POST-RENDER BEHAVIOUR
  *========================================================================*/
 Template.featuredPage.rendered = function() {
-    // ...
+    Page.Featured.init();
 };
 /*========================================================================*
  * EVENT HANDLERS

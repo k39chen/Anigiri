@@ -8,7 +8,7 @@ window.Page.Settings = new window.PageClass("settings",
  * POST-RENDER BEHAVIOUR
  *========================================================================*/
 Template.settingsPage.rendered = function() {
-    // ...
+    Page.Settings.init();
 };
 /*========================================================================*
  * EVENT HANDLERS

@@ -8,7 +8,7 @@ window.Page.Friends = new window.PageClass("friends",
  * POST-RENDER BEHAVIOUR
  *========================================================================*/
 Template.friendsPage.rendered = function() {
-    // ...
+    Page.Friends.init();
 };
 /*========================================================================*
  * EVENT HANDLERS

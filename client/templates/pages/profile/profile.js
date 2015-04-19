@@ -8,7 +8,7 @@ window.Page.Profile = new window.PageClass("profile",
  * POST-RENDER BEHAVIOUR
  *========================================================================*/
 Template.profilePage.rendered = function() {
-    // ...
+    Page.Profile.init();
 };
 /*========================================================================*
  * EVENT HANDLERS

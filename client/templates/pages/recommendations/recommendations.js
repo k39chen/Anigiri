@@ -8,7 +8,7 @@ window.Page.Recommendations = new window.PageClass("recommendations",
  * POST-RENDER BEHAVIOUR
  *========================================================================*/
 Template.recommendationsPage.rendered = function() {
-    // ...
+    Page.Recommendations.init();
 };
 /*========================================================================*
  * EVENT HANDLERS

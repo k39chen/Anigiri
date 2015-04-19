@@ -8,7 +8,7 @@ window.Page.Music = new window.PageClass("music",
  * POST-RENDER BEHAVIOUR
  *========================================================================*/
 Template.musicPage.rendered = function() {
-    // ...
+    Page.Music.init();
 };
 /*========================================================================*
  * EVENT HANDLERS

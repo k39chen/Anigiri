@@ -8,7 +8,7 @@ window.Page.Community = new window.PageClass("community",
  * POST-RENDER BEHAVIOUR
  *========================================================================*/
 Template.communityPage.rendered = function() {
-    // ...
+    Page.Community.init();
 };
 /*========================================================================*
  * EVENT HANDLERS
