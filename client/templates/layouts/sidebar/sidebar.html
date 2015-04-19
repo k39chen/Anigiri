@@ -15,7 +15,10 @@
             <div class="title">{{title}}</div>
             <div class="list">
                 {{#each list}}
-                <a class="nav-item" data-key="{{key}}" href="{{href}}"><i class="fa fa-fw {{icon}}"></i>{{label}}</a>
+                <a class="nav-item" data-key="{{key}}" href="{{href}}">
+                    <i class="fa fa-fw {{icon}}"></i>
+                    <span class="label">{{label}}</span>
+                </a>
                 {{/each}}
             </div>
         </div>
@@ -31,7 +34,7 @@
             </div>
         </div>
         {{else}}
-        <button class="sign-in">Login with Facebook</button>
+        <button class="sign-in"><i class="fa fa-facebook-official"></i> <span class="label">Login with Facebook</span></button>
         {{/if}}
     </div>
 </div>

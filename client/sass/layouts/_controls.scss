@@ -2,11 +2,49 @@
     overflow: hidden;
 
     #sidebar-toggle {
-        @include icon-control(1.5em);
+        @include user-select(none);
+        @include transition(opacity 0.2s);
+        cursor: pointer;
+        display: block;
         float: left;
+        margin: 8px 4px;
+        border: none;
+        color: $text-color;
+        font-size: 1.5em;
+        @include opacity(0.4);
+
+        &:before {
+            // fa-toggle-left
+            content: "\f191";
+        }
+        &:hover {
+            background: none;
+            @include opacity(0.6);
+        }
     }
     #fullscreen-toggle {
-        @include icon-control(1.5em);
+        @include user-select(none);
+        @include transition(opacity 0.2s);
+        cursor: pointer;
+        display: block;
         float: right;
+        margin: 8px 4px;
+        border: none;
+        color: $text-color;
+        font-size: 1.25em;
+        @include opacity(0.4);
+
+        &:hover {
+            background: none;
+            @include opacity(0.6);
+        }
+    }
+}
+#Anigiri.min-sidebar {
+    #sidebar-toggle {
+        &:before {
+            // fa-toggle-right
+            content: "\f152";
+        }
     }
 }

@@ -8,7 +8,6 @@
     
     // Basic layout styles for the page container
     #page-container, .page {
-        @include transition(left 0.5s);
         overflow: hidden;
         position: absolute;
         top: 0;
@@ -45,4 +44,3 @@
         }
     }
 }
-

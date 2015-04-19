@@ -1,8 +1,7 @@
 #sidebar {
-    @include transition(left 0.5s);
     position: absolute;
     top: 0;
-    left: -$sidebarWidth;
+    left: 0;
     width: $sidebarWidth;
     height: 100%;
     background: $darker-gray;
@@ -14,7 +13,7 @@
         top: 0;
         width: 100%;
         height: $headerHeight;
-        padding: 1.0em 2.0em;
+        padding: 1.0em 0;
         background: $theme-color;
         @include box-sizing(border-box);
 
@@ -25,6 +24,7 @@
                 float: left;
                 width: 32px;
                 height: 32px;
+                margin-left: 2.0em;
                 @include opacity(0.8);
             }
             &:hover {
@@ -128,6 +128,10 @@
                         font-size: 1.2em;
                         margin-right: 0.5em;
                     }
+                    .label {
+                        display: inline;
+                        padding: 0;
+                    }
                     &:hover {
                         background: lighten($darker-gray,5%);
                         color: $white;
@@ -191,20 +195,96 @@
     }
 }
 #Anigiri {
-    #sidebar-toggle:before {
-        // fa-bars
-        content: "\f0c9";
+    #page-container {
+        left: $sidebarWidth;
     }
-    &.sidebar-mode {
-        #controls #sidebar-toggle:before {
-            // fa-angle-double-left
-            content: "\f100";
-        }
+    &.min-sidebar {
         #sidebar {
-            left: 0;
+            width: $minSidebarWidth;
+
+            #header {
+                #logo {
+                    display: block;
+                    width: $minSidebarWidth;
+                    text-align: center;
+
+                    img {
+                        float: none;
+                        margin: 0;
+                    }
+                }
+                .title {
+                    display: none;
+                }
+            }
+            #navigation {
+                padding-top: 16px;
+
+                .search-button {
+                    width: 2.0em;
+                    height: 2.0em;
+                    line-height: 2.0em;
+                    margin: 0 18px 8px 18px;
+                    padding: 0;
+                    font-size: 1.5em;
+                    text-align: center;
+
+                    .fa {
+                        float: none;
+                        line-height: 2.0em;
+                    }
+                    .label {
+                        display: none;
+                    }
+                }
+                .group {
+                    margin-top: 8px;
+                    border-top: solid 1px #3f425a;
+
+                    .title {
+                        display: none;
+                    }
+                    .nav-item {
+                        width: $minSidebarWidth;
+                        padding: 0.5em 0;
+                        text-align: center;
+                        font-size: 1.5em;
+
+                        .fa {
+                            margin-right: 0;
+                        }
+                        .label {
+                            display: none;
+                        }
+                    }
+                }
+            }
+            #footer {
+                padding: 15px 0;
+
+                .sign-in {
+                    height: 3.5em;
+                    line-height: 3.75em;
+                    margin-top: 0;
+
+                    .fa {
+                        font-size: 1.5em;
+                    }
+                    .label {
+                        display: none;
+                    }
+                }
+                .user-info {
+                    text-align: center;
+
+                    .portrait {
+                        float: none;
+                    }
+                }
+            }
         }
         #page-container {
-            left: $sidebarWidth;
+            left: $minSidebarWidth;
         }
     }
 }

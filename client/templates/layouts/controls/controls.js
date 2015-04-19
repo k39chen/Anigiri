@@ -10,7 +10,7 @@
 Template.appControls.events({
     "click #sidebar-toggle": function(ev, template) {
         var $el = $(ev.target);
-        $("#Anigiri").toggleClass("sidebar-mode");
+        $("#Anigiri").toggleClass("min-sidebar");
     },
     "click #fullscreen-toggle": function(ev, template) {
         var $el = $(ev.target);
