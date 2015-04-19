@@ -1,6 +1,9 @@
-$requestPanelWidth: 40.0em;
+$tabGroupHeight: 36px;
 
 #control-panel-page {
+    h1 {
+        margin-bottom: 0 !important;
+    }
     .tab-group {
         overflow: hidden;
         width: 100%;
@@ -10,7 +13,7 @@ $requestPanelWidth: 40.0em;
         .tab {
             float: left;
             width: calc(100% / 4);
-            height: $headerHeight;
+            height: $tabGroupHeight;
             background: $lightest-gray;
             border: none;
             border-right: solid 1px darken($lightest-gray,5%);
@@ -33,7 +36,7 @@ $requestPanelWidth: 40.0em;
     .tab-content {
         display: none;
         position: absolute;
-        top: $headerHeight;
+        top: $headerHeight + $tabGroupHeight;
         left: 0;
         right: 0;
         bottom: 0;
@@ -68,7 +71,7 @@ $requestPanelWidth: 40.0em;
                 &.request {
                     overflow-y: auto;
                     left: 0;
-                    width: $requestPanelWidth;
+                    width: 50%;
                     border-right: solid 1px $lightest-gray;
 
                     .field {
@@ -113,7 +116,7 @@ $requestPanelWidth: 40.0em;
                 }
                 // The response panel
                 &.response {
-                    left: $requestPanelWidth;
+                    left: 50%;
                     right: 0;
 
                     .content {

@@ -1,4 +1,4 @@
-Schemas.Users = {
+Schemas.Users = new SimpleSchema({
     services: {
         type: Object,
         optional: true,
@@ -79,4 +79,4 @@ Schemas.Users = {
         denyUpdate: true,
         autoValue: autoDate
     }
-};
+});

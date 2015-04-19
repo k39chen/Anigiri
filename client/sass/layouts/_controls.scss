@@ -1,43 +1,37 @@
 #controls {
     overflow: hidden;
 
-    #sidebar-toggle {
+    @mixin control-toggle {
         @include user-select(none);
         @include transition(opacity 0.2s);
         cursor: pointer;
         display: block;
-        float: left;
-        margin: 8px 4px;
+        height: $headerHeight;
+        line-height: $headerHeight;
+        margin: 0 0.25em;
         border: none;
         color: $text-color;
-        font-size: 1.5em;
         @include opacity(0.4);
 
-        &:before {
-            // fa-toggle-left
-            content: "\f191";
-        }
         &:hover {
             background: none;
             @include opacity(0.6);
         }
     }
-    #fullscreen-toggle {
-        @include user-select(none);
-        @include transition(opacity 0.2s);
-        cursor: pointer;
-        display: block;
-        float: right;
-        margin: 8px 4px;
-        border: none;
-        color: $text-color;
-        font-size: 1.25em;
-        @include opacity(0.4);
+    #sidebar-toggle {
+        @include control-toggle;
+        float: left;
+        font-size: 1.5em;
 
-        &:hover {
-            background: none;
-            @include opacity(0.6);
+        &:before {
+            // fa-toggle-left
+            content: "\f191";
         }
+    }
+    #fullscreen-toggle {
+        @include control-toggle;
+        float: right;
+        font-size: 1.25em;
     }
 }
 #Anigiri.min-sidebar {

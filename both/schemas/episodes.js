@@ -1,4 +1,4 @@
-Schemas.Episodes = {
+Schemas.Episodes = new SimpleSchema({
     title: {
         type: String,
         label: "Title"
@@ -34,4 +34,4 @@ Schemas.Episodes = {
         label: "Image URL",
         optional: true
     }
-};
+});

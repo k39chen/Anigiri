@@ -40,7 +40,6 @@ PageClass.prototype.init = function() {
 
     // initialize the element
     self.element = $("#"+self.id+"-page");
-    console.log("here",self);
 
     // update the navigation bar to highlight the appropriate item
     $("#navigation .nav-item[data-key='"+self.id+"']").addClass("active");

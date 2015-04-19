@@ -21,8 +21,11 @@
             height: $headerHeight;
             line-height: $headerHeight;
             margin-bottom: 1.0em;
-            font-size: 2.0em;
+            font-size: 1.5em;
             font-weight: 500;
+            border-bottom: solid 1px $lightest-gray;
+            @include box-sizing(border-box);
+            @include box-shadow(0 1px 0 0 $lightest-gray);
         }
     }
     #page-container {
