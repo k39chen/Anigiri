@@ -11,6 +11,8 @@ SongId = String;
 SubscriptionId = String;
 UserId = String;
 
+TpsId = String;
+
 /**
  * Automatically inserts a timestamp date.
  *
