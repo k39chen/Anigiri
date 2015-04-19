@@ -1,9 +1,9 @@
 Schemas.Songs = new SimpleSchema({
-    name: {
+    "name": {
         type: String,
         label: "Name"
     },
-    artist: {
+    "artist": {
         type: String,
         label: "Artist"
     }

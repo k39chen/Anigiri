@@ -1,37 +1,38 @@
 Schemas.Episodes = new SimpleSchema({
-    title: {
+    "title": {
         type: String,
         label: "Title"
     },
-    season: {
-        type: Number,
-        label: "Season",
-        optional: true,
-        min: 0
-    },
-    episode: {
-        type: Number,
-        label: "Episode",
-        min: 0
-    },
-    index: {
+    "index": {
         type: Number,
         label: "Index",
         min: 0
     },
-    description: {
+    "season": {
+        type: Number,
+        label: "Season",
+        min: 0,
+        defaultValue: null
+    },
+    "episode": {
+        type: Number,
+        label: "Episode",
+        min: 0,
+        defaultValue: 0
+    },
+    "description": {
         type: String,
         label: "Description",
-        optional: true
+        defaultValue: null
     },
-    airedOn: {
+    "airedOn": {
         type: Date,
         label: "Aired On",
-        optional: true
+        defaultValue: null
     },
-    imageUrl: {
+    "imageUrl": {
         type: String,
         label: "Image URL",
-        optional: true
+        defaultValue: null
     }
 });

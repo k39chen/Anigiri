@@ -1,0 +1,3 @@
+Schemas.Animes = new SimpleSchema({
+
+});
