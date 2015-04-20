@@ -20,7 +20,6 @@ TpsId = String;
  */
 SchemaTS = {
     type: Date,
-    label: "Added On",
     denyUpdate: true,
     autoValue: function() {
         if (this.isInsert) {

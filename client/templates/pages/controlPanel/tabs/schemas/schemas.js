@@ -19,9 +19,11 @@ Template.controlPanelSchemasTab.events({
     "change select.schemas-list": function(ev, template) {
         var $el = $(ev.target);
         var val = $el.val();
+        var data = Schemas[val];
 
         $el.trigger("chosen:updated");
         Session.set("controlPanelSchemasValue", val || null);
+        Session.set("controlPanelSchemasData", data || null);
     }
 });
 /*========================================================================*
@@ -29,13 +31,65 @@ Template.controlPanelSchemasTab.events({
  *========================================================================*/
 Template.controlPanelSchemasTab.helpers({
     schemas: function() {
-        return [
-            {value: "user", name: "Users"},
-            {value: "anime", name: "Animes"},
-            {value: "subscriptions", name: "Subscriptions"},
-            {value: "episode", name: "Episodes"},
-            {value: "song", name: "Songs"},
-            {value: "recommendation", name: "Recommendations"}
-        ]
+        var schemaKeys = _.keys(Schemas);
+        schemaKeys = _.sortBy(schemaKeys, function(schema) {
+            return schema;
+        });
+        var schemas = [];
+        _.each(schemaKeys, function(key) {
+            schemas.push({ value: key, name: key });
+        });
+        return schemas;
+    },
+    table: function() {
+        var schema = Session.get("controlPanelSchemasData");
+
+        if (_.isEmpty(schema)) return "";
+
+        var keys = schema._firstLevelSchemaKeys;
+        var data = {};
+
+        // go through each first-level schema key and get the attribute data
+        _.each(keys, function(key) {
+            data[key] = schema._schema[key];
+        });
+        // get a list of all the columns
+        var columns = {"key": true};
+
+        // go through each schema attribute and get the info provided.
+        _.each(data, function(attribute, key) {
+            var keys = _.keys(attribute);
+
+            _.each(keys, function(key) {
+                columns[key] = true;
+            })
+        });
+        // construct the table header markup
+        var $header = $("<thead/>");
+        var $headerRow = $("<tr/>").appendTo($header);
+        _.each(columns, function(flag, col) {
+            $headerRow.append($("<th>"+col+"</th>"));
+        });
+        // construct the table body markup
+        var $body = $("<tbody/>");
+        _.each(data, function(attribute, key) {
+            var $row = $("<tr/>").appendTo($body);
+
+            _.each(columns, function(flag, col) {
+                var cell = attribute[col];
+
+                if (col === "key") cell = key;
+
+                if (_.isUndefined(cell)) {
+                    $row.append("<td class='value-undefined'></td>");
+                } else if (_.isNull(cell)) {
+                    $row.append("<td class='value-null'>null</td>");
+                } else {
+                    $row.append("<td>"+cell+"</td>");
+                }
+            });
+        });
+        return "<thead>" + $header.html() + "</thead>" +
+               "<tbody>" + $body.html() + "</tbody>";
     }
 });

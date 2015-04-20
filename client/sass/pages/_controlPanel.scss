@@ -125,5 +125,12 @@ $tabGroupHeight: 36px;
                 }
             }
         }
+        // Specific styles for the Schemas tab
+        &#tab-schemas {
+            .schema-select {
+                margin-top: 1.5em;
+                text-align: center;
+            }
+        }
     }
 }
