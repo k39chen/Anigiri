@@ -26,3 +26,43 @@ button {
 input[type="text"], input[type="number"] {
     @include text-input;
 }
+table {
+    border: solid 1px $faded-white;
+    border-top: none;
+    border-right: none;
+
+    tr {
+        @include transition(background 0.2s);
+        text-align: left;
+
+        th, td {
+            padding: 0.25em 1.0em;
+        }
+        th {
+            font-weight: bold;
+        }
+    }
+    thead th {
+        background: $lightest-gray;
+        border-right: solid 1px transparent;
+    }
+    tbody {
+        tr {
+            td {
+                @include transition(border-right-color 0.2s);
+                border-right: solid 1px $lightest-gray;
+            }
+            &:nth-child(even) {
+                background: $faded-white;
+            }
+            &:hover {
+                cursor: pointer;
+                background: lighten($theme-color,30%);
+
+                td {
+                    border-right: solid 1px transparent;
+                }
+            }
+        }
+    }
+}

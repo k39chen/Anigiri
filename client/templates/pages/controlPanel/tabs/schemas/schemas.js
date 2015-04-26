@@ -54,7 +54,7 @@ Template.controlPanelSchemasTab.helpers({
             data[key] = schema._schema[key];
         });
         // get a list of all the columns
-        var columns = {"key": true};
+        var columns = {"Key": true};
 
         // go through each schema attribute and get the info provided.
         _.each(data, function(attribute, key) {
@@ -78,7 +78,8 @@ Template.controlPanelSchemasTab.helpers({
             _.each(columns, function(flag, col) {
                 var cell = attribute[col];
 
-                if (col === "key") cell = key;
+                if (col === "Key") cell = key;
+                if (_.isObject(cell)) cell = JSON.stringify(cell);
 
                 if (_.isUndefined(cell)) {
                     $row.append("<td class='value-undefined'></td>");

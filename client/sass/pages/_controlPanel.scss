@@ -36,6 +36,7 @@ $tabGroupHeight: 36px;
     .tab-content {
         display: none;
         position: absolute;
+        overflow-y: auto;
         top: $headerHeight + $tabGroupHeight;
         left: 0;
         right: 0;
@@ -126,10 +127,31 @@ $tabGroupHeight: 36px;
             }
         }
         // Specific styles for the Schemas tab
+        &#tab-collections {
+            .collection-select {
+                margin-top: 1.5em;
+                text-align: center;
+            }
+            .table-container {
+                padding: 1.0em 2.0em;
+
+                table {
+                    width: 100%;
+                }
+            }
+        }
+        // Specific styles for the Schemas tab
         &#tab-schemas {
             .schema-select {
                 margin-top: 1.5em;
                 text-align: center;
+            }
+            .table-container {
+                padding: 1.0em 2.0em 2.0em 2.0em;
+
+                table {
+                    width: 100%;
+                }
             }
         }
     }

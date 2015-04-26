@@ -12,14 +12,15 @@ APIModel({
          * @param anime_id {String} The anime id that this subscription maps to.
          * @return {Object} An instance of the added subscription.
          */
-        APIMethod("add",
-            "Adds an anime subscription to the provided user's list of existing subscriptions.",
-            [
+        APIMethod({
+            name: "add",
+            description: "Adds an anime subscription to the provided user's list of existing subscriptions.",
+            parameters: [
                 APIParameter("user_id", "String", "The user id for which the subscription will be added."),
                 APIParameter("anime_id", "String", "The anime id that this subscription maps to.")
             ],
-            APIPayload("Object", "An instance of the added subscription.")
-        ),
+            payload: APIPayload("Object", "An instance of the added subscription.")
+        }),
         /**
          * Removes an anime subscription from the provided user's list of
          * existing subscriptions.
@@ -27,24 +28,26 @@ APIModel({
          * @method remove
          * @param subscription_id {String} The id of the subscription to remove.
          */
-        APIMethod("remove",
-            "Removes an anime subscription from the provided user's list of existing subscriptions.",
-            [
+        APIMethod({
+            name: "remove",
+            description: "Removes an anime subscription from the provided user's list of existing subscriptions.",
+            parameters: [
                 APIParameter("subscription_id", "String", "The id of the subscription to remove.")
             ]
-        ),
+        }),
         /**
          * Sets a value for this subscription's anime generation link.
          *
          * @method setGenerationLink
          * @param subscription_id {String} The subscription id to set the generation link for.
          */
-        APIMethod("setGenerationLink",
-            "Sets a value for this subscription's anime generation link.",
-            [
+        APIMethod({
+            name: "setGenerationLink",
+            description: "Sets a value for this subscription's anime generation link.",
+            parameters: [
                 APIParameter("subscription_id", "String", "The subscription id to set the generation link for.")
             ]
-        ),
+        }),
         /**
          * Adds a song as acknowledged in the subscription.
          *
@@ -52,13 +55,14 @@ APIModel({
          * @param subscription_id {String} The subscription id.
          * @param song_id {String} The song id to add.
          */
-        APIMethod("addSong",
-            "Adds a song as acknowledged in the subscription.",
-            [
+        APIMethod({
+            name: "addSong",
+            description: "Adds a song as acknowledged in the subscription.",
+            parameters: [
                 APIParameter("subscription_id", "String", "The subscription id."),
                 APIParameter("song_id", "String", "The song id to add.")
             ]
-        ),
+        }),
         /**
          * Removes a song as acknowledged in the subscription.
          *
@@ -66,13 +70,14 @@ APIModel({
          * @param subscription_id {String} The subscription id.
          * @param song_id {String} The song id to remove.
          */
-        APIMethod("removeSong",
-            "Removes a song as acknowledged in the subscription.",
-            [
+        APIMethod({
+            name: "removeSong",
+            description: "Removes a song as acknowledged in the subscription.",
+            parameters: [
                 APIParameter("subscription_id", "String", "The subscription id."),
                 APIParameter("song_id", "String", "The song id to remove.")
             ]
-        ),
+        }),
         /**
          * Adds a list of songs as acknowledged in the subscription.
          *
@@ -80,13 +85,14 @@ APIModel({
          * @param subscription_id {String} The subscription id.
          * @param song_ids {Array} The list of song ids to add.
          */
-        APIMethod("addSongs",
-            "Adds a list of songs as acknowledged in the subscription.",
-            [
+        APIMethod({
+            name: "addSongs",
+            description: "Adds a list of songs as acknowledged in the subscription.",
+            parameters: [
                 APIParameter("subscription_id", "String", "The subscription id."),
                 APIParameter("song_ids", "Array", "The list of song ids to add.")
             ]
-        ),
+        }),
         /**
          * Removes a list of songs as acknowledged in the subscription.
          *
@@ -94,13 +100,14 @@ APIModel({
          * @param subscription_id {String} The subscription id.
          * @param song_ids {Array} The list of song ids to remove.
          */
-        APIMethod("removeSongs",
-            "Removes a list of songs as acknowledged in the subscription.",
-            [
+        APIMethod({
+            name: "removeSongs",
+            description: "Removes a list of songs as acknowledged in the subscription.",
+            parameters: [
                 APIParameter("subscription_id", "String", "The subscription id."),
                 APIParameter("song_ids", "Array", "The list of song ids to remove.")
             ]
-        ),
+        }),
         /**
          * Adds an episode as acknowledged in the subscription.
          *
@@ -108,13 +115,14 @@ APIModel({
          * @param subscription_id {String} The subscription id.
          * @param episode_id {String} The episode id to add.
          */
-        APIMethod("addEpisode",
-            "Adds an episode as acknowledged in the subscription.",
-            [
+        APIMethod({
+            name: "addEpisode",
+            description: "Adds an episode as acknowledged in the subscription.",
+            parameters: [
                 APIParameter("subscription_id", "String", "The subscription id."),
                 APIParameter("episode_id", "String", "The episode id to add.")
             ]
-        ),
+        }),
         /**
          * Removes an episode as acknowledged in the subscription.
          *
@@ -122,13 +130,14 @@ APIModel({
          * @param subscription_id {String} The subscription id.
          * @param episode_id {String} The episode id to remove.
          */
-        APIMethod("removeEpisode",
-            "Removes an episode as acknowledged in the subscription.",
-            [
+        APIMethod({
+            name: "removeEpisode",
+            description: "Removes an episode as acknowledged in the subscription.",
+            parameters: [
                 APIParameter("subscription_id", "String", "The subscription id."),
                 APIParameter("episode_id", "String", "The episode id to remove.")
             ]
-        ),
+        }),
         /**
          * Adds a list of episodes as acknowledged in the subscription.
          *
@@ -136,13 +145,14 @@ APIModel({
          * @param subscription_id {String} The subscription id.
          * @param episode_ids {Array} The list of episode ids to add.
          */
-        APIMethod("addEpisodes",
-            "Adds a list of episodes as acknowledged in the subscription.",
-            [
+        APIMethod({
+            name: "addEpisodes",
+            description: "Adds a list of episodes as acknowledged in the subscription.",
+            parameters: [
                 APIParameter("subscription_id", "String", "The subscription id."),
                 APIParameter("episode_ids", "Array", "The list of episode ids to add.")
             ]
-        ),
+        }),
         /**
          * Removes a list of episodes as acknowledged in the subscription.
          *
@@ -150,13 +160,14 @@ APIModel({
          * @param subscription_id {String} The subscription id.
          * @param episode_ids {Array} The list of episode ids to remove.
          */
-        APIMethod("removeEpisodes",
-            "Removes a list of episodes as acknowledged in the subscription.",
-            [
+        APIMethod({
+            name: "removeEpisodes",
+            description: "Removes a list of episodes as acknowledged in the subscription.",
+            parameters: [
                 APIParameter("subscription_id", "String", "The subscription id."),
                 APIParameter("episode_ids", "Array", "The list of episode ids to remove.")
             ]
-        ),
+        }),
         /**
          * Recommends a subscribed anime to a friend.
          *
@@ -166,14 +177,15 @@ APIModel({
          * @param qualifier {String} The strength of the recommendation.
          * @param comment {String} A plaintext comment to add to the recommendation email.
          */
-        APIMethod("recommendToFriend",
-            "Recommends a subscribed anime to a friend.",
-            [
+        APIMethod({
+            name: "recommendToFriend",
+            description: "Recommends a subscribed anime to a friend.",
+            parameters: [
                 APIParameter("subscription_id", "String", "The subscription id."),
                 APIParameter("friend_id", "String", "The id of the friend user that we want to recommend to."),
                 APIParameter("qualifier", "String", "The strength of the recommendation."),
                 APIParameter("comment", "String", "A plaintext comment to add to the recommendation email.")
             ]
-        )
+        })
     ]
 });

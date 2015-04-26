@@ -24,18 +24,20 @@ APIModel = function(obj) {
  * Constructs an API method.
  *
  * @method APIMethodClass
- * @param name {String} The name of the API method.
- * @param description {String} An appropriate description for the API method.
- * @param parameters {Array} A list of parameters required by the API method.
- * @param payload {Object} An optional payload to indicate return value from the request.
+ * @param params {Object}
+ *     @param name {String} The name of the API method.
+ *     @param description {String} An appropriate description for the API method.
+ *     @param parameters {Array} A list of parameters required by the API method.
+ *     @param payload {Object} An optional payload to indicate return value from the request.
  */
-APIMethodClass = function(name, description, parameters, payload) {
-    this.name = _.defaults(name, null);
-    this.description = _.defaults(description, null);
-    this.parameters = _.defaults(parameters, []);
+APIMethodClass = function(params) {
+    params = _.defaults(params, {});
+    this.name = _.defaults(params.name, null);
+    this.description = _.defaults(params.description, null);
+    this.parameters = _.defaults(params.parameters, []);
 
-    if (!_.isUndefined(payload)) {
-        this.payload = payload;
+    if (!_.isUndefined(params.payload)) {
+        this.payload = params.payload;
     }
 };
 APIMethod = function(name, description, parameters) {

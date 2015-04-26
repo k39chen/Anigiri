@@ -10,13 +10,14 @@ APIModel({
          * @param title_str {String} The title of the anime that we want to search.
          * @return {Array} The list of search results.
          */
-        APIMethod("search",
-            "Performs a search for an anime given an arbitrary title string.",
-            [
+        APIMethod({
+            name: "search",
+            description: "Performs a search for an anime given an arbitrary title string.",
+            parameters: [
                 APIParameter("title_str", "String", "The title of the anime that we want to search.")
             ],
-            APIPayload("Array", "The list of search results.")
-        ),
+            payload: APIPayload("Array", "The list of search results.")
+        }),
         /**
          * Fetches from the set of third-party sources to update the
          * requested anime.
@@ -25,23 +26,25 @@ APIModel({
          * @param anime_id {String} The id of the anime that we wish to update.
          * @return {Object} The newly updated anime data.
          */
-        APIMethod("update",
-            "Fetches from the set of third-party sources to update the requested anime.",
-            [
+        APIMethod({
+            name: "update",
+            description: "Fetches from the set of third-party sources to update the requested anime.",
+            parameters: [
                 APIParameter("anime_id", "String", "The id of the anime that we wish to update.")
             ]
-        ),
+        }),
         /**
          * Removes an anime from the Anigiri anime repository.
          *
          * @method remove
          * @param anime_id {String} The id of the anime that we wish to remove.
          */
-        APIMethod("remove",
-            "Removes an anime from the Anigiri anime repository",
-            [
+        APIMethod({
+            name: "remove",
+            description: "Removes an anime from the Anigiri anime repository",
+            parameters: [
                 APIParameter("anime_id", "String", "The id of the anime that we wish to remove.")
             ]
-        )
+        })
     ]
 });
