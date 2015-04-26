@@ -9,4 +9,12 @@
         }
         return attributes;
     };
+    $.fn.loadingSpinner = function(operation) {
+        if (operation === "open") {
+            $(this).prepend("<div class='loading-spinner'><i class='fa fa-spin fa-spinner'></i></div>");
+        }
+        if (operation === "close") {
+            $(this).find("> .loading-spinner").remove();
+        }
+    }
 })(jQuery);

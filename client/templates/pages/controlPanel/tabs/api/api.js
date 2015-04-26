@@ -78,6 +78,7 @@ Template.controlPanelAPITab.events({
     "click .api-submit-button": function(ev, template) {
         var $el = $(ev.target);
         var $form = $("#api-request-form");
+        var $responsePanel = $(".response .content");
 
         ev.preventDefault();
         ev.stopPropagation();
@@ -91,19 +92,32 @@ Template.controlPanelAPITab.events({
         var method = deparamedResult._method;
         var parameters = _.omit(deparamedResult, "_model", "_method") || {};
 
+        // don't allow the user to continue if no model or method is specified.
+        if (_.isEmpty(model) || _.isEmpty(method)) return;
+
         // get the corresponding API reference
         var api = API_MODELS[model].methods[method];
+
+        // show a loading spinner in the response panel
+        $responsePanel.empty();
+        $responsePanel.loadingSpinner("open");
 
         // perform the API call
         var requestUrl = [model,method].join(".");
         Meteor.call(requestUrl, parameters, function(error, data) {
-            // on error
+            var json;
+            $responsePanel.loadingSpinner("close");
+
             if (!_.isEmpty(error)) {
+                // on error
                 console.log("error", error);
-                return;
+                json = JSON.stringify(error);
+            } else {
+                // on success
+                console.log("success", data);
+                json = JSON.stringify(data);
             }
-            // on success
-            console.log("success", data);
+            $responsePanel.append(json);
         });
     }
 });

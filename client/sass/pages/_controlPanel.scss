@@ -65,6 +65,7 @@ $tabGroupHeight: 36px;
                     position: absolute;
                     top: 5.0em;
                     bottom: 0;
+                    width: 100%;
                     overflow-y: auto;
                     @include box-sizing(border-box);
                 }
@@ -154,5 +155,9 @@ $tabGroupHeight: 36px;
                 }
             }
         }
+    }
+    .loading-spinner {
+        @include loading-spinner(3.0em);
+        margin-top: 1.0em;
     }
 }

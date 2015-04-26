@@ -1,3 +1,7 @@
+@mixin loading-spinner($font-size: 1.0em) {
+    font-size: $font-size;
+    text-align: center;
+}
 @mixin input-element($font-size: 1.0em) {    
     display: inline-block;
     margin: 0;
