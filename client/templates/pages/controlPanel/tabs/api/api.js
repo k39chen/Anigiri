@@ -79,6 +79,7 @@ Template.controlPanelAPITab.events({
         var $el = $(ev.target);
         var $form = $("#api-request-form");
         var $responsePanel = $(".response .content");
+        var $response = $responsePanel.find("pre");
 
         ev.preventDefault();
         ev.stopPropagation();
@@ -99,7 +100,7 @@ Template.controlPanelAPITab.events({
         var api = API_MODELS[model].methods[method];
 
         // show a loading spinner in the response panel
-        $responsePanel.empty();
+        $response.empty();
         $responsePanel.loadingSpinner("open");
 
         // perform the API call
@@ -111,13 +112,13 @@ Template.controlPanelAPITab.events({
             if (!_.isEmpty(error)) {
                 // on error
                 console.log("error", error);
-                json = JSON.stringify(error);
+                json = error;
             } else {
                 // on success
                 console.log("success", data);
-                json = JSON.stringify(data);
+                json = data;
             }
-            $responsePanel.append(json);
+            $response.prettyPrint(json);
         });
     }
 });

@@ -66,3 +66,19 @@ table {
         }
     }
 }
+pre {
+    padding: 0em 2.0em;
+
+    .json-key, .json-value, .json-string {
+        word-break: break-word;
+    }
+    .json-key {
+        color: brown;
+    }
+    .json-value {
+        color: navy;
+    }
+    .json-string {
+        color: olive;
+    }
+}
