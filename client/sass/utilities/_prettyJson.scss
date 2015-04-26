@@ -1,0 +1,47 @@
+.node-container {
+    .mark-water {
+        color: #bbb;
+    }
+    .node-content-wrapper {
+        font-family: $monospace;
+        background-color: #fff;
+
+        ul {
+            border-left: 1px dotted #ccc;
+            list-style: none;
+            padding-left: 25px;
+            margin: 0px;
+
+            li {
+                list-style: none;
+                border-bottom: 0; 
+                padding-bottom: 0
+            }
+        }
+    }
+    .node-hgl-path {
+        background-color: #fefbdf;
+    }
+    .node-bracket {
+        @include transition(color 0.2s);
+        font-weight: bold;
+        display: inline-block;
+        cursor: pointer;
+
+        &:hover {
+            color: #999;
+        }
+    }
+    .leaft-container {
+        width: 100%;
+        max-width: 300px;
+        height: 100%;
+    }
+
+    .title { color: #ccc;}
+    .string { color: #080;}
+    .number { color: #ccaa00;}
+    .boolean { color: #1979d3;}
+    .date { color: #aa6655;}
+    .null { color: #ff5050;}
+}

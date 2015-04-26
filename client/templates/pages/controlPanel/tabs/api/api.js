@@ -118,7 +118,10 @@ Template.controlPanelAPITab.events({
                 console.log("success", data);
                 json = data;
             }
-            $response.prettyPrint(json);
+            var node = new PrettyJSON.view.Node({
+                el: $response,
+                data: json
+            });
         });
     }
 });

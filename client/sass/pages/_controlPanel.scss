@@ -45,37 +45,24 @@ $tabGroupHeight: 36px;
         // Specific styles for the API tab
         &#tab-api {
             .panel {
-                position: absolute;
-                height: 100%;
+                margin-bottom: 1.5em;
 
                 .title {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
                     width: 100%;
-                    font-size: 1.25em;
+                    margin-bottom: 1.0em;
                     padding-top: 1.0em;
-                    padding-left: 2.25em;
+                    padding-left: 1.0em;
+                    font-size: 1.25em;
                     text-transform: uppercase;
                     background: $white;
                     border-bottom: solid 1px $theme-color;
                     @include box-sizing(border-box);
                 }
                 .content {
-                    position: absolute;
-                    top: 5.0em;
-                    bottom: 0;
-                    width: 100%;
-                    overflow-y: auto;
                     @include box-sizing(border-box);
                 }
                 // The request panel
                 &.request {
-                    overflow-y: auto;
-                    left: 0;
-                    width: 50%;
-                    border-right: solid 1px $lightest-gray;
-
                     .field {
                         margin-bottom: 1.0em;
 
@@ -118,8 +105,9 @@ $tabGroupHeight: 36px;
                 }
                 // The response panel
                 &.response {
-                    left: 50%;
-                    right: 0;
+                    .content {
+                        padding-left: 2.0em;
+                    }
                 }
             }
         }
