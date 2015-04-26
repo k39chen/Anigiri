@@ -15,15 +15,32 @@ Meteor.methods({
     "Animes.search": function(params) {
         printHeader("Animes.search",params);
         
+        // validate the parameters before we make any requests
+        if (_.isEmpty(params)) {
+            throw new Meteor.Error("parameters-required", "Must specify parameters for this request.");
+        }
+        if (_.isEmpty(params.title_str)) {
+            throw new Meteor.Error("invalid-parameter", "The parameter `title_str` must be specified.");
+        }
         // construct the request URL to the third-party service.
-        var requestUrl = API_CONFIG.ANN_REPORTS+'?id=155&type=anime&nlist=all';
+        var requestUrl = API_CONFIG.ANN_API+"?title=~"+params.title_str;
 
         var response = HTTP.get(requestUrl, {
             headers: {'X-Mashape-Authorization': API_CONFIG.MASHAPE_KEY}
         });
         var results = [];
         if (!_.isEmpty(response.content)) {
-            console.log(response.content);
+            console.log("Received a response, converting XML to JSON format...");
+
+            // convert the XML formatted result into a JSON object.
+            var result = xml2js.parseStringSync(response.content);
+
+            // TODO: Make sure that we cache the data into our DB
+
+            // return the formatted result
+            return result;
+        } else {
+            console.log("Couldn't find any results.");
         }
         return results;
     },

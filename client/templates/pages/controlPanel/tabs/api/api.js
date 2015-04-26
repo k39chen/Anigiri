@@ -89,14 +89,13 @@ Template.controlPanelAPITab.events({
         // disambiguate the deparamed results
         var model = deparamedResult._model;
         var method = deparamedResult._method;
-        var parameters = _.omit(deparamedResult, "_model", "_method");
+        var parameters = _.omit(deparamedResult, "_model", "_method") || {};
 
         // get the corresponding API reference
         var api = API_MODELS[model].methods[method];
 
         // perform the API call
         var requestUrl = [model,method].join(".");
-        console.log(requestUrl);
         Meteor.call(requestUrl, parameters, function(error, data) {
             // on error
             if (!_.isEmpty(error)) {
