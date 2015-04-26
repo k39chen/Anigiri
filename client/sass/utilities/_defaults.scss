@@ -69,3 +69,13 @@ table {
 .empty-value {
     color: $lighter-gray;
 }
+.help {
+    @include transition(color 0.2s);
+    cursor: pointer;
+    font-size: 1.25em;
+    color: $lighter-gray;
+
+    &:hover {
+        color: $light-gray;
+    }
+}

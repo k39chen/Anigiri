@@ -8,9 +8,6 @@ Template.controlPanelSchemasTab.rendered = function() {
 
     // attach the widgets on this tab
     Widgets.attach($tab);
-
-    // set default values for the dropdowns
-    $schemas.val("user").trigger("change");
 };
 /*========================================================================*
  * EVENT HANDLERS
@@ -44,8 +41,9 @@ Template.controlPanelSchemasTab.helpers({
     table: function() {
         var schema = Session.get("controlPanelSchemasData");
 
-        if (_.isEmpty(schema)) return "";
-
+        if (_.isEmpty(schema)) {
+            return "<span class='empty-value'>Select a collection from above to load its corresponding schema definition.</span>";
+        }
         var keys = schema._firstLevelSchemaKeys;
         var data = {};
 
@@ -79,7 +77,7 @@ Template.controlPanelSchemasTab.helpers({
                 var cell = attribute[col];
 
                 if (col === "Key") cell = key;
-                if (_.isObject(cell)) cell = JSON.stringify(cell);
+                if (_.isObject(cell) && _.isEmpty(cell)) cell = JSON.stringify(cell);
 
                 if (_.isUndefined(cell)) {
                     $row.append("<td class='value-undefined'></td>");

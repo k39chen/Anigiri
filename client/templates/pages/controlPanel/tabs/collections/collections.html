@@ -1,16 +1,26 @@
 <template name="controlPanelCollectionsTab">
 <div id="tab-collections" class="tab-content">
-    <div class="collection-select">
-        db.
-        <select aw="single-select" class="collections-list">
-            <option value="">-</option>
-        {{#each collections}}
-            <option value="{{value}}">{{name}}</option>
-        {{/each}}
-        </select>
+    <div class="panel">
+        <div class="title">Collections</div>
+        <div class="content">
+            <div class="collection-select">
+                db.
+                <select aw="single-select" class="collections-list">
+                    <option value="">-</option>
+                {{#each collections}}
+                    <option value="{{value}}">{{name}}</option>
+                {{/each}}
+                </select>
+            </div>
+        </div>
     </div>
-    <div class="table-container">
-        <table class="collection-table">{{{table}}}</table>
+    <div class="panel records">
+        <div class="title">Records</div>
+        <div class="content">
+            <div class="table-container">
+                <table class="collection-table">{{{table}}}</table>
+            </div>
+        </div>
     </div>
 </div>
 </template>

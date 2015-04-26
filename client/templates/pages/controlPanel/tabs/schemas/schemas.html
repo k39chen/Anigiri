@@ -1,16 +1,26 @@
 <template name="controlPanelSchemasTab">
 <div id="tab-schemas" class="tab-content">
-    <div class="schema-select">
-        db.
-        <select aw="single-select" class="schemas-list">
-            <option value="">-</option>
-        {{#each schemas}}
-            <option value="{{value}}">{{name}}</option>
-        {{/each}}
-        </select>
+    <div class="panel">
+        <div class="title">Collections</div>
+        <div class="content">
+            <div class="schema-select">
+                db.
+                <select aw="single-select" class="schemas-list">
+                    <option value="">-</option>
+                {{#each schemas}}
+                    <option value="{{value}}">{{name}}</option>
+                {{/each}}
+                </select>
+            </div>
+        </div>
     </div>
-    <div class="table-container">
-        <table class="schema-table">{{{table}}}</table>
+    <div class="panel schema-definition">
+        <div class="title">Schema Definition</div>
+        <div class="content">
+            <div class="table-container">
+                <table class="schema-table">{{{table}}}</table>
+            </div>
+        </div>
     </div>
 </div>
 </template>

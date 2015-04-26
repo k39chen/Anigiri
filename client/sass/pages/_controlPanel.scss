@@ -42,25 +42,28 @@ $tabGroupHeight: 36px;
         right: 0;
         bottom: 0;
 
+        .panel {
+            margin-bottom: 1.5em;
+
+            .title {
+                width: 100%;
+                margin-bottom: 12px;
+                padding-top: 12px;
+                padding-left: 24px;
+                font-size: 1.25em;
+                text-transform: uppercase;
+                background: $white;
+                border-bottom: solid 1px $theme-color;
+                @include box-sizing(border-box);
+            }
+            .content {
+                @include box-sizing(border-box);
+                padding: 0 2.0em;
+            }
+        }
         // Specific styles for the API tab
         &#tab-api {
             .panel {
-                margin-bottom: 1.5em;
-
-                .title {
-                    width: 100%;
-                    margin-bottom: 1.0em;
-                    padding-top: 1.0em;
-                    padding-left: 1.0em;
-                    font-size: 1.25em;
-                    text-transform: uppercase;
-                    background: $white;
-                    border-bottom: solid 1px $theme-color;
-                    @include box-sizing(border-box);
-                }
-                .content {
-                    @include box-sizing(border-box);
-                }
                 // The request panel
                 &.request {
                     .field {
@@ -80,16 +83,6 @@ $tabGroupHeight: 36px;
                         select, .value {
                             width: 20.0em;
                         }
-                        .help {
-                            @include transition(color 0.2s);
-                            cursor: pointer;
-                            font-size: 1.25em;
-                            color: $lighter-gray;
-
-                            &:hover {
-                                color: $light-gray;
-                            }
-                        }
                     }
                     .api-submit-button {
                         position: relative;
@@ -105,37 +98,37 @@ $tabGroupHeight: 36px;
                 }
                 // The response panel
                 &.response {
-                    .content {
-                        padding-left: 2.0em;
-                    }
+                    // ...
                 }
             }
         }
         // Specific styles for the Schemas tab
         &#tab-collections {
-            .collection-select {
-                margin-top: 1.5em;
-                text-align: center;
+            table {
+                width: 100%;
             }
+        }
+        // Specific styles for the Schemas tab
+        &#tab-schemas {
             .table-container {
-                padding: 1.0em 2.0em;
-
                 table {
                     width: 100%;
                 }
             }
         }
-        // Specific styles for the Schemas tab
-        &#tab-schemas {
-            .schema-select {
-                margin-top: 1.5em;
-                text-align: center;
-            }
-            .table-container {
-                padding: 1.0em 2.0em 2.0em 2.0em;
+        .panel {
+            &.records,
+            &.schema-definition {
+                .title {
+                    margin-bottom: 0;
+                }
+                .content {
+                    padding: 0;
 
-                table {
-                    width: 100%;
+                    .empty-value {
+                        display: block;
+                        padding: 1.0em 2.0em;
+                    }
                 }
             }
         }

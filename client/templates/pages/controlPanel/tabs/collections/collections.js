@@ -8,9 +8,6 @@ Template.controlPanelCollectionsTab.rendered = function() {
 
     // attach the widgets on this tab
     Widgets.attach($tab);
-
-    // set default values for the dropdowns
-    $collections.val("user").trigger("change");
 };
 /*========================================================================*
  * EVENT HANDLERS
@@ -37,5 +34,13 @@ Template.controlPanelCollectionsTab.helpers({
             {value: "song", name: "Songs"},
             {value: "recommendation", name: "Recommendations"}
         ]
+    },
+    table: function() {
+        var schema = Session.get("controlPanelSchemasData");
+
+        if (_.isEmpty(schema)) {
+            return "<span class='empty-value'>Select a collection from above to load its corresponding data.</span>";
+        }
+        // ...
     }
 });

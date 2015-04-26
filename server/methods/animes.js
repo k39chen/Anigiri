@@ -35,7 +35,10 @@ Meteor.methods({
             // convert the XML formatted result into a JSON object.
             var result = xml2js.parseStringSync(response.content);
 
-            // TODO: Make sure that we cache the data into our DB
+            console.log("Finished converting response to XML. Reformatting to adhere to schema rules.");
+            //console.log("Add additional entry to DB.");
+            //console.log("Augment existing entry in DB.");
+            console.log("Serving well-formed results.");
 
             // return the formatted result
             return result;
