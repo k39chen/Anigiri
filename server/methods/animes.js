@@ -28,24 +28,22 @@ Meteor.methods({
         var response = HTTP.get(requestUrl, {
             headers: {'X-Mashape-Authorization': API_CONFIG.MASHAPE_KEY}
         });
-        var results = [];
+        var animes = [];
         if (!_.isEmpty(response.content)) {
-            console.log("Received a response, converting XML to JSON format...");
+            // get the raw XML ANN response, convert it into JSON, and
+            // format it in a way that we can legibly read it.
+            animes = formatAnnResponse(response.content);
 
-            // convert the XML formatted result into a JSON object.
-            var result = xml2js.parseStringSync(response.content);
-
-            console.log("Finished converting response to XML. Reformatting to adhere to schema rules.");
             //console.log("Add additional entry to DB.");
             //console.log("Augment existing entry in DB.");
             console.log("Serving well-formed results.");
 
             // return the formatted result
-            return result;
+            return animes;
         } else {
             console.log("Couldn't find any results.");
         }
-        return results;
+        return animes;
     },
     /**
      * Fetches from the set of third-party sources to update the
