@@ -16,7 +16,9 @@ window.Widgets = {
             var options = {};
             _.each($el.getAttributes(), function(value, name) {
                 if (name.indexOf("aw-opt-") > -1) {
-                    options[name.replace(/aw-opt-/g,"")] = value;
+                    var optname = name.replace(/aw-opt-/g,"");
+                    optname = _.camelize(optname);
+                    options[optname] = value;
                 }
             });
             // depending on the type of the widget, we will need to

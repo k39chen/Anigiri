@@ -74,6 +74,27 @@ Template.controlPanelAPITab.events({
         var $help = $el.closest(".value").siblings(".help").first();
 
         $help.awTooltip("hide");
+    },
+    "click .api-submit-button": function(ev, template) {
+        var $el = $(ev.target);
+        var $form = $("#api-request-form");
+
+        ev.preventDefault();
+        ev.stopPropagation();
+
+        // serialize the form and turn it into an object that we can further manipulate
+        var serializedResult = $form.serialize();
+        var deparamedResult = $.deparam(serializedResult);
+
+        // disambiguate the deparamed results
+        var model = deparamedResult._model;
+        var method = deparamedResult._method;
+        var parameters = _.omit(deparamedResult, "_model", "_method");
+
+        // get the corresponding API reference
+        var api = API_MODELS[model].methods[method];
+
+        console.log(api, parameters);
     }
 });
 /*========================================================================*
@@ -144,7 +165,8 @@ Template.controlPanelAPITab.helpers({
                 .addClass("value")
                 .attr("aw","tag-select")
                 .attr("aw-opt-width", "20.0em")
-                .attr("name", data.name);
+                .attr("aw-opt-field-name",data.name)
+                .attr("name", data.name+"[]");
             break;
         case "String":
             $el = $("<input />").appendTo($container)

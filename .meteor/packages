@@ -10,7 +10,6 @@ viacdn:font-awesome
 linto:jquery-ui
 fourseven:scss
 francocatena:compass
-underscorestring:underscore.string
 iron:router
 jquery
 email
@@ -21,3 +20,4 @@ dburles:collection-helpers
 eskan:chosen
 mizzao:user-status
 aldeed:collection2
+wizonesolutions:underscore-string

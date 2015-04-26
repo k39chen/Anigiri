@@ -80,7 +80,7 @@ $tabGroupHeight: 36px;
 
                         .label {
                             @include ellipsis;
-                            vertical-align: bottom;
+                            vertical-align: top;
                             width: 10.0em;
                             text-align: right;
                             font-weight: 500;
