@@ -14,7 +14,18 @@ Meteor.methods({
      */
     "Animes.search": function(params) {
         printHeader("Animes.search",params);
-        // TODO: Implement this
+        
+        // construct the request URL to the third-party service.
+        var requestUrl = API_CONFIG.ANN_REPORTS+'?id=155&type=anime&nlist=all';
+
+        var response = HTTP.get(requestUrl, {
+            headers: {'X-Mashape-Authorization': API_CONFIG.MASHAPE_KEY}
+        });
+        var results = [];
+        if (!_.isEmpty(response.content)) {
+            console.log(response.content);
+        }
+        return results;
     },
     /**
      * Fetches from the set of third-party sources to update the
