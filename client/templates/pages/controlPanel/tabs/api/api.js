@@ -94,7 +94,18 @@ Template.controlPanelAPITab.events({
         // get the corresponding API reference
         var api = API_MODELS[model].methods[method];
 
-        console.log(api, parameters);
+        // perform the API call
+        var requestUrl = [model,method].join(".");
+        console.log(requestUrl);
+        Meteor.call(requestUrl, parameters, function(error, data) {
+            // on error
+            if (!_.isEmpty(error)) {
+                console.log("error", error);
+                return;
+            }
+            // on success
+            console.log("success", data);
+        });
     }
 });
 /*========================================================================*

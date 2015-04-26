@@ -1,5 +1,5 @@
 APIModel({
-    id: "users",
+    id: "Users",
     name: "Users",
     description: "The users model contains methods that exposes server-side functionality in a format that is simple for the client to interface and use.",
     methods: [
@@ -137,7 +137,7 @@ APIModel({
         /**
          * Removes the specified anime subscription from the user's current
          * subscription list.
-
+         *
          * @method removeSubscription
          * @param user_id {String} The user id from which the subscription will be removed.
          * @param anime_id {String} The anime id to remove from the subscription list.

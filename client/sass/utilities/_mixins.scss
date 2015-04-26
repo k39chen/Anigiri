@@ -40,12 +40,12 @@
     border: none;
     border-bottom: solid 2px darken($theme-color,20%);
     
-    &:hover, &:focus {
+    &:hover {
         background: lighten($theme-color, 10%);
         border-bottom: solid 2ps darken($theme-color,10%);
     }
     &:active {
-        background: $theme-color;
+        background: darken($theme-color,10%);
         border-bottom: solid 2px darken($theme-color,20%);
     }
     &[disabled] {
