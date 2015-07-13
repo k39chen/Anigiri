@@ -1,4 +1,4 @@
-window.Page.Community = new window.PageClass("community",
+window.Page.Explore = new window.PageClass("explore",
     /* @Options */
     {},
     /* @Methods */
@@ -7,18 +7,18 @@ window.Page.Community = new window.PageClass("community",
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
  *========================================================================*/
-Template.communityPage.rendered = function() {
-    Page.Community.init();
+Template.explorePage.rendered = function() {
+    Page.Explore.init();
 };
 /*========================================================================*
  * EVENT HANDLERS
  *========================================================================*/
- Template.communityPage.events({
+Template.explorePage.events({
     // ...
- });
+});
 /*========================================================================*
  * TEMPLATE HELPERS
  *========================================================================*/
-Template.communityPage.helpers({
+Template.explorePage.helpers({
     // ...
 });

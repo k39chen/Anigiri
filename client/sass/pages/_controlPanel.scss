@@ -1,66 +1,13 @@
 $tabGroupHeight: 36px;
 
 #control-panel-page {
-    h1 {
-        margin-bottom: 0 !important;
-    }
-    .tab-group {
-        overflow: hidden;
-        width: 100%;
-        margin: 0 auto;
-        @include border-radius(0);
-        
-        .tab {
-            float: left;
-            width: calc(100% / 4);
-            height: $tabGroupHeight;
-            background: $lightest-gray;
-            border: none;
-            border-right: solid 1px darken($lightest-gray,5%);
-            color: $light-gray;
-            font-weight: 500;
-            @include border-radius(0);
-
-            &:hover {
-                background: darken($lightest-gray,5%);
-            }
-            &.active {
-                color: $white;
-                background: $lighter-gray;
-            }
-        }
-    }
     input, .chosen-container {
         text-align: left;
     }
     .tab-content {
         display: none;
-        position: absolute;
         overflow-y: auto;
-        top: $headerHeight + $tabGroupHeight;
-        left: 0;
-        right: 0;
-        bottom: 0;
 
-        .panel {
-            margin-bottom: 1.5em;
-
-            .title {
-                width: 100%;
-                margin-bottom: 12px;
-                padding-top: 12px;
-                padding-left: 24px;
-                font-size: 1.25em;
-                text-transform: uppercase;
-                background: $white;
-                border-bottom: solid 1px $theme-color;
-                @include box-sizing(border-box);
-            }
-            .content {
-                @include box-sizing(border-box);
-                padding: 0 2.0em;
-            }
-        }
         // Specific styles for the API tab
         &#tab-api {
             .panel {
@@ -134,7 +81,7 @@ $tabGroupHeight: 36px;
         }
     }
     .loading-spinner {
-        @include loading-spinner(3.0em);
-        margin-top: 1.0em;
+        @include loading-spinner(2.5em);
+        margin: 1.0em 0 0.5em 0;
     }
 }

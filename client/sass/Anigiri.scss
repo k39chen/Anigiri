@@ -27,18 +27,8 @@
 // import pages
 @import "pages/_home";
 
-// main pages
-@import "pages/_profile";
+// pages
+@import "pages/_explore";
 @import "pages/_gallery";
-@import "pages/_friends";
-@import "pages/_recommendations";
-
-// discover pages
-@import "pages/_featured";
-@import "pages/_trending";
-@import "pages/_community";
-@import "pages/_music";
-
-// admin pages
+@import "pages/_social";
 @import "pages/_controlPanel";
-@import "pages/_settings";

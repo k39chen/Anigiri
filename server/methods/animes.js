@@ -33,7 +33,7 @@ Meteor.methods({
         if (!_.isEmpty(response.content)) {
             // get the raw XML ANN response, convert it into JSON, and
             // format it in a way that we can legibly read it.
-            result = formatAnnResponse(response.content);
+            result = ANN.formatResponse(response.content);
 
             //console.log("Add additional entry to DB.");
             //console.log("Augment existing entry in DB.");

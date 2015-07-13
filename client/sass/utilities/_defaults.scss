@@ -7,6 +7,7 @@ html, body {
     width: 100%;
     height: 100%;
     overflow: hidden;
+    background-color: $bg-color;
 }
 // Define global styles for form elements
 a {
@@ -27,10 +28,6 @@ input[type="text"], input[type="number"] {
     @include text-input;
 }
 table {
-    border: solid 1px $faded-white;
-    border-top: none;
-    border-right: none;
-
     tr {
         @include transition(background 0.2s);
         text-align: left;
@@ -43,25 +40,21 @@ table {
         }
     }
     thead th {
-        background: $lightest-gray;
-        border-right: solid 1px transparent;
+        border-bottom: solid 1px #f2f2f2;
+        text-transform: uppercase;
+        font-size: 10px;
+        font-weight: normal;
     }
     tbody {
         tr {
-            td {
-                @include transition(border-right-color 0.2s);
-                border-right: solid 1px $lightest-gray;
-            }
+            background: $white;
+
             &:nth-child(even) {
                 background: $faded-white;
             }
             &:hover {
                 cursor: pointer;
                 background: lighten($theme-color,30%);
-
-                td {
-                    border-right: solid 1px transparent;
-                }
             }
         }
     }
@@ -77,5 +70,64 @@ table {
 
     &:hover {
         color: $light-gray;
+    }
+}
+h1 {
+    .fa {
+        margin-right: 0.5em;
+    }
+    .tab-group {
+        float: right;
+        margin-right: 1.5em;
+        font-size: 12px;
+        overflow: hidden;
+
+        .tab {
+            @include transition(color 0.2s, border-bottom-color 0.2s);
+            float: left;
+            height: $headerHeight;
+            line-height: $headerHeight;
+            margin: 0;
+            padding: 0 1.5em;
+            background: none;
+            border-bottom: solid 2px transparent;
+            color: $lighter-gray;
+            @include border-radius(0);
+
+            &:hover {
+                color: $text-color;
+            }
+            &.active {
+                color: $text-color;
+                border-bottom: solid 2px $theme-color;
+            }
+        }
+    }
+}
+.tab-content {
+    position: absolute;
+    top: $headerHeight;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.panel {
+    margin: 1.5em;
+    padding: 1em;
+    background: $white;
+    border: solid 1px $panel-border-color;
+    border-bottom: solid 1px $lighter-gray;
+
+    .title {
+        width: 100%;
+        padding-bottom: 0.5em;
+        line-height: normal;
+        text-transform: uppercase;
+        border-bottom: solid 1px $theme-color;
+        @include box-sizing(border-box);
+    }
+    .content {
+        margin-top: 1em;
+        @include box-sizing(border-box);
     }
 }

@@ -1,4 +1,4 @@
-window.Page.Trending = new window.PageClass("trending",
+window.Page.Social = new window.PageClass("social",
     /* @Options */
     {},
     /* @Methods */
@@ -7,18 +7,18 @@ window.Page.Trending = new window.PageClass("trending",
 /*========================================================================*
  * POST-RENDER BEHAVIOUR
  *========================================================================*/
-Template.trendingPage.rendered = function() {
-    Page.Trending.init();
+Template.socialPage.rendered = function() {
+    Page.Social.init();
 };
 /*========================================================================*
  * EVENT HANDLERS
  *========================================================================*/
- Template.trendingPage.events({
+Template.socialPage.events({
     // ...
- });
+});
 /*========================================================================*
  * TEMPLATE HELPERS
  *========================================================================*/
-Template.trendingPage.helpers({
+Template.socialPage.helpers({
     // ...
 });
