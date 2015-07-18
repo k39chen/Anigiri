@@ -41,21 +41,20 @@ Meteor.methods({
         var response = HTTP.get(requestUrl, {
             headers: {'X-Mashape-Authorization': API_CONFIG.MASHAPE_KEY}
         });
-        var list = [];
-        if (!_.isEmpty(response.content)) {
-            // get the raw XML ANN response, convert it into JSON, and
-            // format it in a way that we can legibly read it.
-            result = ANN.formatResponse(response.content);
-
-            //console.log("Add additional entry to DB.");
-            //console.log("Augment existing entry in DB.");
-            console.log("Serving well-formed results.");
-
-            // return the formatted result
-            return result;
-        } else {
-            throwError("no-results","Couldn't find any results");
+        // if there's nothing to parse then return an empty response
+        if (_.isEmpty(response.content)) {
+            console.log("Couldn't find any results");
+            return {};
         }
+        // get the raw XML ANN response, convert it into JSON, and
+        // format it in a way that we can legibly read it.
+        var result = ANN.formatResponse(response.content);
+
+        //console.log("Add additional entry to DB.");
+        //console.log("Augment existing entry in DB.");
+        console.log("Serving well-formed results.");
+
+        // return the formatted result
         return result;
     },
     /**
@@ -71,8 +70,30 @@ Meteor.methods({
         // validate the parameters before we make any requests
         validateParameters(params, ["title_str"]);
 
-        // TODO: Implement this
-        throw new Meteor.Error("incomplete", "This method has not been implemented.");
+        // construct the request URL to the third-party service.
+        var requestUrl = API_CONFIG.HUMMINGBIRD_API+"/search/anime";
+
+        // send the request to Anime News Network
+        var response = HTTP.get(requestUrl, {
+            headers: {'X-Mashape-Authorization': API_CONFIG.MASHAPE_KEY},
+            params: {
+                query: params.title_str
+            }
+        });
+        // if there's nothing to parse then return an empty response
+        if (_.isEmpty(response.content)) {
+            console.log("Couldn't find any results");
+            return {};
+        }
+        // format the HB response
+        var result = HB.formatResponse(response.content);
+
+        //console.log("Add additional entry to DB.");
+        //console.log("Augment existing entry in DB.");
+        console.log("Serving well-formed results.");
+
+        // return the formatted result
+        return result;
     },
     /**
      * Fetches from the set of third-party sources to update the

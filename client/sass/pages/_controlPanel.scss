@@ -6,6 +6,7 @@ $tabGroupHeight: 36px;
     }
     .tab-content {
         display: none;
+        overflow-x: auto;
         overflow-y: auto;
 
         // Specific styles for the API tab
