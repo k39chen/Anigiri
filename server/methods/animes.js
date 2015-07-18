@@ -14,14 +14,26 @@ Meteor.methods({
      */
     "Animes.search": function(params) {
         printHeader("Animes.search",params);
-        
+
         // validate the parameters before we make any requests
-        if (_.isEmpty(params)) {
-            throw new Meteor.Error("parameters-required", "Must specify parameters for this request.");
-        }
-        if (_.isEmpty(params.title_str)) {
-            throw new Meteor.Error("invalid-parameter", "The parameter `title_str` must be specified.");
-        }
+        validateParameters(params, ["title_str"]);
+
+        // TODO: Implement this
+        throw new Meteor.Error("incomplete", "This method has not been implemented.");
+    },
+    /**
+     * Performs a search on ANN for an anime given an arbitrary title string.
+     *
+     * @method search
+     * @param title_str {String} The title of the anime that we want to search.
+     * @return {Array} The list of search results.
+     */
+    "Animes.searchANN": function(params) {
+        printHeader("Animes.searchANN",params);
+
+        // validate the parameters before we make any requests
+        validateParameters(params, ["title_str"]);
+
         // construct the request URL to the third-party service.
         var requestUrl = API_CONFIG.ANN_API+"?title=~"+params.title_str;
 
@@ -42,9 +54,25 @@ Meteor.methods({
             // return the formatted result
             return result;
         } else {
-            console.log("Couldn't find any results.");
+            throwError("no-results","Couldn't find any results");
         }
         return result;
+    },
+    /**
+     * Performs a search on Hummingbird for an anime given an arbitrary title string.
+     *
+     * @method searchHB
+     * @param title_str {String} The title of the anime that we want to search.
+     * @return {Array} The list of search results.
+     */
+    "Animes.searchHB": function(params) {
+        printHeader("Animes.searchHB",params);
+
+        // validate the parameters before we make any requests
+        validateParameters(params, ["title_str"]);
+
+        // TODO: Implement this
+        throw new Meteor.Error("incomplete", "This method has not been implemented.");
     },
     /**
      * Fetches from the set of third-party sources to update the
@@ -56,7 +84,12 @@ Meteor.methods({
      */
     "Animes.update": function(params) {
         printHeader("Animes.update",params);
+
+        // validate the parameters before we make any requests
+        validateParameters(params, ["anime_id"]);
+
         // TODO: Implement this
+        throw new Meteor.Error("incomplete", "This method has not been implemented.");
     },
     /**
      * Removes an anime from the Anigiri anime repository.
@@ -66,6 +99,11 @@ Meteor.methods({
      */
     "Animes.remove": function(params) {
         printHeader("Animes.remove",params);
+
+        // validate the parameters before we make any requests
+        validateParameters(params, ["anime_id"]);
+
         // TODO: Implement this
+        throw new Meteor.Error("incomplete", "This method has not been implemented.");
     }
 });

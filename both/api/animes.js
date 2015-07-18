@@ -19,6 +19,36 @@ APIModel({
             payload: APIPayload("Array", "The list of search results.")
         }),
         /**
+         * Performs a search on ANN for an anime given an arbitrary title string.
+         *
+         * @method searchANN
+         * @param title_str {String} The title of the anime that we want to search.
+         * @return {Array} The list of search results.
+         */
+        APIMethod({
+            name: "searchANN",
+            description: "Performs a search on ANN for an anime given an arbitrary title string.",
+            parameters: [
+                APIParameter("title_str", "String", "The title of the anime that we want to search.")
+            ],
+            payload: APIPayload("Array", "The list of ANN search results.")
+        }),
+        /**
+         * Performs a search on Hummingbird for an anime given an arbitrary title string.
+         *
+         * @method searchHB
+         * @param title_str {String} The title of the anime that we want to search.
+         * @return {Array} The list of search results.
+         */
+        APIMethod({
+            name: "searchHB",
+            description: "Performs a search on Hummingbird for an anime given an arbitrary title string.",
+            parameters: [
+                APIParameter("title_str", "String", "The title of the anime that we want to search.")
+            ],
+            payload: APIPayload("Array", "The list of search results.")
+        }),
+        /**
          * Fetches from the set of third-party sources to update the
          * requested anime.
          *
