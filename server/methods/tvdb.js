@@ -31,27 +31,16 @@ Meteor.methods({
         // validate the parameters before we make any requests
         validateParameters(params, ["title_str"]);
 
-        // construct the request URL to the third-party service.
-        var requestUrl = TVDB.URL.search
-            .replace("{title_str}",params.title_str);
-
-        // send the request to Anime News Network
-        var response = HTTP.get(requestUrl, {});
-
-        // if there's nothing to parse then return an empty response
-        if (_.isEmpty(response.content)) {
-            console.log("Couldn't find any results");
-            return {};
-        }
-        // format the TVDB response
-        var result = TVDB.formatResponse(response.content);
-
+        // send the request
+        var response = sendGetRequest({
+            requestUrl: TVDB.URL.search.replace("{title_str}",params.title_str),
+            requestParams: {},
+            processResponse: TVDB.formatResponse
+        });
         //console.log("Add additional entry to DB.");
         //console.log("Augment existing entry in DB.");
         console.log("Serving well-formed results.");
-
-        // return the formatted result
-        return result;
+        return response;
     }
 });
 /*========================================================================*

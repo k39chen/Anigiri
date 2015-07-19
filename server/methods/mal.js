@@ -2,7 +2,9 @@
  * MYANIMELIST API CONFIG
  *========================================================================*/
 MAL = {
-    BASE_API : "http://myanimelist.net/api"
+    BASE_API : "http://myanimelist.net/api",
+    USER: "k39chen",
+    PASS: "malapicredential"
 };
 MAL.URL = {
     search: MAL.BASE_API+"/anime/search.xml?q={title_slug}"
@@ -30,31 +32,22 @@ Meteor.methods({
         // validate the parameters before we make any requests
         validateParameters(params, ["title_str"]);
 
-        // construct the request URL to the third-party service.
-        var requestUrl = MAL.URL.search
-            .replace("{title_slug}", Helpers.slugify(params.title_str, {
-                delimiter: "+",
-                allLowerCase: true 
-            }));
-
-        // send the request to Anime News Network
-        var response = HTTP.get(requestUrl, {
-            auth: "k39chen:malapicredential"
+        // send the request
+        var response = sendGetRequest({
+            requestUrl: MAL.URL.search
+                .replace("{title_slug}", Helpers.slugify(params.title_str, {
+                    delimiter: "+",
+                    allLowerCase: true 
+                })),
+            requestParams: {
+                auth: MAL.USER+":"+MAL.PASS
+            },
+            processResponse: MAL.formatResponse
         });
-        // if there's nothing to parse then return an empty response
-        if (_.isEmpty(response.content)) {
-            console.log("Couldn't find any results");
-            return {};
-        }
-        // format the MAL response
-        var result = MAL.formatResponse(response.content);
-
         //console.log("Add additional entry to DB.");
         //console.log("Augment existing entry in DB.");
         console.log("Serving well-formed results.");
-
-        // return the formatted result
-        return result;
+        return response;
     }
 });
 /*========================================================================*

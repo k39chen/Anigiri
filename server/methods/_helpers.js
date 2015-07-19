@@ -1,6 +1,33 @@
 /*========================================================================*
- * ERROR METHODS
+ * HTTP HELPERS
  *========================================================================*/
+sendGetRequest = function(params) {
+    var startTime = moment();
+    var result = {
+        status: null,
+        duration: null,
+        data: null
+    };
+    // send the request to Anime News Network
+    var response = HTTP.get(params.requestUrl, params.requestParams);
+
+    // if there's nothing to parse then return an empty response
+    if (_.isEmpty(response.content)) {
+        result = {
+            status: "ERROR",
+            duration: Helpers.getDuration(startTime,moment()),
+            data: null
+        };
+    } else {
+        // format the response
+        result = {
+            status: "SUCCESS",
+            duration: Helpers.getDuration(startTime,moment()),
+            data: params.processResponse(response.content) || null
+        };
+    }
+    return result;
+};
 throwError = function(type, message) {
     console.log("["+type+"] "+message);
     throw new Meteor.Error(type, message);

@@ -32,30 +32,20 @@ Meteor.methods({
         // validate the parameters before we make any requests
         validateParameters(params, ["title_str"]);
 
-        // construct the request URL to the third-party service.
-        var requestUrl = ADB.URL.hotanime;
-
-        // send the request to Anime News Network
-        var response = HTTP.get(requestUrl, {
-            npmRequestOptions: {
-                gzip: true
-            }
+        // send the request
+        var response = sendGetRequest({
+            requestUrl: ADB.URL.hotanime,
+            requestParams: {
+                npmRequestOptions: {
+                    gzip: true
+                }
+            },
+            processResponse: ADB.formatResponse
         });
-        // if there's nothing to parse then return an empty response
-        if (_.isEmpty(response.content)) {
-            console.log("Couldn't find any results");
-            return {};
-        }
-        // get the raw XML ADB response, convert it into JSON, and
-        // format it in a way that we can legibly read it.
-        var result = ADB.formatResponse(response.content);
-
         //console.log("Add additional entry to DB.");
         //console.log("Augment existing entry in DB.");
         console.log("Serving well-formed results.");
-
-        // return the formatted result
-        return result;
+        return response;
     }
 });
 /*========================================================================*

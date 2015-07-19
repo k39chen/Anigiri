@@ -31,29 +31,18 @@ Meteor.methods({
         // validate the parameters before we make any requests
         validateParameters(params, ["title_str"]);
 
-        // construct the request URL to the third-party service.
-        var requestUrl = ANN.URL.search
-            .replace("{title_str}",params.title_str);
-
-        // send the request to Anime News Network
-        var response = HTTP.get(requestUrl, {
-            headers: {'X-Mashape-Authorization': API_CONFIG.MASHAPE_KEY}
+        // send the request
+        var response = sendGetRequest({
+            requestUrl: ANN.URL.search.replace("{title_str}",params.title_str),
+            requestParams: {
+                headers: {'X-Mashape-Authorization': API_CONFIG.MASHAPE_KEY}    
+            },
+            processResponse: ANN.formatResponse
         });
-        // if there's nothing to parse then return an empty response
-        if (_.isEmpty(response.content)) {
-            console.log("Couldn't find any results");
-            return {};
-        }
-        // get the raw XML ANN response, convert it into JSON, and
-        // format it in a way that we can legibly read it.
-        var result = ANN.formatResponse(response.content);
-
         //console.log("Add additional entry to DB.");
         //console.log("Augment existing entry in DB.");
         console.log("Serving well-formed results.");
-
-        // return the formatted result
-        return result;
+        return response;
     }
 });
 /*========================================================================*

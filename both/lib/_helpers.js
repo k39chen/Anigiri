@@ -32,5 +32,21 @@ Helpers = {
             .replace(new RegExp("\\"+options.delimiter+"+","g"), options.delimiter); // collapse delimiter
 
         return src;
+    },
+    /**
+     * Calculates and formats the difference between two moments.
+     *
+     * @method getDuration
+     * @param startTime {Object} The start time moment object.
+     * @param endTime {Object} The end time moment object.
+     * @return {String} Return the difference between two moments.
+     */
+    getDuration: function(startTime,endTime) {
+        var format = "DD/MM/YYYY HH:mm:ss";
+        var diff = moment.utc(moment(endTime, format).diff(moment(startTime, format)));
+        var duration = moment.duration(diff);
+        var formatted = Math.floor(duration.asHours()) + moment.utc(diff).format(":mm:ss.SSS");
+
+        return formatted;
     }
 };
