@@ -1,4 +1,4 @@
-APIModel({
+APIModule({
     id: "Animes",
     name: "Animes",
     description: "The animes model contains methods that exposes server-side functionality in a format that is simple for the client to interface and use.",

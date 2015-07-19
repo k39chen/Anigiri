@@ -4,16 +4,16 @@
         <div class="title">Request</div>
         <div class="content">
             <form id="api-request-form">
-                <!-- model -->
+                <!-- module -->
                 <div class="field">
-                    <span class="label">Model</span>
-                    <select name="_model" aw="single-select" aw-opt-width="20.0em" class="value api-model-value">
+                    <span class="label">Module</span>
+                    <select name="_module" aw="single-select" aw-opt-width="20.0em" class="value api-module-value">
                         <option value="">-</option>
-                    {{#each models}}
+                    {{#each modules}}
                         <option value="{{id}}">{{name}}</option>
                     {{/each}}
                     </select>
-                    <a class="help fa fa-fw fa-question-circle" tip="{{modelDescription}}"></a>
+                    <a class="help fa fa-fw fa-question-circle" tip="{{moduleDescription}}"></a>
                 </div>
                 <!-- method -->
                 <div class="field">

@@ -4,13 +4,13 @@
 Template.controlPanelAPITab.rendered = function() {
     var $page = Page.ControlPanel.element;
     var $tab = $page.find("#tab-api");
-    var $model = $tab.find("select.api-model-value");
+    var $module = $tab.find("select.api-module-value");
     var $method = $tab.find("select.api-method-value");
 
-    // select the initial model setting provided by the default configuration
-    var activeModel = Session.get("controlPanelAPIModel");
-    if (!_.isUndefined(activeModel)) {
-        $model.attr("aw-opt-value", activeModel);
+    // select the initial module setting provided by the default configuration
+    var activeModule = Session.get("controlPanelAPIModule");
+    if (!_.isUndefined(activeModule)) {
+        $module.attr("aw-opt-value", activeModule);
     }
     // select the initial method setting provided by the default configuration
     var activeMethod = Session.get("controlPanelAPIMethod");
@@ -24,7 +24,7 @@ Template.controlPanelAPITab.rendered = function() {
  * EVENT HANDLERS
  *========================================================================*/
 Template.controlPanelAPITab.events({
-    "change select.api-model-value": function(ev, template) {
+    "change select.api-module-value": function(ev, template) {
         var $el = $(ev.target);
         var $methods = Page.ControlPanel.element.find("#tab-api select.api-method-value");
         var val = $el.val();
@@ -36,8 +36,8 @@ Template.controlPanelAPITab.events({
         $el.trigger("chosen:updated");
 
         // update our reactive variables indicating the selected
-        // model/method pair.
-        Session.set("controlPanelAPIModel", val);
+        // module/method pair.
+        Session.set("controlPanelAPIModule", val);
         Session.set("controlPanelAPIMethod", null);
     },
     "change select.api-method-value": function(ev, template) {
@@ -48,7 +48,7 @@ Template.controlPanelAPITab.events({
         $el.trigger("chosen:updated");
 
         // update our reactive variables indicating the selected
-        // model/method pair.
+        // module/method pair.
         Session.set("controlPanelAPIMethod", val);
     },
     "focus .parameters .value": function(ev, template) {
@@ -89,22 +89,22 @@ Template.controlPanelAPITab.events({
         var deparamedResult = $.deparam(serializedResult);
 
         // disambiguate the deparamed results
-        var model = deparamedResult._model;
+        var module = deparamedResult._module;
         var method = deparamedResult._method;
-        var parameters = _.omit(deparamedResult, "_model", "_method") || {};
+        var parameters = _.omit(deparamedResult, "_module", "_method") || {};
 
-        // don't allow the user to continue if no model or method is specified.
-        if (_.isEmpty(model) || _.isEmpty(method)) return;
+        // don't allow the user to continue if no module or method is specified.
+        if (_.isEmpty(module) || _.isEmpty(method)) return;
 
         // get the corresponding API reference
-        var api = API_MODELS[model].methods[method];
+        var api = API_MODULES[module].methods[method];
 
         // show a loading spinner in the response panel
         $response.empty();
         $responsePanel.loadingSpinner("open");
 
         // perform the API call
-        var requestUrl = [model,method].join(".");
+        var requestUrl = [module,method].join(".");
         Meteor.call(requestUrl, parameters, function(error, data) {
             var json;
             $responsePanel.loadingSpinner("close");
@@ -129,27 +129,27 @@ Template.controlPanelAPITab.events({
  * TEMPLATE HELPERS
  *========================================================================*/
 Template.controlPanelAPITab.helpers({
-    models: function() {
-        return _.toArray(API_MODELS);
+    modules: function() {
+        return _.toArray(API_MODULES);
     },
-    modelDescription: function() {
-        var activeModel = Session.get("controlPanelAPIModel");
-        var model = API_MODELS[activeModel] || {};
+    moduleDescription: function() {
+        var activeModule = Session.get("controlPanelAPIModule");
+        var module = API_MODULES[activeModule] || {};
         
         Meteor.defer(function() {
-            var $models = Page.ControlPanel.element.find("#tab-api select.api-model-value");
-            var $help = $models.siblings(".help").first();
+            var $modules = Page.ControlPanel.element.find("#tab-api select.api-module-value");
+            var $help = $modules.siblings(".help").first();
             $help.awTooltip({
-                content: $help.attr("tip") || "No model selected.",
+                content: $help.attr("tip") || "No module selected.",
                 position: {my: "left center", at: "right center"}
             });
         });
-        return model.description;
+        return module.description;
     },
     methods: function() {
-        var activeModel = Session.get("controlPanelAPIModel");
-        var model = API_MODELS[activeModel];
-        var methods = model && model.methods;
+        var activeModule = Session.get("controlPanelAPIModule");
+        var module = API_MODULES[activeModule];
+        var methods = module && module.methods;
 
         // methods have been re-rendered, update the chosen widget accordingly.
         Meteor.defer(function() {
@@ -161,14 +161,14 @@ Template.controlPanelAPITab.helpers({
         return _.toArray(methods);
     },
     methodDescription: function() {
-        var activeModel = Session.get("controlPanelAPIModel");
+        var activeModule = Session.get("controlPanelAPIModule");
         var activeMethod = Session.get("controlPanelAPIMethod");
-        var model = API_MODELS[activeModel];
-        var method = (model && model.methods && model.methods[activeMethod]) || {};
+        var module = API_MODULES[activeModule];
+        var method = (module && module.methods && module.methods[activeMethod]) || {};
         
         Meteor.defer(function() {
-            var $models = Page.ControlPanel.element.find("#tab-api select.api-method-value");
-            var $help = $models.siblings(".help").first();
+            var $modules = Page.ControlPanel.element.find("#tab-api select.api-method-value");
+            var $help = $modules.siblings(".help").first();
             $help.awTooltip({
                 content: $help.attr("tip") || "No method selected.",
                 position: {my: "left center", at: "right center"}
@@ -177,10 +177,10 @@ Template.controlPanelAPITab.helpers({
         return method.description;
     },
     parameters: function() {
-        var activeModel = Session.get("controlPanelAPIModel");
+        var activeModule = Session.get("controlPanelAPIModule");
         var activeMethod = Session.get("controlPanelAPIMethod");
-        var model = API_MODELS[activeModel];
-        var method = model && model.methods && model.methods[activeMethod];
+        var module = API_MODULES[activeModule];
+        var method = module && module.methods && module.methods[activeMethod];
         var parameters = (method && method.parameters) || [];
         return parameters;
     },
@@ -223,8 +223,8 @@ Template.controlPanelAPITab.helpers({
     },
     parameterDescription: function(data) {
         Meteor.defer(function() {
-            var $models = Page.ControlPanel.element.find("#tab-api .value[name='"+data.name+"']");
-            var $help = $models.siblings(".help").first();
+            var $modules = Page.ControlPanel.element.find("#tab-api .value[name='"+data.name+"']");
+            var $help = $modules.siblings(".help").first();
             $help.awTooltip({
                 content: $help.attr("tip") || "Invalid parameter??",
                 position: {my: "left center", at: "right center"}

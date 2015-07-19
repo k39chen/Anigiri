@@ -1,4 +1,4 @@
-APIModel({
+APIModule({
     id: "Subscriptions",
     name: "Subscriptions",
     description: "The subscriptions model contains methods that exposes server-side functionality in a format that is simple for the client to interface and use. This model is also a connecting piece for logically connecting users objects and animes objects.",
