@@ -2,7 +2,9 @@
  * ANIDB API CONFIG
  *========================================================================*/
 ADB = {
-    // ...
+    CLIENT   : "anigiri",
+    VERSION  : "1",
+    BASE_API : "http://api.anidb.net:9001/httpapi?client=anigiri&clientver=1&protover=1&"
 };
 /*========================================================================*
  * ANIDB API METHODS
@@ -28,7 +30,7 @@ Meteor.methods({
         validateParameters(params, ["title_str"]);
 
         // construct the request URL to the third-party service.
-        var requestUrl = API_CONFIG.ANIDB_API+"request=hotanime";
+        var requestUrl = ADB.BASE_API+"request=hotanime";
 
         // send the request to Anime News Network
         var response = HTTP.get(requestUrl, {

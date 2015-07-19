@@ -2,7 +2,8 @@
  * ANIME NEWS NETWORK API CONFIG
  *========================================================================*/
 ANN = {
-    // ...
+    BASE_API : "https://animenewsnetwork.p.mashape.com/api.xml",
+    REPORTS  : "https://animenewsnetwork.p.mashape.com/reports.xml"
 };
 /*========================================================================*
  * ANIME NEWS NETWORK API METHODS
@@ -28,7 +29,7 @@ Meteor.methods({
         validateParameters(params, ["title_str"]);
 
         // construct the request URL to the third-party service.
-        var requestUrl = API_CONFIG.ANN_API+"?title=~"+params.title_str;
+        var requestUrl = ANN.BASE_API+"?title=~"+params.title_str;
 
         // send the request to Anime News Network
         var response = HTTP.get(requestUrl, {
@@ -49,7 +50,7 @@ Meteor.methods({
 
         // return the formatted result
         return result;
-    },
+    }
 });
 /*========================================================================*
  * ANIME NEWS NETWORK API HELPERS

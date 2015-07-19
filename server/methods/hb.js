@@ -2,7 +2,7 @@
  * HUMMINGBIRD API CONFIG
  *========================================================================*/
 HB = {
-    // ...
+    BASE_API : "https://hummingbirdv1.p.mashape.com"
 };
 /*========================================================================*
  * HUMMINGBIRD API METHODS
@@ -28,7 +28,7 @@ Meteor.methods({
         validateParameters(params, ["title_str"]);
 
         // construct the request URL to the third-party service.
-        var requestUrl = API_CONFIG.HUMMINGBIRD_API+"/search/anime";
+        var requestUrl = HB.BASE_API+"/search/anime";
 
         // send the request to Anime News Network
         var response = HTTP.get(requestUrl, {
@@ -51,7 +51,7 @@ Meteor.methods({
 
         // return the formatted result
         return result;
-    },
+    }
 });
 /*========================================================================*
  * HUMMINGBIRD API HELPERS
