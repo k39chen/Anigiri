@@ -3,6 +3,7 @@
  *========================================================================*/
 sendGetRequest = function(params) {
     var startTime = moment();
+    var duration = null;
     var result = {
         status: null,
         duration: null,
@@ -13,19 +14,21 @@ sendGetRequest = function(params) {
 
     // if there's nothing to parse then return an empty response
     if (_.isEmpty(response.content)) {
+        duration = Helpers.getDuration(startTime,moment());
         result = {
             status: "ERROR",
-            duration: Helpers.getDuration(startTime,moment()),
+            duration: duration,
             data: null
         };
     } else {
-        // format the response
+        duration = Helpers.getDuration(startTime,moment());
         result = {
             status: "SUCCESS",
-            duration: Helpers.getDuration(startTime,moment()),
+            duration: duration,
             data: params.processResponse(response.content) || null
         };
     }
+    console.log("Done in",duration);
     return result;
 };
 throwError = function(type, message) {

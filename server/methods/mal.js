@@ -73,11 +73,13 @@ MAL = _.extend(MAL, {
         console.log("Received a response, converting XML to JSON format...");
         var json = xml2js.parseStringSync(response);
         var mal = json;
-        var result = {};
-
-        // TODO: kchen - Do this
-        result = mal;
-
+        var result = {
+            animes: []
+        };
+        // format each type of anime entry
+        result.animes = _.map(mal.anime.entry, function(anime) {
+            return MAL.formatEntry(anime);
+        });
         return result;
     },
     /**
@@ -89,6 +91,18 @@ MAL = _.extend(MAL, {
      * @return {Object} The formatted entry data.
      */
     formatEntry: function(entry) {
-        return entry;
+        return {
+            "id": _.first(entry.id) || null,
+            "title": _.first(entry.title) || null,
+            "alternateTitles": _.first(entry.synonyms) || null,
+            "numEpisodes": _.first(entry.episodes) || null,
+            "score": _.first(entry.score) || null,
+            "type": _.first(entry.type) || null,
+            "status": _.first(entry.status) || null,
+            "startDate": _.first(entry.start_date) || null,
+            "endDate": _.first(entry.end_date) || null,
+            "synopsis": _.first(entry.synopsis) || null,
+            "image": _.first(entry.image) || null
+        };
     }
 });
