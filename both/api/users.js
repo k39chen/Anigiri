@@ -1,7 +1,7 @@
 APIModule({
     id: "Users",
     name: "Users",
-    description: "The users model contains methods that exposes server-side functionality in a format that is simple for the client to interface and use.",
+    description: "The users module contains methods that exposes server-side functionality in a format that is simple for the client to interface and use.",
     methods: [
         /**
          * Creates a sample user with the most minimal amount of user information.

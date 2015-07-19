@@ -1,7 +1,60 @@
 /*========================================================================*
- * ANIME NEWS NETWORK API HELPERS
+ * ANIME NEWS NETWORK API CONFIG
  *========================================================================*/
 ANN = {
+    // ...
+};
+/*========================================================================*
+ * ANIME NEWS NETWORK API METHODS
+ *========================================================================*/
+/**
+ * The ANN module contains methods that exposes server-side functionality 
+ * in a format that is simple for the client to interface and use.
+ *
+ * @namespace ANN
+ */
+Meteor.methods({
+    /**
+     * Performs a search on ANN for an anime given an arbitrary title string.
+     *
+     * @method search
+     * @param title_str {String} The title of the anime that we want to search.
+     * @return {Array} The list of search results.
+     */
+    "ANN.search": function(params) {
+        printHeader("ANN.search",params);
+
+        // validate the parameters before we make any requests
+        validateParameters(params, ["title_str"]);
+
+        // construct the request URL to the third-party service.
+        var requestUrl = API_CONFIG.ANN_API+"?title=~"+params.title_str;
+
+        // send the request to Anime News Network
+        var response = HTTP.get(requestUrl, {
+            headers: {'X-Mashape-Authorization': API_CONFIG.MASHAPE_KEY}
+        });
+        // if there's nothing to parse then return an empty response
+        if (_.isEmpty(response.content)) {
+            console.log("Couldn't find any results");
+            return {};
+        }
+        // get the raw XML ANN response, convert it into JSON, and
+        // format it in a way that we can legibly read it.
+        var result = ANN.formatResponse(response.content);
+
+        //console.log("Add additional entry to DB.");
+        //console.log("Augment existing entry in DB.");
+        console.log("Serving well-formed results.");
+
+        // return the formatted result
+        return result;
+    },
+});
+/*========================================================================*
+ * ANIME NEWS NETWORK API HELPERS
+ *========================================================================*/
+ANN = _.extend(ANN, {
     /**
      * This will take a raw ANN response then convert it from XML format
      * to JSON format, then afterwards parse the JSON formatted ANN
@@ -345,4 +398,4 @@ ANN = {
             return null;
         }
     }
-};
+});

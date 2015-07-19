@@ -1,7 +1,7 @@
 APIModule({
     id: "Animes",
     name: "Animes",
-    description: "The animes model contains methods that exposes server-side functionality in a format that is simple for the client to interface and use.",
+    description: "The animes module contains methods that exposes server-side functionality in a format that is simple for the client to interface and use.",
     methods: [
         /**
          * Performs a search for an anime given an arbitrary title string.
@@ -13,66 +13,6 @@ APIModule({
         APIMethod({
             name: "search",
             description: "Performs a search for an anime given an arbitrary title string.",
-            parameters: [
-                APIParameter("title_str", "String", "The title of the anime that we want to search.")
-            ],
-            payload: APIPayload("Array", "The list of search results.")
-        }),
-        /**
-         * Performs a search on ANN for an anime given an arbitrary title string.
-         *
-         * @method searchANN
-         * @param title_str {String} The title of the anime that we want to search.
-         * @return {Array} The list of search results.
-         */
-        APIMethod({
-            name: "searchANN",
-            description: "Performs a search on ANN for an anime given an arbitrary title string.",
-            parameters: [
-                APIParameter("title_str", "String", "The title of the anime that we want to search.")
-            ],
-            payload: APIPayload("Array", "The list of ANN search results.")
-        }),
-        /**
-         * Performs a search on AniDB for an anime given an arbitrary title string.
-         *
-         * @method searchADB
-         * @param title_str {String} The title of the anime that we want to search.
-         * @return {Array} The list of search results.
-         */
-        APIMethod({
-            name: "searchADB",
-            description: "Performs a search on AniDB for an anime given an arbitrary title string.",
-            parameters: [
-                APIParameter("title_str", "String", "The title of the anime that we want to search.")
-            ],
-            payload: APIPayload("Array", "The list of search results.")
-        }),
-        /**
-         * Performs a search on Hummingbird for an anime given an arbitrary title string.
-         *
-         * @method searchHB
-         * @param title_str {String} The title of the anime that we want to search.
-         * @return {Array} The list of search results.
-         */
-        APIMethod({
-            name: "searchHB",
-            description: "Performs a search on Hummingbird for an anime given an arbitrary title string.",
-            parameters: [
-                APIParameter("title_str", "String", "The title of the anime that we want to search.")
-            ],
-            payload: APIPayload("Array", "The list of search results.")
-        }),
-        /**
-         * Performs a search on TVDB for an anime given an arbitrary title string.
-         *
-         * @method searchTVDB
-         * @param title_str {String} The title of the anime that we want to search.
-         * @return {Array} The list of search results.
-         */
-        APIMethod({
-            name: "searchTVDB",
-            description: "Performs a search on Hummingbird for an anime given an arbitrary title string.",
             parameters: [
                 APIParameter("title_str", "String", "The title of the anime that we want to search.")
             ],

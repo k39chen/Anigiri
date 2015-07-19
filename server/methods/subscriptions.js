@@ -1,7 +1,16 @@
+/*========================================================================*
+ * SUBSCRIPTIONS API CONFIG
+ *========================================================================*/
+Subscriptions = {
+    // ...
+};
+/*========================================================================*
+ * SUBSCRIPTIONS API METHODS
+ *========================================================================*/
 /**
- * The subscriptions model contains methods that exposes server-side
+ * The subscriptions module contains methods that exposes server-side
  * functionality in a format that is simple for the client to interface
- * and use. This model is also a connecting piece for logically connecting
+ * and use. This module is also a connecting piece for logically connecting
  * users objects and animes objects.
  *
  * @namespace Subscriptions
@@ -142,4 +151,10 @@ Meteor.methods({
         printHeader("Subscriptions.recommendToFriend",params);
         // TODO: Implement this
     }
+});
+/*========================================================================*
+ * SUBSCRIPTIONS API HELPERS
+ *========================================================================*/
+Subscriptions = _.extend(Subscriptions, {
+    // ...
 });

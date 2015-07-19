@@ -1,5 +1,14 @@
+/*========================================================================*
+ * USERS API CONFIG
+ *========================================================================*/
+Users = {
+    // ...
+};
+/*========================================================================*
+ * USERS API METHODS
+ *========================================================================*/
 /**
- * The users model contains methods that exposes server-side functionality
+ * The users module contains methods that exposes server-side functionality
  * in a format that is simple for the client to interface and use.
  *
  * @namespace Users
@@ -113,4 +122,10 @@ Meteor.methods({
         printHeader("Users.removeSubscription",params);
         // TODO: Implement this
     }
+});
+/*========================================================================*
+ * USERS API HELPERS
+ *========================================================================*/
+Users = _.extend(Users, {
+    // ...
 });
