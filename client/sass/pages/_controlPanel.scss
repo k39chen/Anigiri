@@ -46,7 +46,7 @@ $tabGroupHeight: 36px;
                 }
                 // The response panel
                 &.response {
-                    // ...
+                    overflow-x: auto;
                 }
             }
         }
@@ -71,7 +71,6 @@ $tabGroupHeight: 36px;
                     margin-bottom: 0;
                 }
                 .content {
-                    overflow-x: auto;
                     padding: 0;
 
                     .empty-value {

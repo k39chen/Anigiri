@@ -110,12 +110,12 @@ ANN = _.extend(ANN, {
         // build requested properties
         var id = _metadata.id;
         var type = _metadata.type;
-        var title = {lang: "EN", value: _metadata.name};
-
+        var title = null;
+        var picture = null;
+        
         // scrape everything out of the info metadata
-        var picture = {};
-        var altPictures = [];
-        var altTitles = [];
+        var alternateTitles = [];
+        var alternatePictures = [];
         var summary = null;
         var genres = {};
         var themes = {};
@@ -139,7 +139,7 @@ ANN = _.extend(ANN, {
                 };
                 // construct a list of alternate images
                 _.each(info["img"], function(img) {
-                    altPictures.push({
+                    alternatePictures.push({
                         src: img.$.src,
                         width: img.$.width,
                         height: img.$.height
@@ -153,16 +153,20 @@ ANN = _.extend(ANN, {
                 };
                 break;
             case "Alternative title":
-                altTitles.push({
+                alternateTitles.push({
                     lang: info.$.lang,
                     value: info._
                 });
                 break;
             case "Genres":
-                genres[info._.toLowerCase()] = true;
+                genres[info._.toLowerCase()] = {
+                    name: _.capitalize(info._)
+                };
                 break;
             case "Themes":
-                themes[info._.toLowerCase()] = true;
+                themes[info._.toLowerCase()] = {
+                    name: _.capitalize(info._)
+                };
                 break;
             case "Plot Summary":
                 summary = info._;
@@ -317,10 +321,10 @@ ANN = _.extend(ANN, {
                 "id": id,
                 "type": type,
                 "title": title,
+                "alternateTitles": alternateTitles,
                 "picture": picture,
-                "altPictures": altPictures,
+                "alternatePictures": alternatePictures,
                 "summary": summary,
-                "altTitles": altTitles,
                 "genres": genres,
                 "themes": themes,
                 "vintage": vintage,
@@ -352,10 +356,10 @@ ANN = _.extend(ANN, {
                 "id": id,
                 "type": type,
                 "title": title,
+                "alternateTitles": alternateTitles,
                 "picture": picture,
-                "altPictures": altPictures,
+                "alternatePictures": alternatePictures,
                 "summary": summary,
-                "altTitles": altTitles,
                 "genres": genres,
                 "themes": themes,
                 "vintage": vintage,

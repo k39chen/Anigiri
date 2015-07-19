@@ -73,12 +73,14 @@ HB = _.extend(HB, {
             console.log("Unable to parse JSON");
             return;
         }
-        var result = {};
-
-        // TODO: kchen - Do this
-        result = response;
-
-        return response;
+        var result = {
+            animes: []
+        };
+        // format each type of anime entry
+        result.animes = _.map(response, function(anime) {
+            return HB.formatEntry(anime);
+        });
+        return result;
     },
     /**
      * This will take a JSON formatted entry HB response and reorganize
@@ -89,6 +91,30 @@ HB = _.extend(HB, {
      * @return {Object} The formatted entry data.
      */
     formatEntry: function(entry) {
-        return entry;
+        var genres = {};
+        _.each(entry.genres, function(genre) {
+            genres[genre.name.toLowerCase()] = {
+                name: _.capitalize(genre.name)
+            };
+        });
+        return {
+            "id": entry.id,
+            "mal_id": entry.mal_id,
+            "slug": entry.slug,
+            "status": entry.status,
+            "url": entry.url,
+            "title": entry.title,
+            "alternateTitle": entry.alternate_title || null,
+            "episodeCount":  entry.episode_count,
+            "episodeLength":  entry.episode_length,
+            "coverImage": entry.cover_image,
+            "synopsis": entry.synopsis,
+            "showType": entry.show_type,
+            "startedAiring": entry.started_airing,
+            "finishedAiring": entry.finished_airing,
+            "communityRating": entry.community_rating,
+            "ageRating": entry.age_rating,
+            "genres": genres
+        };
     }
 });
