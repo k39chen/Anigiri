@@ -34,6 +34,21 @@ APIModel({
             payload: APIPayload("Array", "The list of ANN search results.")
         }),
         /**
+         * Performs a search on AniDB for an anime given an arbitrary title string.
+         *
+         * @method searchADB
+         * @param title_str {String} The title of the anime that we want to search.
+         * @return {Array} The list of search results.
+         */
+        APIMethod({
+            name: "searchADB",
+            description: "Performs a search on AniDB for an anime given an arbitrary title string.",
+            parameters: [
+                APIParameter("title_str", "String", "The title of the anime that we want to search.")
+            ],
+            payload: APIPayload("Array", "The list of search results.")
+        }),
+        /**
          * Performs a search on Hummingbird for an anime given an arbitrary title string.
          *
          * @method searchHB

@@ -1,6 +1,11 @@
+ANIDB_CONFIG = {
+    CLIENT             : "anigiri",
+    VERSION            : "1"
+};
 API_CONFIG = {
     ANN_API            : "https://animenewsnetwork.p.mashape.com/api.xml",
     ANN_REPORTS        : "https://animenewsnetwork.p.mashape.com/reports.xml",
+    ANIDB_API          : "http://api.anidb.net:9001/httpapi?client="+ANIDB_CONFIG.CLIENT+"&clientver="+ANIDB_CONFIG.VERSION+"&protover=1&",
     HUMMINGBIRD_API    : "https://hummingbirdv1.p.mashape.com",
     HUMMINGBIRD_SEARCH : "http://hummingbird.me/search?query={{hbAnimeId}}&type=anime",
     MASHAPE_KEY        : "pT8ejx9ujTSBpdtA3Dz3BT9KdIZn77VK",
