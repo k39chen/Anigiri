@@ -49,6 +49,21 @@ APIModel({
             payload: APIPayload("Array", "The list of search results.")
         }),
         /**
+         * Performs a search on TVDB for an anime given an arbitrary title string.
+         *
+         * @method searchTVDB
+         * @param title_str {String} The title of the anime that we want to search.
+         * @return {Array} The list of search results.
+         */
+        APIMethod({
+            name: "searchTVDB",
+            description: "Performs a search on Hummingbird for an anime given an arbitrary title string.",
+            parameters: [
+                APIParameter("title_str", "String", "The title of the anime that we want to search.")
+            ],
+            payload: APIPayload("Array", "The list of search results.")
+        }),
+        /**
          * Fetches from the set of third-party sources to update the
          * requested anime.
          *

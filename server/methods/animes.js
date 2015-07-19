@@ -96,6 +96,40 @@ Meteor.methods({
         return result;
     },
     /**
+     * Performs a search on TVDB for an anime given an arbitrary title string.
+     *
+     * @method searchTVDB
+     * @param title_str {String} The title of the anime that we want to search.
+     * @return {Array} The list of search results.
+     */
+    "Animes.searchTVDB": function(params) {
+        printHeader("Animes.searchTVDB",params);
+
+        // validate the parameters before we make any requests
+        validateParameters(params, ["title_str"]);
+
+        // construct the request URL to the third-party service.
+        var requestUrl = API_CONFIG.TVDB_API+"/GetSeries.php?seriesname="+params.title_str;
+
+        // send the request to Anime News Network
+        var response = HTTP.get(requestUrl, {});
+
+        // if there's nothing to parse then return an empty response
+        if (_.isEmpty(response.content)) {
+            console.log("Couldn't find any results");
+            return {};
+        }
+        // format the TVDB response
+        var result = TVDB.formatResponse(response.content);
+
+        //console.log("Add additional entry to DB.");
+        //console.log("Augment existing entry in DB.");
+        console.log("Serving well-formed results.");
+
+        // return the formatted result
+        return result;
+    },
+    /**
      * Fetches from the set of third-party sources to update the
      * requested anime.
      *

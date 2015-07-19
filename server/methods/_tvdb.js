@@ -1,9 +1,10 @@
 /*========================================================================*
- * HUMMINGBIRD API HELPERS
+ * TVDB API HELPERS
  *========================================================================*/
-HB = {
+TVDB = {
     /**
-     * This will take a raw HB response then parse the JSON formatted HB
+     * This will take a raw TVDB response then convert it from XML format
+     * to JSON format, then afterwards parse the JSON formatted ANN
      * response and reorganize the data into a more user-friendly
      * interface.
      *
@@ -12,21 +13,19 @@ HB = {
      * @return {Array} The list of animes.
      */
     formatResponse: function(response) {
-        try {
-            response = JSON.parse(response);
-        } catch (e) {
-            console.log("Unable to parse JSON");
-            return;
-        }
+        // convert the XML formatted result into a JSON object.
+        console.log("Received a response, converting XML to JSON format...");
+        var json = xml2js.parseStringSync(response);
+        var tvdb = json.Data;
         var result = {};
 
         // TODO: kchen - Do this
-        result = response;
+        result = tvdb;
 
-        return response;
+        return result;
     },
     /**
-     * This will take a JSON formatted entry HB response and reorganize
+     * This will take a JSON formatted entry TVDB response and reorganize
      * the data into a more user-friendly interface.
      *
      * @method formatEntry

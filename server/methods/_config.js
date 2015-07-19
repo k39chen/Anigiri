@@ -4,5 +4,6 @@ API_CONFIG = {
     HUMMINGBIRD_API    : "https://hummingbirdv1.p.mashape.com",
     HUMMINGBIRD_SEARCH : "http://hummingbird.me/search?query={{hbAnimeId}}&type=anime",
     MASHAPE_KEY        : "pT8ejx9ujTSBpdtA3Dz3BT9KdIZn77VK",
-    TVDB_KEY           : "B8E800CFF0D85989"
+    TVDB_API           : "http://thetvdb.com/api",
+    TVDB_API_KEY       : "B8E800CFF0D85989"
 };
