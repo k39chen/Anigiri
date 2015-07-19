@@ -1,3 +1,7 @@
+/**
+ * @source Anime News Network
+ * @url http://www.animenewsnetwork.com/encyclopedia/api.php
+ */
 /*========================================================================*
  * ANIME NEWS NETWORK API CONFIG
  *========================================================================*/

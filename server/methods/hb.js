@@ -1,3 +1,7 @@
+/**
+ * @source Hummingbird
+ * @url https://github.com/hummingbird-me/hummingbird/wiki/API-v1-Methods
+ */
 /*========================================================================*
  * HUMMINGBIRD API CONFIG
  *========================================================================*/
