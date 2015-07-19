@@ -71,6 +71,7 @@ $tabGroupHeight: 36px;
                     margin-bottom: 0;
                 }
                 .content {
+                    overflow-x: auto;
                     padding: 0;
 
                     .empty-value {

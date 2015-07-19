@@ -24,3 +24,4 @@ wizonesolutions:underscore-string
 http
 peerlibrary:xml2js
 backbone
+fermuch:cheerio

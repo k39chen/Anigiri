@@ -41,11 +41,6 @@ Meteor.methods({
         var response = HTTP.get(requestUrl, {
             auth: "k39chen:malapicredential"
         });
-
-        console.log(response);
-
-        if (true) return;
-
         // if there's nothing to parse then return an empty response
         if (_.isEmpty(response.content)) {
             console.log("Couldn't find any results");
