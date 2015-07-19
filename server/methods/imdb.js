@@ -122,26 +122,44 @@ IMDB = _.extend(IMDB, {
                 });
             });
         }
+        var rating = getValue(entry.imdbRating);
+        if (!_.isNull(rating)) {
+            rating = parseFloat(rating,10);
+        }
+        var metascore = getValue(entry.Metascore);
+        if (!_.isNull(metascore)) {
+            metascore = parseFloat(metascore,10);
+        }
+        var votes = getValue(entry.imdbVotes);
+        if (!_.isNull(votes)) {
+            votes = votes.replace(/,/g,"");
+            votes = parseInt(votes,10);
+        }
+        function getValue(value) {
+            if (value === "N/A") {
+                return null;
+            }
+            return value;
+        }
         return {
-            "id": entry.imdbID,
-            "type": entry.Type,
-            "title": entry.Title,
-            "year": entry.Year,
-            "rated": entry.Rated,
-            "released": entry.Released,
-            "runtime": entry.Runtime,
+            "id": getValue(entry.imdbID),
+            "type": getValue(entry.Type),
+            "title": getValue(entry.Title),
+            "year": getValue(entry.Year),
+            "rated": getValue(entry.Rated),
+            "released": getValue(entry.Released),
+            "runtime": getValue(entry.Runtime),
             "genres": genres,
-            "director": entry.Director,
+            "director": getValue(entry.Director),
             "writers": writers,
             "actors": actors,
-            "synopsis": entry.Plot,
-            "country": entry.Country,
-            "awards": entry.Awards,
-            "poster": entry.Poster,
-            "metascore": entry.Metascore,
-            "rating": entry.imdbRating,
-            "votes": entry.imdbVotes,
-            "response": entry.Response
+            "synopsis": getValue(entry.Plot),
+            "country": getValue(entry.Country),
+            "awards": getValue(entry.Awards),
+            "poster": getValue(entry.Poster),
+            "metascore": metascore,
+            "rating": rating,
+            "votes": votes
         };
     }
 });

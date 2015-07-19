@@ -136,15 +136,15 @@ ANN = _.extend(ANN, {
             case "Picture":
                 picture = {
                     src: info.$.src,
-                    width: info.$.width,
-                    height: info.$.height
+                    width: parseInt(info.$.width,10),
+                    height: parseInt(info.$.height,10)
                 };
                 // construct a list of alternate images
                 _.each(info["img"], function(img) {
                     alternatePictures.push({
                         src: img.$.src,
-                        width: img.$.width,
-                        height: img.$.height
+                        width: parseInt(img.$.width,10),
+                        height: parseInt(img.$.height,10)
                     });
                 });
                 break;
@@ -222,9 +222,9 @@ ANN = _.extend(ANN, {
         var ratings = {};
         _.each(_ratings, function(rating) {
             ratings = {
-                numVotes: rating.$.nb_votes,
-                weighted: rating.$.weighted_score,
-                bayesian: rating.$.bayesian_score
+                numVotes: parseInt(rating.$.nb_votes,10),
+                weighted: parseFloat(rating.$.weighted_score,10),
+                bayesian: parseFloat(rating.$.bayesian_score,10)
             };
         });
         // get episodes info

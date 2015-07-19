@@ -91,12 +91,20 @@ MAL = _.extend(MAL, {
      * @return {Object} The formatted entry data.
      */
     formatEntry: function(entry) {
+        var score = _.first(entry.score) || null;
+        if (!_.isNull(score)) {
+            score = parseFloat(score,10);
+        }
+        var numEpisodes = _.first(entry.episodes) || null;
+        if (!_.isNull(numEpisodes)) {
+            numEpisodes = parseFloat(numEpisodes,10);
+        }
         return {
             "id": _.first(entry.id) || null,
             "title": _.first(entry.title) || null,
             "alternateTitles": _.first(entry.synonyms) || null,
-            "numEpisodes": _.first(entry.episodes) || null,
-            "score": _.first(entry.score) || null,
+            "numEpisodes": numEpisodes,
+            "score": score,
             "type": _.first(entry.type) || null,
             "status": _.first(entry.status) || null,
             "startDate": _.first(entry.start_date) || null,
