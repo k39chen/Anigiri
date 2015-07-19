@@ -37,7 +37,7 @@ Meteor.methods({
         validateParameters(params, ["title_str"]);
 
         // send the request
-        var response = sendGetRequest({
+        var response = sendRequest({
             requestUrl: MAL.URL.search
                 .replace("{title_slug}", Helpers.slugify(params.title_str, {
                     delimiter: "+",

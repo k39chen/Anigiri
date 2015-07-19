@@ -36,7 +36,7 @@ Meteor.methods({
         validateParameters(params, ["title_str"]);
 
         // send the request
-        var response = sendGetRequest({
+        var response = sendRequest({
             requestUrl: TVDB.URL.search.replace("{title_str}",params.title_str),
             requestParams: {},
             processResponse: TVDB.formatResponse

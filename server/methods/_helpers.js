@@ -1,19 +1,28 @@
 /*========================================================================*
  * HTTP HELPERS
  *========================================================================*/
-sendGetRequest = function(params) {
+sendRequest = function(params) {
     var startTime = moment();
     var duration = null;
+    var params = _.extend({
+        contentKey: "content",
+        type: "GET",
+        requestUrl: null,
+        requestParams: null,
+        processResponse: _.noop
+    }, params);
     var result = {
         status: null,
         duration: null,
         data: null
     };
     // send the request to Anime News Network
-    var response = HTTP.get(params.requestUrl, params.requestParams);
-
+    var response = HTTP.call(params.type, params.requestUrl, params.requestParams);
+    if (!_.isNull(params.contentKey)) {
+        response = response[params.contentKey];
+    }
     // if there's nothing to parse then return an empty response
-    if (_.isEmpty(response.content)) {
+    if (_.isEmpty(response)) {
         duration = Helpers.getDuration(startTime,moment());
         result = {
             status: "ERROR",
@@ -25,7 +34,7 @@ sendGetRequest = function(params) {
         result = {
             status: "SUCCESS",
             duration: duration,
-            data: params.processResponse(response.content) || null
+            data: params.processResponse(response) || null
         };
     }
     console.log("Done in",duration);

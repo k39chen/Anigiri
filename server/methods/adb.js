@@ -37,7 +37,7 @@ Meteor.methods({
         validateParameters(params, ["title_str"]);
 
         // send the request
-        var response = sendGetRequest({
+        var response = sendRequest({
             requestUrl: ADB.URL.hotanime,
             requestParams: {
                 npmRequestOptions: {

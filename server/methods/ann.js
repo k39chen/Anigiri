@@ -36,10 +36,12 @@ Meteor.methods({
         validateParameters(params, ["title_str"]);
 
         // send the request
-        var response = sendGetRequest({
+        var response = sendRequest({
             requestUrl: ANN.URL.search.replace("{title_str}",params.title_str),
             requestParams: {
-                headers: {'X-Mashape-Authorization': API_CONFIG.MASHAPE_KEY}    
+                headers: {
+                    'X-Mashape-Authorization': API_CONFIG.MASHAPE_KEY
+                }
             },
             processResponse: ANN.formatResponse
         });
