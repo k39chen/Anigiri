@@ -193,31 +193,13 @@ ANN = _.extend(ANN, {
                 vintage.push(info._);
                 break;
             case "Opening Theme":
-                openings.push({
-                    index: null,
-                    title: info._,
-                    artist: null,
-                    start: null,
-                    end: null
-                });
+                openings.push(ANN.parseSongString(info._));
                 break;
             case "Ending Theme":
-                endings.push({
-                    index: null,
-                    title: info._,
-                    artist: null,
-                    start: null,
-                    end: null
-                });
+                endings.push(ANN.parseSongString(info._));
                 break;
             case "Special":
-                specials.push({
-                    index: null,
-                    title: info._,
-                    artist: null,
-                    start: null,
-                    end: null
-                });
+                specials.push(ANN.parseSongString(info._));
                 break;
             }
         });
@@ -402,5 +384,36 @@ ANN = _.extend(ANN, {
         default:
             return null;
         }
+    },
+    /**
+     * Takes a non-formatted ANN song string and parses it
+     * into a readable object.
+     *
+     * @method parseSongString
+     * @param str {String} The song string.
+     * @return {Object} The resulting object.
+     */
+    parseSongString: function(str) {
+        var matches = str.match(/^#([0-9]+):\s(.*)\sby\s(.*)$/i);
+        if (matches) {
+            var matches2 = matches[3].match(/^(.*)\s\((ep.*)\)$/i);
+            return {
+                source   : str,
+                num      : parseInt(matches[1],10),
+                song     : matches[2].replace(/"/g,''),
+                artist   : matches2 ? matches2[1] : matches[3],
+                episodes : matches2 ? matches2[2] : null
+            };
+        } else {
+            matches = str.match(/^(.*)\sby\s(.*)$/i);
+            return {
+                source   : str,
+                num      : 1,
+                song     : matches[1].replace(/"/g,''),
+                artist   : matches[2],
+                episodes : null
+            }
+        }
+        return null;
     }
 });

@@ -1,0 +1,6 @@
+Weighted Rank (WR) = (v / (v + m)) * S + (m / (v + m)) * C
+
+S = Average score for the Anime (mean).
+v = Number of votes for the Anime = (Number of people scoring the Anime).
+m = Minimum votes/scores required to get a calculated score (currently 50 scores required).
+C = The mean score across the entire Anime DB.

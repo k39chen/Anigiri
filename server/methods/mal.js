@@ -1,50 +1,58 @@
 /*========================================================================*
- * TVDB API CONFIG
+ * MYANIMELIST API CONFIG
  *========================================================================*/
-TVDB = {
-    BASE_API : "http://thetvdb.com/api",
-    API_KEY  : "B8E800CFF0D85989"
+MAL = {
+    BASE_API : "http://myanimelist.net/api"
 };
-TVDB.URL = {
-    search: TVDB.BASE_API+"/GetSeries.php?seriesname={title_str}"
+MAL.URL = {
+    search: MAL.BASE_API+"/anime/search.xml?q={title_slug}"
 };
 /*========================================================================*
- * TVDB API METHODS
+ * MYANIMELIST API METHODS
  *========================================================================*/
 /**
- * The TVDB module contains methods that exposes server-side functionality 
+ * The MyAnimeList module contains methods that exposes server-side functionality 
  * in a format that is simple for the client to interface and use.
  *
- * @namespace TVDB
+ * @namespace MAL
  */
 Meteor.methods({
     /**
-     * Performs a search on TVDB for an anime given an arbitrary title string.
+     * Performs a search on MAL for an anime given an arbitrary title string.
      *
      * @method search
      * @param title_str {String} The title of the anime that we want to search.
      * @return {Array} The list of search results.
      */
-    "TVDB.search": function(params) {
-        printHeader("TVDB.search",params);
+    "MAL.search": function(params) {
+        printHeader("MAL.search",params);
 
         // validate the parameters before we make any requests
         validateParameters(params, ["title_str"]);
 
         // construct the request URL to the third-party service.
-        var requestUrl = TVDB.URL.search
-            .replace("{title_str}",params.title_str);
+        var requestUrl = MAL.URL.search
+            .replace("{title_slug}", Helpers.slugify(params.title_str, {
+                delimiter: "+",
+                allLowerCase: true 
+            }));
 
         // send the request to Anime News Network
-        var response = HTTP.get(requestUrl, {});
+        var response = HTTP.get(requestUrl, {
+            auth: "k39chen:malapicredential"
+        });
+
+        console.log(response);
+
+        if (true) return;
 
         // if there's nothing to parse then return an empty response
         if (_.isEmpty(response.content)) {
             console.log("Couldn't find any results");
             return {};
         }
-        // format the TVDB response
-        var result = TVDB.formatResponse(response.content);
+        // format the MAL response
+        var result = MAL.formatResponse(response.content);
 
         //console.log("Add additional entry to DB.");
         //console.log("Augment existing entry in DB.");
@@ -55,11 +63,11 @@ Meteor.methods({
     }
 });
 /*========================================================================*
- * TVDB API HELPERS
+ * MYANIMELIST API HELPERS
  *========================================================================*/
-TVDB = _.extend(TVDB, {
+MAL = _.extend(MAL, {
     /**
-     * This will take a raw TVDB response then convert it from XML format
+     * This will take a raw MAL response then convert it from XML format
      * to JSON format, then afterwards parse the JSON formatted ANN
      * response and reorganize the data into a more user-friendly
      * interface.
@@ -72,16 +80,16 @@ TVDB = _.extend(TVDB, {
         // convert the XML formatted result into a JSON object.
         console.log("Received a response, converting XML to JSON format...");
         var json = xml2js.parseStringSync(response);
-        var tvdb = json.Data;
+        var mal = json;
         var result = {};
 
         // TODO: kchen - Do this
-        result = tvdb;
+        result = mal;
 
         return result;
     },
     /**
-     * This will take a JSON formatted entry TVDB response and reorganize
+     * This will take a JSON formatted entry MAL response and reorganize
      * the data into a more user-friendly interface.
      *
      * @method formatEntry
