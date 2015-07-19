@@ -5,6 +5,9 @@ TVDB = {
     BASE_API : "http://thetvdb.com/api",
     API_KEY  : "B8E800CFF0D85989"
 };
+HB.URL = {
+    search: TVDB.BASE_API+"/GetSeries.php?seriesname={title_str}"
+};
 /*========================================================================*
  * TVDB API METHODS
  *========================================================================*/
@@ -29,7 +32,8 @@ Meteor.methods({
         validateParameters(params, ["title_str"]);
 
         // construct the request URL to the third-party service.
-        var requestUrl = TVDB.BASE_API+"/GetSeries.php?seriesname="+params.title_str;
+        var requestUrl = TVDB.URL.search
+            .replace("{title_str}",params.title_str);
 
         // send the request to Anime News Network
         var response = HTTP.get(requestUrl, {});

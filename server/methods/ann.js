@@ -5,6 +5,9 @@ ANN = {
     BASE_API : "https://animenewsnetwork.p.mashape.com/api.xml",
     REPORTS  : "https://animenewsnetwork.p.mashape.com/reports.xml"
 };
+ANN.URL = {
+    search: ANN.BASE_API+"?title=~{title_str}"
+};
 /*========================================================================*
  * ANIME NEWS NETWORK API METHODS
  *========================================================================*/
@@ -29,7 +32,8 @@ Meteor.methods({
         validateParameters(params, ["title_str"]);
 
         // construct the request URL to the third-party service.
-        var requestUrl = ANN.BASE_API+"?title=~"+params.title_str;
+        var requestUrl = ANN.URL.search
+            .replace("{title_str}",params.title_str);
 
         // send the request to Anime News Network
         var response = HTTP.get(requestUrl, {

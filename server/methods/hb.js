@@ -4,6 +4,9 @@
 HB = {
     BASE_API : "https://hummingbirdv1.p.mashape.com"
 };
+HB.URL = {
+    search: HB.BASE_API+"/search/anime"
+};
 /*========================================================================*
  * HUMMINGBIRD API METHODS
  *========================================================================*/
@@ -28,7 +31,7 @@ Meteor.methods({
         validateParameters(params, ["title_str"]);
 
         // construct the request URL to the third-party service.
-        var requestUrl = HB.BASE_API+"/search/anime";
+        var requestUrl = HB.URL.search;
 
         // send the request to Anime News Network
         var response = HTTP.get(requestUrl, {
