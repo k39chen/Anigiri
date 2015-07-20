@@ -74,6 +74,7 @@ HB = _.extend(HB, {
             return;
         }
         var result = {
+            _: response,
             animes: []
         };
         // format each type of anime entry

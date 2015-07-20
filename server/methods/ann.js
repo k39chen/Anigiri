@@ -71,6 +71,7 @@ ANN = _.extend(ANN, {
         var json = xml2js.parseStringSync(response);
         var ann = json.ann;
         var result = {
+            _: ann,
             animes: [],
             mangas: []
         };

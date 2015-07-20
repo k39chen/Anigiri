@@ -74,6 +74,7 @@ MAL = _.extend(MAL, {
         var json = xml2js.parseStringSync(response);
         var mal = json;
         var result = {
+            _: mal,
             animes: []
         };
         // format each type of anime entry

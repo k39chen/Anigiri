@@ -71,13 +71,13 @@ ADB = _.extend(ADB, {
         console.log("Received a response, converting XML to JSON format...");
         var json = xml2js.parseStringSync(response);
         var adb = json;
-        var result = {};
-
-        // TODO: kchen - Do this
-        result = adb;
-
-        console.log(adb);
-
+        var result = {
+            _: adb,
+            animes: []
+        };
+        _.each(adb, function(data, bucket) {
+            result.animes = result.animes.concat(_.map(data, ADB.formatEntry));
+        });
         return result;
     },
     /**
@@ -89,6 +89,27 @@ ADB = _.extend(ADB, {
      * @return {Object} The formatted entry data.
      */
     formatEntry: function(entry) {
-        return entry;
+        //http://wiki.anidb.net/w/HTTP_API_Definition#Anime
+
+        // let's bucket all the known data groupings
+        var _metadata     = entry["$"];
+        var _relatedanime = entry["relatedanime"];
+        var _episodecount = entry["episodecount"];
+        var _description  = entry["description"];
+        var _categories   = entry["categories"];
+        var _tags         = entry["tags"];
+        var _characters   = entry["characters"];
+        var _episodes     = entry["episodes"];
+        var _startdate    = entry["startdate"];
+        var _enddate      = entry["enddate"];
+        var _title        = entry["title"];
+        var _ratings      = entry["ratings"];
+        var _picture      = entry["picture"];
+
+        return {
+            "id": _metadata.id,
+            "restricted": _metadata.restricted,
+            "picture": _.first(_picture) || null
+        };
     }
 });

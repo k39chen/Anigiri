@@ -67,6 +67,7 @@ TVDB = _.extend(TVDB, {
         var json = xml2js.parseStringSync(response);
         var tvdb = json.Data;
         var result = {
+            _: tvdb,
             animes: []
         };
         // format each type of anime entry
