@@ -51,60 +51,8 @@
         border-top: solid 4px $alt-theme-color;
         @include box-sizing(border-box);
 
-        .search-button {
-            @include transition(background-color 0.2s, border-color 0.2s);
-            overflow: hidden;
-            width: $sidebarWidth - 24px;
-            margin: 0 1.0em;
-            margin-bottom: 1.0em;
-            padding: 0 0.5em;
-            height: 2.75em;
-            line-height: 2.75em;
-            border: solid 1px $darkest-blue;
-            background: transparent;
-            color: $alt-text-color;
-            text-align: left;
-
-            .fa-search {
-                @include transition(color 0.2s);
-                float: left;
-                line-height: 2.75em;
-            }
-            .label {
-                @include transition(color 0.2s);
-                float: left;
-                line-height: 2.75em;
-            }
-            .close-button {
-                @include transition(all 0.2s);
-                float: right;
-                line-height: 2.0em;
-                font-size: 1.3em;
-                @include opacity(0);
-            }
-            &:hover, &.active {
-                background: $darkest-gray;
-                border-color: $darkest-gray;
-
-                .fa-search {
-                    color: $white;
-                }
-                .label {
-                    color: $white;
-                }
-            }
-            &.active {
-                .fa-search {
-                    color: $theme-color;
-                }
-                .close-button {
-                    @include opacity(0.3);
-
-                    &:hover {
-                        @include opacity(0.5);
-                    }
-                }
-            }
+        .search-group {
+            @include search-group;
         }
         .group {
             margin-bottom: 1.0em;

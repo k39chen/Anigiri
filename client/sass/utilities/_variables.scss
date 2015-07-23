@@ -13,6 +13,7 @@ $text-color: #595959;
 $alt-text-color: #a2a4b5;
 $theme-color: #f53b5b;
 $alt-theme-color: #A82138;
+$light-theme-color: lighten($theme-color,30%);
 $bg-color: #F4F5F6;
 
 $panel-border-color: #E9EAEB;

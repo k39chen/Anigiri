@@ -54,7 +54,7 @@ table {
             }
             &:hover {
                 cursor: pointer;
-                background: lighten($theme-color,30%);
+                background: $light-theme-color;
             }
         }
     }

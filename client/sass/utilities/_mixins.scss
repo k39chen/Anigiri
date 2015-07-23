@@ -65,6 +65,9 @@
     @include input-element;
     border: solid 1px $lighter-gray;
 
+    &::selection {
+        background-color: $light-theme-color;
+    }
     &:hover {
         background: lighten($theme-color,39%);
     }
@@ -93,5 +96,63 @@
         background-size: cover;
         z-index: -1;
         @include filter(blur($blur));
+    }
+}
+@mixin search-group {
+    @include transition(background-color 0.2s, border-color 0.2s);
+    overflow: hidden;
+    width: $sidebarWidth - 24px;
+    margin: 0 1.0em;
+    margin-bottom: 1.0em;
+    padding: 0 0.5em;
+    height: 2.75em;
+    line-height: 2.75em;
+    border: solid 1px $darkest-blue;
+    background: transparent;
+    color: $alt-text-color;
+    text-align: left;
+    @include box-sizing(border-box);
+
+    .fa-search {
+        @include transition(color 0.2s);
+        float: left;
+        line-height: 2.75em;
+    }
+    .search-input {
+        @include transition(color 0.2s);
+        width: 100%;
+        float: left;
+        line-height: 2.75em;
+        background-color: transparent;
+        border: none;
+        color: $alt-text-color;
+        font-family: $sans-serif;
+        outline: none;
+
+        &::-webkit-input-placeholder { color: $text-color; }
+        &:-moz-placeholder { color: $text-color; }
+        &:-ms-input-placeholder { color: $text-color; }
+        &::-moz-selection { color: $text-color; }
+    }
+    &:hover, &.active {
+        background: $darkest-gray;
+        border-color: $darkest-gray;
+
+        .fa-search {
+            color: $white;
+        }
+    }
+    &.active {
+        .fa-search {
+            color: $theme-color;
+        }
+
+        .close-button {
+            @include opacity(0.3);
+
+            &:hover {
+                @include opacity(0.5);
+            }
+        }
     }
 }

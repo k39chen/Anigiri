@@ -8,6 +8,37 @@ Template.sidebar.rendered = function() {
  * EVENT HANDLERS
  *========================================================================*/
 Template.sidebar.events({
+// Search group event handling
+//-------------------------------------------------------------------------
+    "focus .search-input": function(ev, template) {
+        var $el = $(ev.target);
+        var $group = $el.closest(".search-group");
+
+        // place the search group in an active state
+        $group.addClass("active");
+    },
+    "blur .search-input": function(ev, template) {
+        var $el = $(ev.target);
+        var $group = $el.closest(".search-group");
+
+        // remove the active state from the search input
+        $group.removeClass("active");
+    },
+    "keyup .search-input": function(ev, template) {
+        var $el = $(ev.target);
+        var value = $el.val();
+
+        // update the search input
+        Search.updateInput(value);
+
+        // if the search overlay is not already active, then
+        // wrest control over to the search overlay
+        if (!Search.isActive) {
+            Search.enter($el);
+        }
+    },
+// Sign in events
+//-------------------------------------------------------------------------
     "click .sign-in": function(ev, template) {
         var $el = $(ev.target);
         var $loginButton = $("#login-buttons .login-button");
@@ -45,9 +76,6 @@ Template.sidebar.helpers({
                     {key: "social", icon: "fa-users", label: "Social", href: "/social"}
                 ]
             });
-        }
-        // construct our Admin navigation group
-        if (Anigiri.Users.isLoggedIn()) {
             // only show the Admin navigation group if there is a user that is
             // currently logged in.
             groups.push({
