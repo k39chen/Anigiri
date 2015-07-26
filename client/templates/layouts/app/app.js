@@ -14,5 +14,7 @@ Template.app.rendered = function() {
  * TEMPLATE HELPERS
  *========================================================================*/
 Template.app.helpers({
-    // ...
+    isSidebarMode: function() {
+        return Anigiri.Users.isLoggedIn() ? "true" : "false";
+    }
 });

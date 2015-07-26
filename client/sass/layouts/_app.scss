@@ -30,10 +30,7 @@
         }
     }
     #page-container {
-        #fullscreen-toggle:before {
-            // fa-expand
-            content: "\f065";
-        }
+        @include transition(left 0.5s);
     }
     // we are going to hide the default login buttons
     // provide by the Meteor accounts service and provide

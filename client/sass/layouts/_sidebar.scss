@@ -1,4 +1,5 @@
 #sidebar {
+    @include transition(all 0.5s);
     position: absolute;
     top: 0;
     left: 0;
@@ -6,6 +7,7 @@
     height: 100%;
     background: $darker-gray;
     color: $alt-text-color;
+    @include opacity(1);
 
     #header {
         overflow: hidden;
@@ -147,8 +149,18 @@
     #page-container {
         left: $sidebarWidth;
     }
+    &[data-has-sidebar="false"] {
+        #sidebar {
+            left: -$sidebarWidth;
+            @include opacity(0);
+        }
+        #page-container {
+            left: 0;
+        }
+    }
     &.min-sidebar {
         #sidebar {
+            @include opacity(1);
             width: $minSidebarWidth;
 
             #header {
