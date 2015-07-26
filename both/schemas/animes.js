@@ -26,19 +26,34 @@ Schemas.Animes = new SimpleSchema({
     /**
      * Third-Party Services
      */
+    "anidb": {
+        type: Schemas.ThirdPartyService,
+        label: "AniDB",
+        defaultValue: {}
+    },
     "ann": {
         type: Schemas.ThirdPartyService,
         label: "Anime News Network",
         defaultValue: {}
     },
-    "tvdb": {
-        type: Schemas.ThirdPartyService,
-        label: "TV DB",
-        defaultValue: {}
-    },
     "hummingbird": {
         type: Schemas.ThirdPartyService,
         label: "Hummingbird",
+        defaultValue: {}
+    },
+    "imdb": {
+        type: Schemas.ThirdPartyService,
+        label: "IMDB",
+        defaultValue: {}
+    },
+    "mal": {
+        type: Schemas.ThirdPartyService,
+        label: "MyAnimeList",
+        defaultValue: {}
+    },
+    "tvdb": {
+        type: Schemas.ThirdPartyService,
+        label: "TV DB",
         defaultValue: {}
     },
     /**
