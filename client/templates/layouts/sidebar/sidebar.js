@@ -8,6 +8,16 @@ Template.sidebar.rendered = function() {
  * EVENT HANDLERS
  *========================================================================*/
 Template.sidebar.events({
+// Sidebar state events
+//-------------------------------------------------------------------------
+    "mouseover #sidebar": function(ev, template) {
+        var $el = $(ev.target);
+        AppController.element.attr("data-min-sidebar","false");
+    },
+    "mouseout #sidebar": function(ev, template) {
+        var $el = $(ev.target);
+        AppController.element.attr("data-min-sidebar","true");
+    },
 // Search group event handling
 //-------------------------------------------------------------------------
     "focus .search-input": function(ev, template) {

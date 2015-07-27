@@ -116,6 +116,7 @@
 
     .fa-search {
         @include transition(color 0.2s);
+        cursor: pointer;
         position: absolute;
         top: 0;
         left: 0;
