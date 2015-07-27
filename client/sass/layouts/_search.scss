@@ -25,6 +25,7 @@
         }
         .fa-search, .exit-btn {
             @include transition(color 0.2s);
+            cursor: pointer;
             position: absolute;
             top: 0;
             width: 1.25em;
@@ -35,21 +36,21 @@
             color: $light-gray;
 
             &:hover {
-                color: lighten($light-gray,5%);
+                color: lighten($light-gray,10%);
             }
             &:active {
-                color: darken($light-gray,5%);
+                color: darken($light-gray,10%);
             }
         }
         .exit-btn {
             right: 1.0em;
-            color: $lighter-gray;
+            color: $lightest-gray;
 
             &:hover {
-                color: lighten($lighter-gray,5%);
+                color: darken($lightest-gray,5%);
             }
             &:active {
-                color: darken($lighter-gray,5%);
+                color: darken($lightest-gray,10%);
             }
         }
         .search-input {

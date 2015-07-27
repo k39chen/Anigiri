@@ -22,7 +22,7 @@ Template.homePage.events({
 
         var interval = setInterval(function() {
             if (Anigiri.Users.isLoggedIn()) {
-                Router.go("/profile");
+                Router.go("/");
                 clearInterval(interval);
             }
         }, 500);
