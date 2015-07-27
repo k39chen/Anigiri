@@ -30,7 +30,7 @@
         }
     }
     #page-container {
-        @include transition(left 0.5s);
+        @include transition(left 0.2s);
     }
     // we are going to hide the default login buttons
     // provide by the Meteor accounts service and provide
