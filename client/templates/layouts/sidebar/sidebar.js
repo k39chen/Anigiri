@@ -71,32 +71,26 @@ Template.sidebar.events({
  * TEMPLATE HELPERS
  *========================================================================*/
 Template.sidebar.helpers({
-    navigationGroup: function() {
-        var groups = [];
+    list: function() {
+        var list = [];
 
         // construct our Main navigation group
         if (Anigiri.Users.isLoggedIn()) {
             // only show the Main navigation group if there is a user that is
             // currently logged in.
-            groups.push({
-                title: "Main",
-                list: [
-                    {key: "explore", icon: "fa-globe", label: "Explore", href: "/explore"},
-                    {key: "gallery", icon: "fa-th-large", label: "Gallery", href: "/gallery"},
-                    {key: "social", icon: "fa-users", label: "Social", href: "/social"}
-                ]
-            });
+            list = list.concat([
+                {key: "explore", icon: "fa-globe", label: "Explore", href: "/explore"},
+                {key: "gallery", icon: "fa-th-large", label: "Gallery", href: "/gallery"},
+                {key: "social", icon: "fa-users", label: "Social", href: "/social"}
+            ]);
             // only show the Admin navigation group if there is a user that is
             // currently logged in.
-            groups.push({
-                title: "Admin",
-                // only show the control panel if the currently logged-in user is an
-                // administrator.
-                list: Anigiri.Users.isAdmin() 
-                    ? [{key: "control-panel", icon: "fa-wrench", label: "Control Panel", href: "/controlPanel"}] 
-                    : []
-            });
+            if (Anigiri.Users.isAdmin()) {
+                list = list.concat([
+                    {key: "control-panel", icon: "fa-wrench", label: "Control Panel", href: "/controlPanel"}
+                ]);
+            }
         }
-        return groups;
+        return list;
     }
 });

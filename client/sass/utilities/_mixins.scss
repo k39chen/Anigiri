@@ -113,6 +113,7 @@
     color: $alt-text-color;
     text-align: left;
     @include box-sizing(border-box);
+    @include border-radius(3px);
 
     .fa-search {
         @include transition(color 0.2s);

@@ -9,19 +9,14 @@
             <i class="fa fa-fw fa-search"></i>
             <input class="search-input" placeholder="Search Anigiri" />
         </div>
-    {{#each navigationGroup}}
-        <div class="group">
-            <div class="title">{{title}}</div>
-            <div class="list">
-                {{#each list}}
-                <a class="nav-item" data-key="{{key}}" href="{{href}}">
-                    <i class="fa fa-fw {{icon}}"></i>
-                    <span class="label">{{label}}</span>
-                </a>
-                {{/each}}
-            </div>
+        <div class="list">
+            {{#each list}}
+            <a class="nav-item" data-key="{{key}}" href="{{href}}">
+                <i class="fa fa-fw {{icon}}"></i>
+                <span class="label">{{label}}</span>
+            </a>
+            {{/each}}
         </div>
-    {{/each}}
     </div>
     <div id="footer">
         {{#if isLoggedIn}}

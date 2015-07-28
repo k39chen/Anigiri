@@ -1,6 +1,7 @@
 #sidebar {
     @include transition(all 0.2s);
     position: absolute;
+    overflow: hidden;
     top: 0;
     left: 0;
     width: $sidebarWidth;
@@ -13,7 +14,7 @@
         overflow: hidden;
         position: absolute;
         top: 0;
-        width: 100%;
+        width: $sidebarWidth;
         height: $headerHeight;
         padding: 1.0em 0;
         background: $theme-color;
@@ -36,11 +37,13 @@
             }
         }
         .title {
+            @include transition(all 0.2s);
             float: left;
             color: $white;
             font-size: 1.75em;
             margin-top: 0.25em;
             margin-left: 0.25em;
+            @include opacity(1);
         }
     }
     #navigation {
@@ -56,49 +59,42 @@
         .search-group {
             @include search-group;
         }
-        .group {
-            margin-bottom: 1.0em;
+        .list {
+            .nav-item {
+                @include transition(background-color 0.2s, color 0.2s);
+                cursor: pointer;
+                display: block;
+                width: $sidebarWidth;
+                padding: 0.5em 0;
 
-            .title {
-                margin: 0 2.0em;
-                margin-bottom: 0.5em;
-                text-transform: uppercase;
-                font-weight: 700;
-                font-size: 0.85em;
-                color: $dark-blue;
-                border-bottom: solid 1px $darkest-blue;
-            }
-            .list {
-                .nav-item {
-                    @include transition(background-color 0.2s, color 0.2s);
-                    cursor: pointer;
-                    display: block;
-                    padding: 0.5em 2.0em;
-
-                    .fa {
-                        font-size: 1.2em;
-                        margin-right: 0.5em;
-                    }
-                    .label {
-                        display: inline;
-                        padding: 0;
-                    }
-                    &:hover {
-                        background: lighten($darker-gray,5%);
-                        color: $white;
-                    }
-                    &.active {
-                        background: darken($darker-gray,5%);
-                        color: $theme-color;
-                    }
+                .fa {
+                    @include transition(padding-left 0.2s);
+                    margin-right: 0.5em;
+                    padding-left: 1.5em;
+                    font-size: 1.2em;
+                }
+                .label {
+                    @include transition(all 0.2s);
+                    display: inline;
+                    padding: 0;
+                    @include opacity(1);
+                }
+                &:hover {
+                    background: lighten($darker-gray,5%);
+                    color: $white;
+                }
+                &.active {
+                    background: darken($darker-gray,5%);
+                    color: $theme-color;
                 }
             }
         }
     }
     #footer {
+        @include transition(padding 0.2s);
         position: absolute;
         bottom: 0;
-        width: 100%;
+        width: $sidebarWidth;
         height: $footerHeight;
         padding: 1.0em 2.0em;
         background: $darkest-gray;
@@ -117,10 +113,12 @@
                 @include box-sizing(border-box);
             }
             .group {
+                @include transition(all 0.2s);
                 float: left;
                 margin-top: 0.5em;
                 margin-left: 0.75em;
                 line-height: 1.5em;
+                @include opacity(1);
 
                 .name {
                     color: $white;
@@ -131,8 +129,9 @@
                     @include transition(color 0.2s);
                     color: $dark-blue;
 
-                    i.fa {
-                        margin-right: 0.4em;
+                    .label {
+                        height: 1.0em;
+                        line-height: 1.0em;
                     }
                     &:hover {
                         color: $theme-color;
@@ -165,32 +164,25 @@
 
             #header {
                 #logo {
-                    display: block;
-                    width: $minSidebarWidth;
-                    text-align: center;
-
                     img {
-                        float: none;
-                        margin: 0;
+                        margin-left: 1.5em;
                     }
                 }
                 .title {
-                    display: none;
+                    @include opacity(0);
                 }
             }
             #navigation {
-                padding-top: 16px;
-
                 .search-group {
                     width: $minSidebarWidth;
+                    height: 3.25em;
                     margin: 0;
-                    border: solid 1px transparent;
+                    border: solid 0px transparent;
                     text-align: center;
 
                     .fa-search {
                         position: static;
-                        font-size: 1.5em;
-                        width: 1.0em;
+                        font-size: 1.75em;
                         height: 1.0em;
                         line-height: 1.0em;
                     }
@@ -198,49 +190,26 @@
                         display: none;
                     }
                 }
-                .group {
-                    margin-top: 8px;
-                    border-top: solid 1px #3f425a;
-
-                    .title {
-                        display: none;
-                    }
+                .list {
                     .nav-item {
-                        width: $minSidebarWidth;
-                        padding: 0.5em 0;
-                        text-align: center;
-                        font-size: 1.5em;
+                        padding-top: 0.75em;
+                        padding-bottom: 0.25em;
 
                         .fa {
-                            margin-right: 0;
+                            padding-left: 1.0em;
+                            font-size: 1.75em;
                         }
                         .label {
-                            display: none;
+                            @include opacity(0);
                         }
                     }
                 }
             }
             #footer {
-                padding: 15px 0;
+                padding: 1.0em 1.0em;
 
-                .sign-in {
-                    height: 3.5em;
-                    line-height: 3.75em;
-                    margin-top: 0;
-
-                    .fa {
-                        font-size: 1.5em;
-                    }
-                    .label {
-                        display: none;
-                    }
-                }
-                .user-info {
-                    text-align: center;
-
-                    .portrait {
-                        float: none;
-                    }
+                .group {
+                    @include opacity(0);
                 }
             }
         }
