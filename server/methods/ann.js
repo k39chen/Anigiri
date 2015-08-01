@@ -6,11 +6,14 @@
  * ANIME NEWS NETWORK API CONFIG
  *========================================================================*/
 ANN = {
+    CDN_API  : "https://cdn.animenewsnetwork.com/encyclopedia/api.xml",
     BASE_API : "https://animenewsnetwork.p.mashape.com/api.xml",
     REPORTS  : "https://animenewsnetwork.p.mashape.com/reports.xml"
 };
 ANN.URL = {
-    search: ANN.BASE_API+"?title=~{title_str}"
+    search: ANN.BASE_API+"?title=~{title_str}",
+    animes: ANN.CDN_API+"?title={ids}",
+    anime: ANN.BASE_API+"?title={id}"
 };
 /*========================================================================*
  * ANIME NEWS NETWORK API METHODS
@@ -22,6 +25,62 @@ ANN.URL = {
  * @namespace ANN
  */
 Meteor.methods({
+    /**
+     * Performs an ANN request for getting an anime's full details.
+     *
+     * @method getAnime
+     * @param id {Array} The ANN anime id.
+     * @return {Array} The anime's details.
+     */
+    "ANN.getAnime": function(params) {
+        printHeader("ANN.getAnime",params);
+
+        // validate the parameters before we make any requests
+        validateParameters(params, ["id"]);
+
+        // send the request
+        var response = sendRequest({
+            requestUrl: ANN.URL.anime.replace("{id}",params.id),
+            requestParams: {
+                headers: {
+                    'X-Mashape-Authorization': API_CONFIG.MASHAPE_KEY
+                }
+            },
+            processResponse: ANN.formatResponse
+        });
+        //console.log("Add additional entry to DB.");
+        //console.log("Augment existing entry in DB.");
+        console.log("Serving well-formed results.");
+        return response;
+    },
+    /**
+     * Performs an ANN request for getting a set of animes' full details.
+     *
+     * @method getAnimes
+     * @param ids {Array} The ANN anime ids.
+     * @return {Array} The animes' details.
+     */
+    "ANN.getAnimes": function(params) {
+        printHeader("ANN.getAnimes",params);
+
+        // validate the parameters before we make any requests
+        validateParameters(params, ["ids"]);
+
+        // send the request
+        var response = sendRequest({
+            requestUrl: ANN.URL.animes.replace("{ids}",params.ids.join("/")),
+            requestParams: {
+                headers: {
+                    'X-Mashape-Authorization': API_CONFIG.MASHAPE_KEY
+                }
+            },
+            processResponse: ANN.formatResponse
+        });
+        //console.log("Add additional entry to DB.");
+        //console.log("Augment existing entry in DB.");
+        console.log("Serving well-formed results.");
+        return response;
+    },
     /**
      * Performs a search on ANN for an anime given an arbitrary title string.
      *
