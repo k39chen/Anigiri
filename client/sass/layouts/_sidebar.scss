@@ -74,18 +74,24 @@
                     font-size: 1.2em;
                 }
                 .label {
-                    @include transition(all 0.2s);
+                    @include transition(color 0.2s);
                     display: inline;
                     padding: 0;
-                    @include opacity(1);
+                    color: $alt-text-color;
                 }
                 &:hover {
                     background: lighten($darker-gray,5%);
-                    color: $white;
+
+                    &, .label {
+                        color: $white;
+                    }
                 }
                 &.active {
                     background: darken($darker-gray,5%);
-                    color: $theme-color;
+
+                    &, .label {
+                        color: $theme-color;
+                    }
                 }
             }
         }
@@ -200,7 +206,7 @@
                             font-size: 1.75em;
                         }
                         .label {
-                            @include opacity(0);
+                            color: $darker-gray;
                         }
                     }
                 }

@@ -207,25 +207,25 @@ ANN = _.extend(ANN, {
         var relatedPrev = [];
         _.each(_relatedPrev, function(entry) {
             relatedPrev.push({
-                id: entry.$.id,
-                rel: entry.$.rel
+                "id": entry.$.id,
+                "rel": entry.$.rel
             });
         });
         // build the related next
         var relatedNext = [];
         _.each(_relatedNext, function(entry) {
             relatedNext.push({
-                id: entry.$.id,
-                rel: entry.$.rel
+                "id": entry.$.id,
+                "rel": entry.$.rel
             });
         });
         // get ratings info
         var ratings = {};
         _.each(_ratings, function(rating) {
             ratings = {
-                numVotes: parseInt(rating.$.nb_votes,10),
-                weighted: parseFloat(rating.$.weighted_score,10),
-                bayesian: parseFloat(rating.$.bayesian_score,10)
+                "num_votes": parseInt(rating.$.nb_votes,10),
+                "weighted": parseFloat(rating.$.weighted_score,10),
+                "bayesian": parseFloat(rating.$.bayesian_score,10)
             };
         });
         // get episodes info
@@ -233,8 +233,8 @@ ANN = _.extend(ANN, {
         _.each(_episodes, function(episode) {
             episodeList[episode.$.num] = _.map(episode.title, function(title) {
                 return {
-                    lang: title.$.lang,
-                    value: title._
+                    "lang": title.$.lang,
+                    "value": title._
                 };
             });
         })
@@ -242,26 +242,26 @@ ANN = _.extend(ANN, {
         var reviews = [];
         _.each(_reviews, function(review) {
             reviews.push({
-                title: review._,
-                href: review.$.href
+                "title": review._,
+                "href": review.$.href
             });
         });
         // get the release info
         var releases = [];
         _.each(_releases, function(release) {
             releases.push({
-                title: release._,
-                href: release.$.href,
-                date: release.$.date
+                "title": release._,
+                "href": release.$.href,
+                "date": release.$.date
             });
         });
         // get the news info
         var news = [];
         _.each(_news, function(article) {
             news.push({
-                title: article._,
-                href: article.$.href,
-                date: article.$.datetime
+                "title": article._,
+                "href": article.$.href,
+                "date": article.$.datetime
             });
         });
         // get the staff info
@@ -272,9 +272,9 @@ ANN = _.extend(ANN, {
 
             _.each(people.person, function(person) {
                 staff_[person.$.id] = {
-                    id: person.$.id,
-                    name: person._,
-                    tasks: personTasks
+                    "id": person.$.id,
+                    "name": person._,
+                    "tasks": personTasks
                 };
             });
             _.each(staff_, function(_person) {
@@ -289,9 +289,9 @@ ANN = _.extend(ANN, {
 
             _.each(people.person, function(person) {
                 cast_[person.$.id] = {
-                    id: person.$.id,
-                    name: person._,
-                    roles: personRoles
+                    "id": person.$.id,
+                    "name": person._,
+                    "roles": personRoles
                 };
             });
             _.each(cast_, function(_person) {
@@ -306,9 +306,9 @@ ANN = _.extend(ANN, {
 
             _.each(credit.company, function(company) {
                 credits_[company.$.id] = {
-                    id: company.$.id,
-                    name: company._,
-                    tasks: companyTasks
+                    "id": company.$.id,
+                    "name": company._,
+                    "tasks": companyTasks
                 };
             });
             _.each(credits_, function(_company) {
@@ -324,9 +324,9 @@ ANN = _.extend(ANN, {
                 "id": id,
                 "type": type,
                 "title": title,
-                "alternateTitles": alternateTitles,
+                "alternate_titles": alternateTitles,
                 "picture": picture,
-                "alternatePictures": alternatePictures,
+                "alternate_pictures": alternatePictures,
                 "synopsis": summary,
                 "genres": genres,
                 "themes": themes,
@@ -338,8 +338,8 @@ ANN = _.extend(ANN, {
                 },
                 "episodes": {
                     "num": numEpisodes,
-                    "runningTime": runningTime,
-                    "premiereDate": premiereDate,
+                    "running_time": runningTime,
+                    "premiere_date": premiereDate,
                     "list": episodeList
                 },
                 "related": {
@@ -359,16 +359,16 @@ ANN = _.extend(ANN, {
                 "id": id,
                 "type": type,
                 "title": title,
-                "alternateTitles": alternateTitles,
+                "alternate_titles": alternateTitles,
                 "picture": picture,
-                "alternatePictures": alternatePictures,
+                "alternate_pictures": alternatePictures,
                 "synopsis": summary,
                 "genres": genres,
                 "themes": themes,
                 "vintage": vintage,
                 "books": {
-                    "numTankoubon": numTankoubon,
-                    "numPages": numPages
+                    "num_tankoubon": numTankoubon,
+                    "num_pages": numPages
                 },
                 "related": {
                     "prev": relatedPrev,
@@ -398,20 +398,20 @@ ANN = _.extend(ANN, {
         if (matches) {
             var matches2 = matches[3].match(/^(.*)\s\((ep.*)\)$/i);
             return {
-                source   : str,
-                num      : parseInt(matches[1],10),
-                song     : matches[2].replace(/"/g,''),
-                artist   : matches2 ? matches2[1] : matches[3],
-                episodes : matches2 ? matches2[2] : null
+                "source"   : str,
+                "num"      : parseInt(matches[1],10),
+                "song"     : matches[2].replace(/"/g,''),
+                "artist"   : matches2 ? matches2[1] : matches[3],
+                "episodes" : matches2 ? matches2[2] : null
             };
         } else {
             matches = str.match(/^(.*)\sby\s(.*)$/i);
             return {
-                source   : str,
-                num      : 1,
-                song     : matches[1].replace(/"/g,''),
-                artist   : matches[2],
-                episodes : null
+                "source"   : str,
+                "num"      : 1,
+                "song"     : matches[1].replace(/"/g,''),
+                "artist"   : matches[2],
+                "episodes" : null
             }
         }
         return null;

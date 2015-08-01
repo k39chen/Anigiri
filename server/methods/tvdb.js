@@ -97,7 +97,7 @@ TVDB = _.extend(TVDB, {
             "title": _.first(entry.SeriesName) || null,
             "picture": picture,
             "synopsis": _.first(entry.Overview) || null,
-            "startDate": _.first(entry.FirstAired) || null,
+            "start_date": _.first(entry.FirstAired) || null,
             "network": _.first(entry.Network) || null
         };
     }

@@ -103,13 +103,13 @@ MAL = _.extend(MAL, {
         return {
             "id": _.first(entry.id) || null,
             "title": _.first(entry.title) || null,
-            "alternateTitles": _.first(entry.synonyms) || null,
-            "numEpisodes": numEpisodes,
+            "alternate_titles": _.first(entry.synonyms) || null,
+            "num_episodes": numEpisodes,
             "score": score,
             "type": _.first(entry.type) || null,
             "status": _.first(entry.status) || null,
-            "startDate": _.first(entry.start_date) || null,
-            "endDate": _.first(entry.end_date) || null,
+            "start_date": _.first(entry.start_date) || null,
+            "end_date": _.first(entry.end_date) || null,
             "synopsis": _.first(entry.synopsis) || null,
             "image": _.first(entry.image) || null
         };
