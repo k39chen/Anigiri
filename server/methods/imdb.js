@@ -1,6 +1,6 @@
 /**
  * @source IMDB
- * @url http://www.animenewsnetwork.com/encyclopedia/api.php
+ * @url http://www.omdbapi.com/
  */
 /*========================================================================*
  * IMDB API CONFIG
@@ -22,14 +22,43 @@ IMDB.URL = {
  */
 Meteor.methods({
     /**
+     * Performs a search on IMDB for an anime given an arbitrary anime id.
+     *
+     * @method searchById
+     * @param id {String} The id of the anime that we want to search.
+     * @return {Array} The list of search results.
+     */
+    "IMDB.searchById": function(params) {
+        printHeader("IMDB.searchById",params);
+
+        // validate the parameters before we make any requests
+        validateParameters(params, ["id"]);
+
+        // send the request
+        var response = sendRequest({
+            requestUrl: IMDB.BASE_API,
+            requestParams: {
+                params: {
+                    i: params.id,
+                    r: "json"
+                }
+            },
+            processResponse: IMDB.formatResponse
+        });
+        //console.log("Add additional entry to DB.");
+        //console.log("Augment existing entry in DB.");
+        console.log("Serving well-formed results.");
+        return response;
+    },
+    /**
      * Performs a search on IMDB for an anime given an arbitrary title string.
      *
-     * @method search
+     * @method searchByTitle
      * @param title_str {String} The title of the anime that we want to search.
      * @return {Array} The list of search results.
      */
-    "IMDB.search": function(params) {
-        printHeader("IMDB.search",params);
+    "IMDB.searchByTitle": function(params) {
+        printHeader("IMDB.searchByTitle",params);
 
         // validate the parameters before we make any requests
         validateParameters(params, ["title_str"]);
@@ -137,7 +166,7 @@ IMDB = _.extend(IMDB, {
             votes = parseInt(votes,10);
         }
         function getValue(value) {
-            if (value === "N/A") {
+            if (value === "N/A" || _.isUndefined(value)) {
                 return null;
             }
             return value;
