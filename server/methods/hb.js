@@ -9,6 +9,7 @@ HB = {
     BASE_API : "https://hummingbirdv1.p.mashape.com"
 };
 HB.URL = {
+    anime: HB.BASE_API+"/anime/{id}",
     search: HB.BASE_API+"/search/anime"
 };
 /*========================================================================*
@@ -21,6 +22,37 @@ HB.URL = {
  * @namespace HB
  */
 Meteor.methods({
+    /**
+     * Performs an Hummingbird request for getting an anime's full details.
+     *
+     * @method getAnime
+     * @param id {String} The Hummingbird anime id.
+     * @return {Object} The anime details.
+     */
+    "HB.getAnime": function(params) {
+        printHeader("HB.getAnime",params);
+
+        // validate the parameters before we make any requests
+        validateParameters(params, ["id"]);
+
+        // send the request
+        var response = sendRequest({
+            requestUrl: HB.URL.anime.replace("{id}",params.id),
+            requestParams: {
+                headers: {
+                    'X-Mashape-Authorization': API_CONFIG.MASHAPE_KEY
+                },
+                params: {
+                    query: params.id
+                }
+            },
+            processResponse: HB.formatEntry
+        });
+        //console.log("Add additional entry to DB.");
+        //console.log("Augment existing entry in DB.");
+        console.log("Serving well-formed results.");
+        return response;
+    },
     /**
      * Performs a search on Hummingbird for an anime given an arbitrary title string.
      *
@@ -89,9 +121,18 @@ HB = _.extend(HB, {
      *
      * @method formatEntry
      * @param entry {Object} The unorganized entry data.
+     * @param isParsed {Boolean} Flag to indicate if this response is already in JSON format.
      * @return {Object} The formatted entry data.
      */
-    formatEntry: function(entry) {
+    formatEntry: function(entry, isParsed) {
+        if (!isParsed) {
+            try {
+                entry = JSON.parse(entry);
+            } catch (e) {
+                console.log("Unable to parse JSON");
+                return;
+            }
+        }
         var genres = {};
         _.each(entry.genres, function(genre) {
             genres[genre.name.toLowerCase()] = {

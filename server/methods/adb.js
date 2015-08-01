@@ -183,7 +183,7 @@ ADB = _.extend(ADB, {
     formatAnime: function(adb) {
         var anime = {};
         // format the response to JSON
-        adb = ADB.toJSON(adb);
+        adb = toJSON(adb);
         var anime = adb.anime;
 
         // start building our values
@@ -301,18 +301,6 @@ ADB = _.extend(ADB, {
                 episodes.push(_episode);
             });
         }
-        // build categories
-        var categories = [];
-        if (anime["categories"]) {
-            _.each(anime["categories"][0].category, function(category) {
-                categories.push({
-                    "name": category.name[0],
-                    "description": category.description[0],
-                    "hentai": category.$.hentai,
-                    "weight": parseInt(category.$.weight,10)
-                });
-            });
-        }
         // build tags
         var tags = [];
         if (anime["tags"]) {
@@ -321,7 +309,6 @@ ADB = _.extend(ADB, {
                     "name": tag.name[0],
                     "count": parseInt(tag.count[0],10),
                     "description": tag.description ? tag.description[0] : null,
-                    "approval": parseInt(tag.$.approval,10),
                     "spoiler": tag.$.spoiler,
                     "weight": parseInt(tag.$.weight,10)
                 });
@@ -335,7 +322,6 @@ ADB = _.extend(ADB, {
             "similar": similar,
             "comments": comments,
             "creators": creators,
-            "categories": categories,
             "tags": tags,
             "episodes": episodes,
             "ratings": {},
@@ -381,7 +367,7 @@ ADB = _.extend(ADB, {
      */
     formatSearch: function(adb) {
         // format the response to JSON
-        adb = ADB.toJSON(adb);
+        adb = toJSON(adb);
         
         // go through each anime title and return the formatted list
         var list = [];
@@ -411,7 +397,7 @@ ADB = _.extend(ADB, {
      */
     formatMain: function(adb) {
         // format the response to JSON
-        adb = ADB.toJSON(adb);
+        adb = toJSON(adb);
 
         // go through each bucket and format each accordingly
         var results = {
@@ -436,7 +422,7 @@ ADB = _.extend(ADB, {
 
         // format to JSON if this is not already in JSON format
         if (!isJSON) {
-            adb = ADB.toJSON(adb);
+            adb = toJSON(adb);
             adb = adb.randomrecommendation;
         } else {
             adb = adb[0];
@@ -486,7 +472,7 @@ ADB = _.extend(ADB, {
 
         // format to JSON if this is not already in JSON format
         if (!isJSON) {
-            adb = ADB.toJSON(adb);
+            adb = toJSON(adb);
             adb = adb.randomsimilar;
         } else {
             adb = adb[0];
@@ -535,7 +521,7 @@ ADB = _.extend(ADB, {
 
         // format to JSON if this is not already in JSON format
         if (!isJSON) {
-            adb = ADB.toJSON(adb);
+            adb = toJSON(adb);
             adb = adb.hotanime;
         } else {
             adb = adb[0];
@@ -571,18 +557,5 @@ ADB = _.extend(ADB, {
         } else {
             return {_: adb, list: list};
         }
-    },
-    /**
-     * This will take a raw AniDB response then convert it from XML format
-     * to JSON format.
-     *
-     * @method toJSON
-     * @param response {String} The response as a string-represented XML.
-     * @return {Array} The response as a JSON.
-     */
-    toJSON: function(response) {
-        // convert the XML formatted result into a JSON object.
-        console.log("Received a response, converting XML to JSON format...");
-        return xml2js.parseStringSync(response);
-    },
+    }
 });

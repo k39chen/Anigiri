@@ -44,6 +44,19 @@ throwError = function(type, message) {
     console.log("["+type+"] "+message);
     throw new Meteor.Error(type, message);
 };
+/**
+ * This will take a raw AniDB response then convert it from XML format
+ * to JSON format.
+ *
+ * @method toJSON
+ * @param response {String} The response as a string-represented XML.
+ * @return {Array} The response as a JSON.
+ */
+toJSON = function(response) {
+    // convert the XML formatted result into a JSON object.
+    console.log("Received a response, converting XML to JSON format...");
+    return xml2js.parseStringSync(response);
+};
 /*========================================================================*
  * PARAMETER VALIDATION
  *========================================================================*/
