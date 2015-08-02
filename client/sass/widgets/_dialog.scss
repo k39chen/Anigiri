@@ -5,6 +5,7 @@
     font-family: $sans-serif;
     font-size: 1.0em;
     min-width: 300px;
+    max-width: none;
 
     .qtip-titlebar {
         background: $white;
@@ -39,6 +40,19 @@
         }
     }
     .qtip-content {
-        padding: 1.0em;
+        padding: 0;
+
+        .content-container {
+            margin: 1.0em;
+        }
+        .button-pane {
+            border-top: solid 1px $even-lighter-gray;
+            padding: 0.5em;
+            text-align: right;
+
+            button:first-child {
+                margin-right: 0.5em;
+            }
+        }
     }
 }

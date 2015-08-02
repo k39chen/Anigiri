@@ -34,29 +34,29 @@
         @include opacity(0.5);
     }
 }
-@mixin button($font-size: 1.0em) {
+@mixin button($font-size: 1.0em, $color: $theme-color) {
     @include transition(background-color 0.2s, border-bottom-color 0.2s);
     cursor: pointer;
     @include input-element($font-size);
     padding: 0 1.0em;
-    background: $theme-color;
+    background: $color;
     color: $white;
     border: none;
-    border-bottom: solid 2px darken($theme-color,20%);
+    border-bottom: solid 2px darken($color,20%);
     
     &:hover {
-        background: lighten($theme-color, 10%);
-        border-bottom: solid 2ps darken($theme-color,10%);
+        background: lighten($color, 10%);
+        border-bottom: solid 2ps darken($color,10%);
     }
     &:active {
-        background: darken($theme-color,10%);
-        border-bottom: solid 2px darken($theme-color,20%);
+        background: darken($color,10%);
+        border-bottom: solid 2px darken($color,20%);
     }
     &[disabled] {
         cursor: auto;
         cursor: not-allowed;
-        background: $theme-color;
-        border-bottom: solid 2px darken($theme-color,20%);
+        background: $color;
+        border-bottom: solid 2px darken($color,20%);
         @include opacity(0.5);
     }
 }

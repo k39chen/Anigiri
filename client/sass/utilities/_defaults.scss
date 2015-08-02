@@ -24,6 +24,19 @@ button {
         padding: 0 0.5em;
     }
 }
+button.secondary {
+    @include button(1.0em, $even-lighter-gray);
+    color: $text-color;
+
+    &:hover {
+        background: lighten($even-lighter-gray, 5%);
+        border-bottom: solid 2ps darken($even-lighter-gray,5%);
+    }
+    &:active {
+        background: darken($even-lighter-gray,10%);
+        border-bottom: solid 2px darken($even-lighter-gray,20%);
+    }
+}
 input[type="text"], input[type="number"] {
     @include text-input;
 }
